@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import type { IButton } from './type';
 
 export const Button: FC<IButton> = ({
-  className,
+  classNameButton,
   type = 'button',
   onClick,
   disabled,
@@ -15,7 +15,7 @@ export const Button: FC<IButton> = ({
   return (
     <button
       type={type}
-      className={clsx('text-sm rounded-lg bg-blue-500 text-white px-6 py-3', className)}
+      className={clsx('text-sm rounded-lg bg-blue-500 text-white px-6 py-3', classNameButton)}
       onClick={onClick}
       disabled={disabled}
       {...rest}
