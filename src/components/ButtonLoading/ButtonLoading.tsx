@@ -1,29 +1,28 @@
 import type { FC } from 'react';
 
-import type { IButton } from 'types/components';
+import clsx from 'clsx';
 
-import style from './buttonLoading.module.scss';
+import type { IButton } from './type/index';
 
-export const ButtonLoading: FC<IButton> = ({
-  loading = false,
+export const Button: FC<IButton> = ({
   text,
   className,
   img,
   type = 'button',
   onClick,
   disabled,
-	...rest
+  ...rest
 }) => {
   return (
-    <button type={type} className={className} onClick={onClick} disabled={loading || disabled} {...rest}>
-      {loading ? (
-        <div className={style.loading} />
-      ) : (
-        <>
-          {img && <img src={img} alt="img" aria-hidden="true" />}
-          <span>{text}</span>
-        </>
-      )}
+    <button
+      type={type}
+      className={clsx('text-sm rounded-lg bg-blue-500 text-white px-6 py-3', className)}
+      onClick={onClick}
+      disabled={disabled}
+      {...rest}
+    >
+      {img && <img src={img} alt="img" aria-hidden="true" />}
+      <span>{text}</span>
     </button>
   );
 };
