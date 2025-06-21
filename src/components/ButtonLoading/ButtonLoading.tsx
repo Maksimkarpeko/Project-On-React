@@ -12,19 +12,18 @@ export const ButtonLoading: FC<IButton> = ({
   type = 'button',
   onClick,
   disabled,
+	...rest
 }) => {
   return (
-    <>
+    <button type={type} className={className} onClick={onClick} disabled={loading || disabled} {...rest}>
       {loading ? (
-        <button className={className}>
-          <div className={style.loading} />
-        </button>
+        <div className={style.loading} />
       ) : (
-        <button type={type} className={className} onClick={onClick} disabled={loading || disabled}>
+        <>
           {img && <img src={img} alt="img" aria-hidden="true" />}
           <span>{text}</span>
-        </button>
+        </>
       )}
-    </>
+    </button>
   );
 };
