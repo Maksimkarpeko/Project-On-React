@@ -5,9 +5,7 @@ import clsx from 'clsx';
 import type { IButton } from './type';
 
 export const Button: FC<IButton> = ({
-  text,
   className,
-  img,
   type = 'button',
   onClick,
   disabled,
@@ -22,7 +20,7 @@ export const Button: FC<IButton> = ({
       disabled={disabled}
       {...rest}
     >
-      {children ?? text}
+      {children}
     </button>
   );
 };

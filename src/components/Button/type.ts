@@ -1,8 +1,7 @@
-import type { ButtonHTMLAttributes} from 'react';
+import type { ButtonHTMLAttributes, ReactNode} from 'react';
 
 export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?:boolean;
-  text: string;
+  children:ReactNode,
   type: 'button' | 'submit' | 'reset';
-  img?: string;
 }
