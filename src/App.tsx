@@ -5,7 +5,7 @@ import Arrow from './assets/Arrow.png';
 function App() {
   return (
     <>
-      <Button type="button" classNameButton="m-10 bg-red-500">
+      <Button type="button" classNameButton="m-10" isPrimary>
         <img src={Arrow} alt="Arrow" />
         <span>Нажми на меня</span>
       </Button>
