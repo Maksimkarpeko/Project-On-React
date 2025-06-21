@@ -2,7 +2,7 @@ import type { FC } from 'react';
 
 import clsx from 'clsx';
 
-import type { IButton } from './type/index';
+import type { IButton } from './type';
 
 export const Button: FC<IButton> = ({
   text,
@@ -11,6 +11,7 @@ export const Button: FC<IButton> = ({
   type = 'button',
   onClick,
   disabled,
+  children,
   ...rest
 }) => {
   return (
@@ -21,8 +22,7 @@ export const Button: FC<IButton> = ({
       disabled={disabled}
       {...rest}
     >
-      {img && <img src={img} alt="img" aria-hidden="true" />}
-      <span>{text}</span>
+      {children ?? text}
     </button>
   );
 };
