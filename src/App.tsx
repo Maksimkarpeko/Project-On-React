@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Button } from 'components/Button/Button';
+import { ButtonLoading } from 'components/ButtonLoading/ButtonLoading';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -12,13 +12,12 @@ function App() {
   };
   return (
     <>
-      <Button
-        text="Кнопка"
-        className="bg-blue-500 px-6 py-2 rounded-lg text-white m-10"
-        type="button"
+      <ButtonLoading
         loading={loading}
+        text="Нажми на меня"
+        type="button"
         onClick={switchLoading}
-        disabled={loading}
+        className="bg-blue-600 text-white px-6 py-3 rounded-xl m-10"
       />
     </>
   );
