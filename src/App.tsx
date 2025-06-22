@@ -1,5 +1,5 @@
 import { Button } from 'components/Button/Button';
-import { buttonColor, buttonSize } from 'components/Button/constantsButton';
+import { buttonColor, buttonSize } from 'components/Button/constant';
 
 import Arrow from './assets/Arrow.png';
 
