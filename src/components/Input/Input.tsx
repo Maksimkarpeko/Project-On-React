@@ -14,7 +14,6 @@ export const Input: FC<IInput> = ({
   required,
   classname,
   typeInput,
-  switcher,
   beforeImg,
   afterImg,
   ...rest
@@ -25,7 +24,7 @@ export const Input: FC<IInput> = ({
   });
   return (
     <>
-      {beforeImg && <img src={`${beforeImg}`} alt={'картинка'}/>}
+      {beforeImg && <img src={`${beforeImg}`} alt='Картинка'/>}
       <input
         type={type}
         placeholder={placeholder}
@@ -36,8 +35,7 @@ export const Input: FC<IInput> = ({
         className={clsx(inputClassName, classname)}
         {...rest}
       />
-      {switcher && <span className={style.customSwitcher}></span>}
-      {afterImg && <img src={`${afterImg}`} alt='картинка'/>}
+      {afterImg && <img src={`${afterImg}`} alt='Картинка'/>}
     </>
   );
 };

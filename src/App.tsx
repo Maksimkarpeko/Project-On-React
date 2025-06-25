@@ -19,7 +19,6 @@ function App() {
       <Input name="radio" type="radio" placeholder="value" typeInput={typeInput.radio}/>
       <Input name="radio" type="radio" placeholder="value" typeInput={typeInput.radio}/>
       <Input name='checkbox' type='checkbox' placeholder='value' typeInput={typeInput.checkbox}/>
-      <Input name='checkbox' type='checkbox' placeholder='value' typeInput={typeInput.switcher} switcher/>
     </>
   );
 }

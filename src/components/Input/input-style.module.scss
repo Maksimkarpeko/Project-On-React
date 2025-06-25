@@ -1,5 +1,5 @@
 .customRadio {
-  @apply appearance-none w-6 h-6 rounded-full bg-white border-2 border-gray-300 checked:bg-blue-500 relative cursor-pointer;
+  @apply appearance-none w-5 h-5 rounded-full bg-white border-2 border-gray-300 checked:bg-blue-500 relative cursor-pointer;
 }
 
 .customRadio::before {
@@ -7,8 +7,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   background-color: white;
   border-radius: 9999px;
   transform: translate(-50%, -50%);
@@ -18,34 +18,4 @@
 
 .customRadio:checked::before {
   opacity: 1;
-}
-
-.customSwitcher {
-  position: absolute;
-  width: 40px;
-  height: 20px;
-  background-color: #ccc;
-  border-radius: 9999px;
-  transition: background-color 0.3s ease;
-  pointer-events: none;
-}
-
-input:checked + .customSwitcher {
-  background-color: #330aff;
-}
-
-.customSwitcher::before {
-  content: '';
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 16px;
-  height: 16px;
-  background-color: white;
-  border-radius: 9999px;
-  transition: transform 0.3s ease;
-}
-
-input:checked + .customSwitcher::before {
-  transform: translateX(20px);
 }
