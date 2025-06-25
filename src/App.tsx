@@ -3,6 +3,7 @@ import { buttonColor, buttonSize } from 'components/Button/constant';
 import { Input } from 'components/Input/Input';
 
 import Arrow from './assets/Arrow.png';
+import { typeInput } from 'components/Input/constant';
 
 function App() {
   return (
@@ -15,10 +16,10 @@ function App() {
         Отправить
       </Button>
 
-      <Input name="radio" type="radio" placeholder="value"/>
-      <Input name="radio" type="radio" placeholder="value"/>
-      <Input name="radio" type="checkbox" placeholder="value"/>
-      <Input name="radio" type="checkbox" placeholder="value"/>
+      <Input name="radio" type="radio" placeholder="value" typeInput={typeInput.radio}/>
+      <Input name="radio" type="radio" placeholder="value" typeInput={typeInput.radio}/>
+      <Input name='checkbox' type='checkbox' placeholder='value' typeInput={typeInput.checkbox}/>
+      <Input name='checkbox' type='checkbox' placeholder='value' typeInput={typeInput.switcher} switcher/>
     </>
   );
 }

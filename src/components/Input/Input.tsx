@@ -12,23 +12,32 @@ export const Input: FC<IInput> = ({
   onChange,
   value,
   required,
-  children,
   classname,
+  typeInput,
+  switcher,
+  beforeImg,
+  afterImg,
   ...rest
 }) => {
-  const inputClassName = clsx({});
+  const inputClassName = clsx({
+    [style.customRadio]: typeInput == 'radio',
+    'w-5 h-5 cursor-pointer': typeInput == 'checkbox',
+  });
   return (
-    <input
-      type={type}
-      placeholder={placeholder}
-      name={name}
-      onChange={onChange}
-      value={value}
-      required={required}
-      className={clsx(style.customRadio, inputClassName, classname)}
-      {...rest}
-    >
-      {children}
-    </input>
+    <>
+      {beforeImg && <img src={`${beforeImg}`} alt={'картинка'}/>}
+      <input
+        type={type}
+        placeholder={placeholder}
+        name={name}
+        onChange={onChange}
+        value={value}
+        required={required}
+        className={clsx(inputClassName, classname)}
+        {...rest}
+      />
+      {switcher && <span className={style.customSwitcher}></span>}
+      {afterImg && <img src={`${afterImg}`} alt='картинка'/>}
+    </>
   );
 };
