@@ -1,15 +1,14 @@
-import type { InputHTMLAttributes, ReactNode } from 'react';
-import type { inputColor, inputTitle,variant } from './constant';
+import type { InputHTMLAttributes} from 'react';
+import type { InputColor, InputTitle,Variant } from './constant';
 
 export interface IInput extends InputHTMLAttributes<HTMLInputElement> {
 	type:string,
 	name:string,
 	placeholder:string,
 	classname?:string,
-	Variant:variant,
-	inputColor?:inputColor,
-	inputTitle?:inputTitle,
-	beforeImg?:ReactNode,
-	afterImg?:ReactNode,
+	variant:Variant,
+	inputColor?:InputColor,
+	inputTitle?:InputTitle,
 	title?: string,
+	id?:string,
 }

@@ -1,16 +1,16 @@
-export enum variant{
-	radio = 'radio',
-	checkbox = 'checkbox',
-	text = 'text',
+export enum Variant {
+  radio = 'radio',
+  checkbox = 'checkbox',
+  text = 'text',
 }
-export enum inputColor{
-	gray = 'gray',
-	darkGray = 'darkGray',
-	bigGray = 'bigGray',
-	bigDarkGray = 'bigDarkGray'
-};
-export enum inputTitle{
-	blueTitle = 'blueTitle',
-	grayTitle = 'grayTitle',
-	redTitle = 'redTitle'
-};
+export enum InputColor {
+  gray = 'gray',
+  darkGray = 'darkGray',
+  bigGray = 'bigGray',
+  bigDarkGray = 'bigDarkGray',
+}
+export enum InputTitle {
+  blueTitle = 'blue',
+  redTitle = 'red',
+  grayTitle = 'gray',
+}
