@@ -22,8 +22,6 @@ export const Input: FC<IInput> = ({
 }) => {
   const inputClassName = clsx(
     {
-      [style.customRadio]: variant == Variant.radio,
-      [style.customCheckBox]: variant == Variant.checkbox,
       [style.customInput]: variant == Variant.text,
     },
     {

@@ -1,6 +1,4 @@
 export enum Variant {
-  radio = 'radio',
-  checkbox = 'checkbox',
   text = 'text',
 }
 export enum InputColor {

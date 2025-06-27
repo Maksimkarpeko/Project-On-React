@@ -1,7 +1,9 @@
 import { Button } from 'components/Button/Button';
 import { buttonColor, buttonSize } from 'components/Button/constant';
+import { Checkbox } from 'components/CheckBox/Checkbox';
 import { Input } from 'components/Input/Input';
 import { InputColor, InputTitle, Variant } from 'components/Input/constant';
+import { Radio } from 'components/Radio/Radio';
 
 import Arrow from './assets/Arrow.png';
 
@@ -15,10 +17,9 @@ function App() {
       <Button type="button" color={buttonColor.darkBlue} size={buttonSize.sizeXl}>
         Отправить
       </Button>
-
-      <Input name="radio" type="radio" placeholder="value" variant={Variant.radio} />
-      <Input name="radio" type="radio" placeholder="value" variant={Variant.radio} />
-      <Input name="checkbox" type="checkbox" placeholder="value" variant={Variant.checkbox} />
+      <Checkbox/>
+      <Radio />
+      <Radio />
       <Input
         name="text"
         type="text"
@@ -55,8 +56,8 @@ function App() {
         placeholder="value"
         variant={Variant.text}
         inputColor={InputColor.bigDarkGray}
-        title="label" 
-        id='text'
+        title="label"
+        id="text"
         inputTitle={InputTitle.redTitle}
       />
     </>

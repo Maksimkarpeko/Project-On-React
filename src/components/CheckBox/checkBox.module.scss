@@ -1,0 +1,18 @@
+.customCheckBox {
+  @apply appearance-none w-5 h-5 rounded bg-white border-2 border-gray-300 checked:bg-blue-500 relative cursor-pointer;
+}
+.customCheckBox::after {
+  content: '';
+  position: absolute;
+  display: none;
+  top: 2px;
+  left: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.customCheckBox:checked::after {
+  display: block;
+}
