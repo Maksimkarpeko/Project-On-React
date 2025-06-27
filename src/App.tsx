@@ -4,6 +4,9 @@ import { Checkbox } from 'components/CheckBox/Checkbox';
 import { Input } from 'components/Input/Input';
 import { InputColor, InputTitle, Variant } from 'components/Input/constant';
 import { Radio } from 'components/Radio/Radio';
+import { Select } from 'components/Select/Select';
+import { SelectColor } from 'components/Select/constant';
+import { Switcher } from 'components/Switcher/Switcher';
 
 import Arrow from './assets/Arrow.png';
 
@@ -12,12 +15,12 @@ function App() {
     <>
       <Button type="button" classname="m-10" color={buttonColor.blue} size={buttonSize.sizeL}>
         <img src={Arrow} alt="Arrow" />
-        <span>Нажми на меня</span>
+        <span>Click me</span>
       </Button>
       <Button type="button" color={buttonColor.darkBlue} size={buttonSize.sizeXl}>
         Отправить
       </Button>
-      <Checkbox/>
+      <Checkbox />
       <Radio />
       <Radio />
       <Input
@@ -59,6 +62,32 @@ function App() {
         title="label"
         id="text"
         inputTitle={InputTitle.redTitle}
+      />
+      <Switcher />
+      <Select
+        selectColor={SelectColor.darkGray}
+        options={[
+          { label: 'dw', value: 's' },
+          { label: 'd', value: 'sw' },
+        ]}
+      />
+      <Select
+        label="I don't now?)"
+        id="name"
+        options={[
+          { label: 'dw', value: 's' },
+          { label: 'd', value: 'sw' },
+        ]}
+        selectColor={SelectColor.bigGray}
+      />
+            <Select
+        label="I don't now?)"
+        id="name"
+        options={[
+          { label: 'dw', value: 's' },
+          { label: 'd', value: 'sw' },
+        ]}
+        selectColor={SelectColor.bigDarkGray}
       />
     </>
   );
