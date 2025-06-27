@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import style from './checkBox.module.scss';
+import style from './checkbox.module.scss';
 import type { ICheckbox } from './type';
 
 export const Checkbox: FC<ICheckbox> = ({ required, ...rest }) => {
