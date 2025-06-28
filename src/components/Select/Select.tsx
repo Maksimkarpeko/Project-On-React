@@ -1,11 +1,11 @@
 import type { FC } from 'react';
 
 import clsx from 'clsx';
+import { Color } from 'constants/color';
 
-import { SelectColor } from './constant';
-import type { ISelect } from './type';
+import type { SelectProps } from './type';
 
-export const Select: FC<ISelect> = ({
+export const Select: FC<SelectProps> = ({
   options,
   classname,
   id,
@@ -14,10 +14,10 @@ export const Select: FC<ISelect> = ({
   ...rest
 }) => {
   const selectClassName = clsx({
-    'bg-gray-100': selectColor == SelectColor.gray,
-    'bg-gray-200': selectColor == SelectColor.darkGray,
-    'bg-gray-100 pt-4 pb-2': selectColor == SelectColor.bigGray,
-    'bg-gray-200 pt-4 pb-2': selectColor == SelectColor.bigDarkGray,
+    'bg-gray-100': selectColor == Color.gray,
+    'bg-gray-200': selectColor == Color.darkGray,
+    'bg-gray-100 pt-4 pb-2': selectColor == Color.bigGray,
+    'bg-gray-200 pt-4 pb-2': selectColor == Color.bigDarkGray,
   });
   return (
     <div className="relative">
@@ -37,11 +37,9 @@ export const Select: FC<ISelect> = ({
         )}
       >
         {options.map((option) => (
-          <>
-            <option value={option.value} key={option.value + 1}>
-              {option.label}
-            </option>
-          </>
+          <option value={option.value} key={option.value + 1}>
+            {option.label}
+          </option>
         ))}
       </select>
     </div>

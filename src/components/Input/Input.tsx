@@ -1,11 +1,13 @@
 import type { FC } from 'react';
-import { Variant,InputColor,InputTitle } from './constant';
+
 import clsx from 'clsx';
+import { Color } from 'constants/color';
 
-import style from './input-style.module.scss';
-import type { IInput } from './type';
+import { InputTitle, Variant } from './constant';
+import style from './input.module.scss';
+import type { InputProps } from './type';
 
-export const Input: FC<IInput> = ({
+export const Input: FC<InputProps> = ({
   type = 'text',
   placeholder,
   name,
@@ -25,10 +27,10 @@ export const Input: FC<IInput> = ({
       [style.customInput]: variant == Variant.text,
     },
     {
-      'bg-gray-100 px-4 py-2': inputColor == InputColor.gray,
-      'bg-gray-200 px-4 py-2': inputColor == InputColor.darkGray,
-      'bg-gray-100 px-4 py-5': inputColor == InputColor.bigGray,
-      'bg-gray-200 px-4 pb-3 pt-5': inputColor == InputColor.bigDarkGray,
+      'bg-gray-100 px-4 py-2': inputColor == Color.gray,
+      'bg-gray-200 px-4 py-2': inputColor == Color.darkGray,
+      'bg-gray-100 px-4 py-5': inputColor == Color.bigGray,
+      'bg-gray-200 px-4 pb-3 pt-5': inputColor == Color.bigDarkGray,
     },
   );
   const labelClassName = clsx({
@@ -37,7 +39,7 @@ export const Input: FC<IInput> = ({
     'text-gray-500': inputTitle == InputTitle.grayTitle,
   });
   return (
-    <div className={clsx('relative',classname)}>
+    <div className={clsx('relative', classname)}>
       {title && id && (
         <label htmlFor={id} className={clsx('absolute text-sm left-4', labelClassName)}>
           {title}

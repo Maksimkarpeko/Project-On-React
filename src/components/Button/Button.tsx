@@ -3,9 +3,10 @@ import type { FC } from 'react';
 import clsx from 'clsx';
 
 import { buttonColor, buttonSize } from './constant';
-import type { IButton } from './type';
+import type { ButtonProps } from './type';
+import { Color } from 'constants/color';
 
-export const Button: FC<IButton> = ({
+export const Button: FC<ButtonProps> = ({
   classname,
   type = 'button',
   onClick,
@@ -22,9 +23,9 @@ export const Button: FC<IButton> = ({
     'bg-red-500': color === buttonColor.red,
     'bg-red-400': color === buttonColor.lightRed,
     'bg-red-700': color === buttonColor.darkRed,
-    'bg-gray-500': color === buttonColor.gray,
+    'bg-gray-500': color === Color.gray,
     'bg-gray-300': color === buttonColor.lightGray,
-    'bg-gray-800': color === buttonColor.darkGray,
+    'bg-gray-800': color === Color.darkGray,
     'bg-opacity-25': color === buttonColor.limpidS,
     'bg-opacity-50': color === buttonColor.limpidL,
     'bg-opacity-75': color === buttonColor.limpidXl,

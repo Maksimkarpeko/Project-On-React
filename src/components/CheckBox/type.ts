@@ -1,5 +1,5 @@
 import type { HTMLAttributes } from 'react';
 
-export interface ICheckbox extends HTMLAttributes<HTMLInputElement>  {
+export interface CheckboxProps extends HTMLAttributes<HTMLInputElement>  {
 	required?:boolean,
 }

@@ -5,9 +5,7 @@ export enum buttonColor {
 	lightRed = 'lightRed',
 	darkRed = 'darkRed',
 	red = 'red',
-	gray = 'gray',
 	lightGray = 'lightGray',
-	darkGray = 'darkGray',
 	limpidS = 'limpidS',
 	limpidL = 'limpidL',
 	limpidXl = 'limpidXl'

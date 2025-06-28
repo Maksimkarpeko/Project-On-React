@@ -1,4 +1,4 @@
-export enum SelectColor {
+export enum Color{
 	gray = 'gray',
 	darkGray = 'darkGray',
 	bigGray = 'bigGray',

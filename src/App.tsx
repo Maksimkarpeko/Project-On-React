@@ -2,11 +2,11 @@ import { Button } from 'components/Button/Button';
 import { buttonColor, buttonSize } from 'components/Button/constant';
 import { Checkbox } from 'components/CheckBox/Checkbox';
 import { Input } from 'components/Input/Input';
-import { InputColor, InputTitle, Variant } from 'components/Input/constant';
+import { InputTitle, Variant } from 'components/Input/constant';
 import { Radio } from 'components/Radio/Radio';
 import { Select } from 'components/Select/Select';
-import { SelectColor } from 'components/Select/constant';
 import { Switcher } from 'components/Switcher/Switcher';
+import { Color } from 'constants/color';
 
 import Arrow from './assets/Arrow.png';
 
@@ -18,7 +18,7 @@ function App() {
         <span>Click me</span>
       </Button>
       <Button type="button" color={buttonColor.darkBlue} size={buttonSize.sizeXl}>
-        Отправить
+        Submit
       </Button>
       <Checkbox />
       <Radio />
@@ -28,28 +28,28 @@ function App() {
         type="text"
         placeholder="value"
         variant={Variant.text}
-        inputColor={InputColor.gray}
+        inputColor={Color.gray}
       />
       <Input
         name="text"
         type="text"
         placeholder="value"
         variant={Variant.text}
-        inputColor={InputColor.darkGray}
+        inputColor={Color.darkGray}
       />
       <Input
         name="text"
         type="text"
         placeholder="value"
         variant={Variant.text}
-        inputColor={InputColor.bigGray}
+        inputColor={Color.bigGray}
       />
       <Input
         name="text"
         type="text"
         placeholder="value"
         variant={Variant.text}
-        inputColor={InputColor.bigDarkGray}
+        inputColor={Color.bigDarkGray}
         title="label"
         inputTitle={InputTitle.blueTitle}
       />
@@ -58,14 +58,14 @@ function App() {
         type="text"
         placeholder="value"
         variant={Variant.text}
-        inputColor={InputColor.bigDarkGray}
+        inputColor={Color.bigDarkGray}
         title="label"
         id="text"
         inputTitle={InputTitle.redTitle}
       />
       <Switcher />
       <Select
-        selectColor={SelectColor.darkGray}
+        selectColor={Color.darkGray}
         options={[
           { label: 'dw', value: 's' },
           { label: 'd', value: 'sw' },
@@ -78,16 +78,16 @@ function App() {
           { label: 'dw', value: 's' },
           { label: 'd', value: 'sw' },
         ]}
-        selectColor={SelectColor.bigGray}
+        selectColor={Color.bigGray}
       />
-            <Select
+      <Select
         label="I don't now?)"
         id="name"
         options={[
           { label: 'dw', value: 's' },
           { label: 'd', value: 'sw' },
         ]}
-        selectColor={SelectColor.bigDarkGray}
+        selectColor={Color.bigDarkGray}
       />
     </>
   );
