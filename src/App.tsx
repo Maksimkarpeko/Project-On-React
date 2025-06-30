@@ -9,6 +9,7 @@ import { Switcher } from 'components/Switcher/Switcher';
 import { Color } from 'constants/color';
 
 import Arrow from './assets/Arrow.png';
+import { Layout } from 'components/layout/Layout';
 
 function App() {
   return (
@@ -89,6 +90,7 @@ function App() {
         ]}
         selectColor={Color.bigDarkGray}
       />
+      <Layout/>
     </>
   );
 }
