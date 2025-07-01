@@ -1,12 +1,12 @@
 .customCheckBox {
-  @apply appearance-none w-5 h-5 rounded bg-white border-2 border-gray-300 checked:bg-blue-500 relative cursor-pointer;
+  @apply appearance-none w-5 h-5 rounded bg-gray-200  checked:bg-blue-500 relative cursor-pointer;
 }
 .customCheckBox::after {
   content: '';
   position: absolute;
   display: none;
-  top: 2px;
-  left: 5px;
+  top: 4px;
+  left: 7px;
   width: 5px;
   height: 10px;
   border: solid white;

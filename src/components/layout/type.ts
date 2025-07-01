@@ -1,5 +1,8 @@
 import type { ReactNode } from 'react';
 
 export interface LayoutProps {
-	children?:ReactNode,
+  children?: ReactNode;
+  setPage?: (type:string) => void;
+	page:string,
+  classname?:string,
 }

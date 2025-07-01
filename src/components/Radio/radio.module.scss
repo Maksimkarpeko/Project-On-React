@@ -1,5 +1,5 @@
 .customRadio {
-  @apply appearance-none w-5 h-5 rounded-full bg-white border-2 border-gray-300 checked:bg-blue-500 relative cursor-pointer;
+  @apply appearance-none w-5 h-5 rounded-full bg-white checked:bg-blue-500 relative cursor-pointer;
 }
 
 .customRadio::before {
