@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 
 import logo from 'assets/Logo.svg';
-import keyboard from 'assets/keyboard.svg';
+import keyboard from 'assets/menu/keyboard.svg';
 
 import { Item } from './Item/Item';
 import { navItem } from './constants';
