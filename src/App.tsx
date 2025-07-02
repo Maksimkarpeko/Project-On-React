@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { Avatars } from 'components/Avatars/Avatars';
+import { Size } from 'components/Avatars/constants';
 import { BaseLayout } from 'components/layouts/baseLayout/BaseLayout';
 
 function App() {
@@ -12,6 +14,7 @@ function App() {
         {page === 'Message' && 'Message'}
         {page === 'Notification' && 'Notification'}
         {page === 'Setting' && 'Setting'}
+        <Avatars size={Size.Large} isOnline= {false}/>
       </BaseLayout>
     </>
   );
