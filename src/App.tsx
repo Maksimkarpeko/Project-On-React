@@ -1,8 +1,8 @@
 import { useState } from 'react';
-
-
-import { BaseLayout } from 'components/layouts/baseLayout/BaseLayout';
 import { Link } from 'react-router-dom';
+
+import { Contact } from 'components/Contacts/Contact';
+import { BaseLayout } from 'components/layouts/baseLayout/BaseLayout';
 import { Links } from 'constants/link';
 
 function App() {
@@ -10,12 +10,11 @@ function App() {
   return (
     <>
       <BaseLayout setPage={setPage} page={page}>
-        {page === 'Discover' && 'Discover'}
+        {page === 'Discover' && <Contact />}
         {page === 'Contact' && 'Contact'}
         {page === 'Message' && 'Message'}
         {page === 'Notification' && 'Notification'}
         {page === 'Setting' && 'Setting'}
-        <Link to={Links.errorError} className='text-blue-500'>Error page</Link>
       </BaseLayout>
     </>
   );
