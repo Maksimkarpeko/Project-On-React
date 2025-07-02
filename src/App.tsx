@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
-import { Avatars } from 'components/Avatars/Avatars';
-import { Size } from 'components/Avatars/constants';
+
 import { BaseLayout } from 'components/layouts/baseLayout/BaseLayout';
+import { Link } from 'react-router-dom';
+import { Links } from 'constants/link';
 
 function App() {
   const [page, setPage] = useState<string>('');
@@ -14,7 +15,7 @@ function App() {
         {page === 'Message' && 'Message'}
         {page === 'Notification' && 'Notification'}
         {page === 'Setting' && 'Setting'}
-        <Avatars size={Size.Large} isOnline= {false}/>
+        <Link to={Links.errorError}>Error</Link>
       </BaseLayout>
     </>
   );

@@ -1,6 +1,5 @@
 import type { FC } from 'react';
 
-import test from 'assets/test.svg';
 import clsx from 'clsx';
 
 import { Size } from './constants';
@@ -25,7 +24,7 @@ export const Avatars: FC<AvatarsProps> = ({ img, alt, classname, size, isOnline,
   return (
     <>
       <div className="absolute">
-        <img src={test} alt={alt} {...rest} className={clsx(sizeStyle, classname)} />
+        <img src={img} alt={alt} {...rest} className={clsx(sizeStyle, classname)} />
         {isOnline && (
           <span
             className={clsx(sizeOnline, 'absolute bg-blue-500 border-2 border-white rounded-full')}
