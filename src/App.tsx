@@ -15,7 +15,7 @@ function App() {
         {page === 'Message' && 'Message'}
         {page === 'Notification' && 'Notification'}
         {page === 'Setting' && 'Setting'}
-        <Link to={Links.errorError}>Error</Link>
+        <Link to={Links.errorError} className='text-blue-500'>Error page</Link>
       </BaseLayout>
     </>
   );
