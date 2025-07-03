@@ -10,8 +10,8 @@ function App() {
   return (
     <>
       <BaseLayout setPage={setPage} page={page}>
-        {page === 'Discover' && <Contact />}
-        {page === 'Contact' && 'Contact'}
+        {page === 'Discover' && 'Discover'}
+        {page === 'Contact' && <Contact />}
         {page === 'Message' && 'Message'}
         {page === 'Notification' && 'Notification'}
         {page === 'Setting' && 'Setting'}

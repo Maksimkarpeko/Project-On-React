@@ -23,8 +23,8 @@ export const Avatars: FC<AvatarsProps> = ({ img, alt, classname, size, isOnline,
   });
   return (
     <>
-      <div className="absolute">
-        <img src={img} alt={alt} {...rest} className={clsx(sizeStyle, classname)} />
+      <div className={clsx('absolute',classname)}>
+        <img src={img} alt={alt} {...rest} className={clsx(sizeStyle)} />
         {isOnline && (
           <span
             className={clsx(sizeOnline, 'absolute bg-blue-500 border-2 border-white rounded-full')}

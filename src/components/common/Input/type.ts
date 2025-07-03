@@ -2,7 +2,7 @@ import type { InputHTMLAttributes } from 'react';
 
 import { Color } from 'constants/color';
 
-import type { InputTitle, Variant } from './constant';
+import type { InputTitle, OtherStyle, Variant } from './constant';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   type: string;
@@ -14,4 +14,5 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   inputTitle?: InputTitle;
   title?: string;
   id?: string;
+  otherStyle?:OtherStyle,
 }

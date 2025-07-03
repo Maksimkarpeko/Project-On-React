@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import clsx from 'clsx';
 import { Color } from 'constants/color';
 
-import { InputTitle, Variant } from './constant';
+import { InputTitle, OtherStyle, Variant } from './constant';
 import style from './input.module.scss';
 import type { InputProps } from './type';
 
@@ -20,6 +20,7 @@ export const Input: FC<InputProps> = ({
   inputTitle,
   title,
   id,
+  otherStyle,
   ...rest
 }) => {
   const inputClassName = clsx(
@@ -32,6 +33,9 @@ export const Input: FC<InputProps> = ({
       'bg-gray-100 px-4 py-5': inputColor == Color.bigGray,
       'bg-gray-200 px-4 pb-3 pt-5': inputColor == Color.bigDarkGray,
     },
+    {
+      'pl-9':otherStyle == OtherStyle.search
+    }
   );
   const labelClassName = clsx({
     'text-blue-500': inputTitle == InputTitle.blueTitle,
