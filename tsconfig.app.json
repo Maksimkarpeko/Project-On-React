@@ -21,7 +21,7 @@
 		"noFallthroughCasesInSwitch": true,
 		"baseUrl": "src",
 		"paths": {
-			"api": ["api/*"],
+			"api": ["/src/api/*"],
 			"assets": ["/src/assets/*"],
 			"components": ["/src/components/*"],
 			"constants": ["/src/constants/*"],

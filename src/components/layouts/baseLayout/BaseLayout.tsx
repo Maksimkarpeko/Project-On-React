@@ -7,7 +7,7 @@ import type { LayoutProps } from './type';
 
 export const BaseLayout: FC<LayoutProps> = ({ children, setPage, page, classname }) => {
   return (
-    <div className="w-[100vw] h-[100vh] flex">
+    <div className="w-[99vw] h-[100vh] flex">
       <header>
         <NavBar setPage={setPage} page={page} />
       </header>
