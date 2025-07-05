@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import { Contact } from 'components/Contacts/Contact';
 import { BaseLayout } from 'components/layouts/baseLayout/BaseLayout';
-import { Links } from 'constants/link';
 
 function App() {
   const [page, setPage] = useState<string>('');
