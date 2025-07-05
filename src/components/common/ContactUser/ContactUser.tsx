@@ -9,7 +9,7 @@ import clsx from 'clsx';
 export const ContactUser: FC<ContactUserProps> = ({name,img,alt,classname,isActive, ...rest}) => {
   const [online, setOnline] = useState<boolean>(true);
   return (
-    <div className={clsx("w-[100%] h-14 hover:bg-slate-100 cursor-pointer",isActive ? 'bg-blue-500 hover:bg-blue-500':'')}  {...rest}>
+    <div className={clsx(" w-[100%] h-14 cursor-pointer",isActive ? 'bg-blue-500 hover:bg-blue-500':'hover:bg-slate-100')}  {...rest}>
       <Avatars
         img={img}
         alt={alt}
@@ -18,7 +18,7 @@ export const ContactUser: FC<ContactUserProps> = ({name,img,alt,classname,isActi
         classname="ml-4 mt-2"
       />
       <div className="flex flex-col">
-        <span className={clsx("block ml-20  pt-1",isActive &&'text-white')}>{name}</span>
+        <span className={clsx("block ml-20  pt-1",isActive ?'text-white':'')}>{name}</span>
         {online ? (
           <span className={clsx("block ml-20 text-blue-500 text-sm", isActive ? "text-white":'')}>online</span>
         ) : (
