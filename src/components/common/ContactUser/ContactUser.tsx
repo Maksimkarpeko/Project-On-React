@@ -19,7 +19,7 @@ export const ContactUser: FC<ContactUserProps> = ({
   disablePointer,
   ...rest}) => {
   const containterStyle = clsx(
-    "w-[100%] h-14",
+    "w-[100%] h-14 flex",
      {
       'cursor-pointer': !disablePointer,
       'bg-blue-500': isActive,

@@ -1,7 +1,21 @@
-.scrollbarHidden {
+.scrollbar {
+  overflow-y: auto;
+  height: calc(100vh - 112px);
+
+  scrollbar-width: thin;
+  scrollbar-color: #999 transparent;
+
   &::-webkit-scrollbar {
-    display: none;
+    width: 6px;
   }
-  -ms-overflow-style: none;  // IE and Edge
-  scrollbar-width: none;     // Firefox
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #999;
+    border-radius: 4px;
+    min-height: 1px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
 }
