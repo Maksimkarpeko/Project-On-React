@@ -30,6 +30,7 @@ export const Button: FC<ButtonProps> = ({
     'bg-opacity-50': color === buttonColor.limpidL,
     'bg-opacity-75': color === buttonColor.limpidXl,
     'px-4 py-2 text-sm': size === buttonSize.sizeL,
+    'px-[66px] py-2 text-sm':size === buttonSize.sizeLL,
     'px-6 py-3 text-base': size === buttonSize.sizeXl,
   });
   return (

@@ -6,24 +6,53 @@ import { Size } from '../Avatars/constants';
 import type { ContactUserProps } from './type';
 import clsx from 'clsx';
 
-export const ContactUser: FC<ContactUserProps> = ({name,img,alt,classname,isActive, ...rest}) => {
+export const ContactUser: FC<ContactUserProps> = ({
+  name,
+  img,
+  alt,
+  isActive, 
+  AvatarSize = Size.Medium,
+  disableHover = false,
+  classname,
+  nameClass,
+  statusClass,
+  disablePointer,
+  ...rest}) => {
+  const containterStyle = clsx(
+    "w-[100%] h-14",
+     {
+      'cursor-pointer': !disablePointer,
+      'bg-blue-500': isActive,
+      'hover:bg-blue-500': isActive && !disableHover,
+      'hover:bg-slate-100': !isActive && !disableHover,
+    },
+    classname,
+  )
+  const statusTextClass = clsx(
+    "block text-blue-500 text-sm",
+    isActive ? "text-white":'',
+    statusClass
+  )
+  const styleNameClass = clsx(
+    "block pt-1",
+    isActive ?'text-white':'',
+    nameClass
+  )
   const [online, setOnline] = useState<boolean>(true);
   return (
-    <div className={clsx(" w-[100%] h-14 cursor-pointer",isActive ? 'bg-blue-500 hover:bg-blue-500':'hover:bg-slate-100')}  {...rest}>
+    <div className={containterStyle} {...rest}>
       <Avatars
         img={img}
         alt={alt}
         isOnline={online}
-        size={Size.Medium}
+        size={AvatarSize}
         classname="ml-4 mt-2"
       />
       <div className="flex flex-col">
-        <span className={clsx("block ml-20  pt-1",isActive ?'text-white':'')}>{name}</span>
-        {online ? (
-          <span className={clsx("block ml-20 text-blue-500 text-sm", isActive ? "text-white":'')}>online</span>
-        ) : (
-          <span className="block ml-20 text-sm">offline</span>
-        )}
+        <span className={styleNameClass}>{name}</span>
+        <span className={statusTextClass}> 
+          {online ? 'online' : 'offline'}
+        </span>
       </div>
     </div>
   );

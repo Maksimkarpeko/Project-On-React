@@ -13,5 +13,6 @@ export enum buttonColor {
 
 export enum buttonSize {
 	sizeL = 'sizeL',
+	sizeLL = 'sizeLL',
 	sizeXl = 'sizeXl'
 }

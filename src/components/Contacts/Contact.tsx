@@ -10,6 +10,7 @@ import { OtherStyle, Variant } from 'components/common/Input/constant';
 import { Color } from 'constants/color';
 import { fetchUsers, useIsLoading, useUsers,fetchOneUser } from 'store/user/useAllUsersStore';
 import { Profile } from 'components/Profile/Profile';
+import { Size } from 'components/common/Avatars/constants';
 
 
 export const Contact = () => {
@@ -42,7 +43,7 @@ export const Contact = () => {
         ) : (
           <div className='mt-28'>
             {user.map((item) => (
-              <ContactUser name={item.username} alt="User" img={testImg} key={item.id} onClick={()=>{
+              <ContactUser name={item.username} statusClass='ml-[72px]' nameClass='ml-[72px]' AvatarSize={Size.Medium} disableHover={false} alt="User" img={testImg} key={item.id} onClick={()=>{
                 setActiveID(item.id)
                 fetchOneUser(item.id)
               }} isActive={activeID === item.id}/>
