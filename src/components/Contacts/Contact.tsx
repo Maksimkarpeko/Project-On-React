@@ -11,8 +11,10 @@ import { Input } from 'components/common/Input/Input';
 import { OtherStyle, Variant } from 'components/common/Input/constant';
 import { Color } from 'constants/color';
 import { fetchOneUser, fetchUsers, useIsLoading, useUsers } from 'store/user/useAllUsersStore';
+import { Filter } from 'utils/filter';
 
 export const Contact = () => {
+  const [searchUser, setSearchUser] = useState('');
   const user = useUsers();
   const isLoading = useIsLoading();
   const [activeID, setActiveID] = useState<number | null>(null);
@@ -34,6 +36,7 @@ export const Contact = () => {
             otherStyle={OtherStyle.search}
             placeholder="Search"
             inputColor={Color.gray}
+            onChange={(e) => setSearchUser(e.target.value)}
           />
         </div>
 
@@ -41,7 +44,7 @@ export const Contact = () => {
           <span className="absolute mt-28">Loading...</span>
         ) : (
           <div className={clsx('mt-28', style.scrollbar)}>
-            {user.map((item) => (
+            {Filter(user,searchUser).map((item) => (
               <ContactUser
                 name={item.username}
                 statusClass="ml-4"
