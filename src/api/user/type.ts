@@ -3,4 +3,7 @@ export interface UserResponse {
 	username:string,
 	img:string,
 	email:string,
+	address:{
+		country:string,
+	}
 }
