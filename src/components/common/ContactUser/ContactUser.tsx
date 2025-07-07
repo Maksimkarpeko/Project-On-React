@@ -38,7 +38,7 @@ export const ContactUser: FC<ContactUserProps> = ({
     isActive ?'text-white':'',
     nameClass
   )
-  const [online, setOnline] = useState<boolean>(true);
+  const [online] = useState<boolean>(true);
   return (
     <div className={containterStyle} {...rest}>
       <Avatars

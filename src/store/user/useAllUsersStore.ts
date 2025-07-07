@@ -9,7 +9,7 @@ const initialState: storeState = {
   user:null,
 };
 
-const useUsersStore = create<IInitialState>()((set,get) => ({
+const useUsersStore = create<IInitialState>()((set) => ({
   ...initialState,
   fetchUsers: async () => {
 		set({isLoading:true})
