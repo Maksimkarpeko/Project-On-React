@@ -4,7 +4,7 @@ import clsx from "clsx"
 
 export const ContainterIcon:FC<ContainerIconProps> = ({img,text,classname,...rest}) => {
     return(
-        <div className={clsx("w-56 flex cursor-pointer",classname)} {...rest}>
+        <div className={clsx("w-[80%] flex cursor-pointer",classname)} {...rest}>
             <img src={img} alt="icon" className="py-3" />
             <span className="block ml-4 py-3 text-sm">{text}</span>
         </div>

@@ -15,4 +15,5 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
   id?: string;
   otherStyle?:OtherStyle,
+  inputStyle?:string,
 }

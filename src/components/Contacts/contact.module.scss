@@ -1,7 +1,6 @@
 .scrollbar {
   overflow-y: auto;
   height: calc(100vh - 112px);
-
   scrollbar-width: thin;
   scrollbar-color: #999 transparent;
 
@@ -18,4 +17,5 @@
   &::-webkit-scrollbar-track {
     background: transparent;
   }
+
 }

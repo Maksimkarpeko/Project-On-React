@@ -24,12 +24,13 @@ export const Contact = () => {
 
   return (
     <>
-      <div className={clsx('w-[360px] min-h-full absolute border-r')}>
-        <div className="w-[359px] fixed bg-white z-10">
+      <div className={clsx('w-[22.1%] min-h-full absolute border-r')}>
+        <div className="w-[22%] 2xl:w-[20%] xl:w-[18%] fixed bg-white z-10">
           <h2 className="my-3 ml-4 text-2xl font-bold">Contacts</h2>
-          <img src={search} alt="search" className="absolute z-10 top-[66px] left-7" />
+          <img src={search} alt="search" className="absolute z-10 top-[66px] left-7  " />
           <Input
-            classname="mx-4 mb-4"
+            classname="mx-4 mb-4 "
+            inputStyle='xl:w-[120%] 2xl:w-[100%] lg:w-[100%] md:w-[100%] sm:w-[100%] max-[640px]:w-[100%] '
             name="text"
             type="text"
             variant={Variant.text}

@@ -21,6 +21,7 @@ export const Input: FC<InputProps> = ({
   title,
   id,
   otherStyle,
+  inputStyle,
   ...rest
 }) => {
   const inputClassName = clsx(
@@ -35,7 +36,8 @@ export const Input: FC<InputProps> = ({
     },
     {
       'pl-9':otherStyle == OtherStyle.search
-    }
+    },
+    inputStyle
   );
   const labelClassName = clsx({
     'text-blue-500': inputTitle == InputTitle.blueTitle,
