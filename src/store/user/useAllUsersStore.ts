@@ -9,7 +9,7 @@ const initialState: storeState = {
   user:null,
 };
 
-const useUsersStore = create<IInitialState>()((set) => ({
+const useAllUsersStore = create<IInitialState>()((set) => ({
   ...initialState,
   fetchUsers: async () => {
 		set({isLoading:true})
@@ -40,8 +40,8 @@ const useUsersStore = create<IInitialState>()((set) => ({
 		}
   }
 }));
-export const useUsers = () => useUsersStore((state) => state.users);
-export const useIsLoading = () => useUsersStore((state) => state.isLoading);
-export const fetchUsers = () => useUsersStore.getState().fetchUsers();
-export const fetchOneUser = (id:number) => useUsersStore.getState().fetchOneUser(id);
-export const useUserId = () => useUsersStore((state) => state.user);
+export const useUsers = () => useAllUsersStore((state) => state.users);
+export const useIsLoading = () => useAllUsersStore((state) => state.isLoading);
+export const fetchUsers = () => useAllUsersStore.getState().fetchUsers();
+export const fetchOneUser = (id:number) => useAllUsersStore.getState().fetchOneUser(id);
+export const useUserId = () =>useAllUsersStore((state) => state.user);

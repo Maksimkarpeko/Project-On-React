@@ -12,9 +12,11 @@ import { OtherStyle, Variant } from 'components/common/Input/constant';
 import { Color } from 'constants/color';
 import { fetchOneUser, fetchUsers, useIsLoading, useUsers } from 'store/user/useAllUsersStore';
 import { Filter } from 'utils/filter';
+import { useOpen } from 'store/navBarmenu/useOpenNav';
 
 export const Contact = () => {
-  const [searchUser, setSearchUser] = useState('');
+  const isOpen = useOpen();
+  const [searchUser, setSearchUser] = useState<string>('');
   const user = useUsers();
   const isLoading = useIsLoading();
   const [activeID, setActiveID] = useState<number | null>(null);
@@ -24,13 +26,16 @@ export const Contact = () => {
 
   return (
     <>
-      <div className={clsx('w-[22.1%] min-h-full absolute border-r')}>
-        <div className="w-[22%] 2xl:w-[20%] xl:w-[18%] fixed bg-white z-10">
+      <div>
+
+      </div>
+      <div className={clsx('sm:w-[22.1%] sm:min-h-full absolute border-r', activeID !== null ? 'max-[640px]:hidden':'max-[640px]:w-[100%]')}>
+        <div className={clsx("sm:ml-0 sm:w-[22%] 2xl:w-[22%] xl:w-[22%] fixed bg-white z-10 ",isOpen ? "ml-16":'',)}>
           <h2 className="my-3 ml-4 text-2xl font-bold">Contacts</h2>
           <img src={search} alt="search" className="absolute z-10 top-[66px] left-7  " />
           <Input
             classname="mx-4 mb-4 "
-            inputStyle='xl:w-[120%] 2xl:w-[100%] lg:w-[100%] md:w-[100%] sm:w-[100%] max-[640px]:w-[100%] '
+            inputStyle='xl:w-[100%] 2xl:w-[100%] lg:w-[100%] md:w-[100%] sm:w-[100%] max-[640px]:w-[200%] max-[640px]:ml-24 '
             name="text"
             type="text"
             variant={Variant.text}
@@ -44,7 +49,7 @@ export const Contact = () => {
         {isLoading ? (
           <span className="absolute mt-28">Loading...</span>
         ) : (
-          <div className={clsx('mt-28', style.scrollbar)}>
+          <div className={clsx('sm:ml-0 mt-28', style.scrollbar, isOpen ? "ml-16":"")}>
             {Filter(user,searchUser).map((item) => (
               <ContactUser
                 name={item.username}
@@ -65,7 +70,9 @@ export const Contact = () => {
           </div>
         )}
       </div>
-      {activeID && <Profile />}
+      <div className={clsx(activeID === null ? 'max-[640px]:hidden ' : '')}>
+        {activeID && <Profile setActiveId={setActiveID}/>}
+      </div>
     </>
   );
 };
