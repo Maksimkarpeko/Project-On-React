@@ -17,14 +17,14 @@ export const Button: FC<ButtonProps> = ({
   ...rest
 }) => {
   const buttonClassName = clsx({
-    'bg-blue-500': color === buttonColor.blue,
-    'bg-blue-400': color === buttonColor.lightBlue,
-    'bg-blue-700': color === buttonColor.darkBlue,
-    'bg-red-500': color === buttonColor.red,
-    'bg-red-400': color === buttonColor.lightRed,
-    'bg-red-700': color === buttonColor.darkRed,
+    'bg-blue-500': color === Color.blue,
+    'bg-blue-400': color === Color.lightBlue,
+    'bg-blue-700': color === Color.darkBlue,
+    'bg-red-500': color === Color.red,
+    'bg-red-400': color === Color.lightRed,
+    'bg-red-700': color === Color.darkRed,
     'bg-gray-500': color === Color.gray,
-    'bg-gray-300': color === buttonColor.lightGray,
+    'bg-gray-300': color === Color.lightGray,
     'bg-gray-800': color === Color.darkGray,
     'bg-opacity-25': color === buttonColor.limpidS,
     'bg-opacity-50': color === buttonColor.limpidL,

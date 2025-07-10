@@ -49,7 +49,7 @@ export const Contact = () => {
         {isLoading ? (
           <span className="absolute mt-28">Loading...</span>
         ) : (
-          <div className={clsx('sm:ml-0 mt-28', style.scrollbar, isOpen ? "ml-16":"")}>
+          <div className={clsx('sm:ml-0 mt-28', style.scrollbar, isOpen ? "ml-16":'')}>
             {Filter(user,searchUser).map((item) => (
               <ContactUser
                 name={item.username}

@@ -16,9 +16,9 @@ export const getAllUsers = async () => {
 export const fundUser = async (userId:number) =>{
 	try {
 		const response = await api.get(`users/${userId}`);
-		console.log(response.data);
 		return response.data;
 	} catch (error:unknown) {
 		CatchError(error)
+		throw error
 	}
 }

@@ -15,7 +15,7 @@ export const NavBar: FC<NavBarProps> = ({ setPage, page }) => {
       </div>
       {navItem.map(({ img, activeItem, alt }) => (
         <Item
-          key={alt + 1}
+          key={alt}
           img={img}
           activeImg={activeItem}
           alt={alt}

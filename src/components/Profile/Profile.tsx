@@ -1,22 +1,14 @@
-import Bell from 'assets/icon/Bell.svg';
-import Link from 'assets/icon/Link.svg';
-import Report from 'assets/icon/Report.svg';
-import old from 'assets/icon/old.svg';
-import testImg from 'assets/testImg.svg';
-import teg from 'assets/icon/teg.svg';
-import email from 'assets/icon/mail.svg';
-import country from 'assets/icon/location.svg';
-import x from 'assets/icon/X.svg';
-import birth from 'assets/icon/birth.svg'
+import {Bell,Link,Report,Old,TestImg,Teg,Email,Country,X,Birth} from 'assets/index'
 import { Size } from 'components/common/Avatars/constants';
 import { Button } from 'components/common/Button/Button';
 import { buttonColor, buttonSize } from 'components/common/Button/constant';
 import { ContactUser } from 'components/common/ContactUser/ContactUser';
 import { ContainterIcon } from 'components/common/ContainerIcon/ContainerIcon';
 import { useUserId } from 'store/user/useAllUsersStore';
-import { corectCountry } from 'utils/corectData';
+import { getInitials } from 'utils/getInitials';
 import type { FC } from 'react';
 import type { ProfileProps } from './type';
+import { Color } from 'constants/color';
 
 export const Profile:FC<ProfileProps> = ({setActiveId}) => {
   const user = useUserId();
@@ -31,7 +23,7 @@ export const Profile:FC<ProfileProps> = ({setActiveId}) => {
           <ContactUser
             AvatarSize={Size.xxLarge}
             disableHover={true}
-            img={testImg}
+            img={TestImg}
             alt="user"
             name={user.username}
             statusClass="ml-4 pt-2 "
@@ -40,7 +32,7 @@ export const Profile:FC<ProfileProps> = ({setActiveId}) => {
             disablePointer={true}
           />
           <Button
-            color={buttonColor.blue}
+            color={Color.blue}
             size={buttonSize.sizeLL}
             type="button"
             classname="ml-32 mt-40 lg:ml-0 xl:ml-32 2xl:ml-32 md:ml-[-1.00rem] sm:ml-1"
@@ -48,7 +40,7 @@ export const Profile:FC<ProfileProps> = ({setActiveId}) => {
             Send Message
           </Button>
           <ContainterIcon text="Mute notifications" img={Bell} classname="ml-32 mt-4 lg:ml-5  xl:ml-32 2xl:ml-32 md:ml-[-1.00rem] sm:ml-1" />
-          <ContainterIcon text="Remove from contacts" img={old} classname="ml-32 mt-4 lg:ml-5  xl:ml-32 2xl:ml-32 md:ml-[-1.00rem] sm:ml-1" />
+          <ContainterIcon text="Remove from contacts" img={Old} classname="ml-32 mt-4 lg:ml-5  xl:ml-32 2xl:ml-32 md:ml-[-1.00rem] sm:ml-1" />
           <ContainterIcon text="Copy link" img={Link} classname="ml-32 mt-4 lg:ml-5 2xl:ml-32 xl:ml-32 md:ml-[-1.00rem] sm:ml-1" />
           <ContainterIcon text="Report spam" img={Report} classname="ml-32 mt-4 lg:ml-5 2xl:ml-32 xl:ml-32 md:ml-[-1.00rem] sm:ml-1" />
         </div>
@@ -62,13 +54,13 @@ export const Profile:FC<ProfileProps> = ({setActiveId}) => {
           </p>
           <div className='flex'>
             <div>
-                <ContainterIcon text={user.username} img={teg} classname=" mt-2 mr-14" />
-                <ContainterIcon text={`${user.address.country},${corectCountry(user.address.country)}`} img={country} classname=" mt-2 mr-14" />
-                <ContainterIcon text="None" img={birth} classname=" mt-2 mr-14" />
+                <ContainterIcon text={user.username} img={Teg} classname=" mt-2 mr-14" />
+                <ContainterIcon text={`${user.address.country},${getInitials(user.address.country)}`} img={Country} classname=" mt-2 mr-14" />
+                <ContainterIcon text="None" img={Birth} classname=" mt-2 mr-14" />
             </div>
             <div>
-                <ContainterIcon text={user.email} img={email} classname="mt-2" />
-                <ContainterIcon text={user.username} img={x} classname="mt-2" />
+                <ContainterIcon text={user.email} img={Email} classname="mt-2" />
+                <ContainterIcon text={user.username} img={X} classname="mt-2" />
                 <ContainterIcon text="None" img={Report} classname="mt-2" />
             </div>
           </div>

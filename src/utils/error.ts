@@ -17,5 +17,5 @@ export const CatchError = (error: unknown) => {
   }
 
   console.error(errorMessage);
-	return errorMessage;
+	throw new Error(errorMessage);
 };
