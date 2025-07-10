@@ -1,4 +1,4 @@
-import { useState, type FC } from 'react';
+import {type FC } from 'react';
 
 import clsx from 'clsx';
 import { NavBar } from 'components/NavBar/NavBar';

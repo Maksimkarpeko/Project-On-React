@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import errorImg from 'assets/img/ErrorImg.svg';
 import { Button } from 'components/common/Button/Button';
-import { buttonColor, buttonSize } from 'components/common/Button/constant';
+import { buttonSize } from 'components/common/Button/constant';
 import { Links } from 'constants/link';
 import { Color } from 'constants/color';
 

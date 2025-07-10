@@ -1,7 +1,7 @@
 import {Bell,Link,Report,Old,TestImg,Teg,Email,Country,X,Birth} from 'assets/index'
 import { Size } from 'components/common/Avatars/constants';
 import { Button } from 'components/common/Button/Button';
-import { buttonColor, buttonSize } from 'components/common/Button/constant';
+import {  buttonSize } from 'components/common/Button/constant';
 import { ContactUser } from 'components/common/ContactUser/ContactUser';
 import { ContainterIcon } from 'components/common/ContainerIcon/ContainerIcon';
 import { useUserId } from 'store/user/useAllUsersStore';
