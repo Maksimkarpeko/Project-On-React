@@ -46,7 +46,7 @@ export const Profile:FC<ProfileProps> = ({setActiveId}) => {
         </div>
         <div className="w-[100%] lg:w-[50%] lg:mt-0 ml-24 sm:ml-0">
           <h2 className='mt-[32px] text-lg font-bold mb-3'>About</h2>
-          <p className='w-[70%] text-sm text-left tracking-[0.24px] text-justify'>
+          <p className='sm:w-[85%] w-[90%] text-sm text-left tracking-[0.24px] text-justify'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium doloremque molestias iure explicabo nemo facilis maxime reiciendis quis vitae velit saepe vero aut suscipit, adipisci perferendis doloribus ea dolor! Quasi quae reprehenderit iure velit quibusdam in officiis corporis cupiditate iste temporibus placeat id recusandae minima nobis illum culpa aliquid ducimus harum fugit, sint ad. Quae dolores debitis rem dolorum, veritatis quidem. Obcaecati quas minus aut dolorem eos esse, qui temporibus tenetur, sed animi dolor eum facilis sunt sint voluptatibus. 
             <br /> 
             <br />

@@ -46,7 +46,7 @@ export const ContactUser: FC<ContactUserProps> = ({
         alt={alt}
         isOnline={online}
         size={AvatarSize}
-        classname="ml-4 mt-2"
+        classname="ml-2 mt-2"
       />
       <div className="flex flex-col">
         <span className={styleNameClass}>{name}</span>
