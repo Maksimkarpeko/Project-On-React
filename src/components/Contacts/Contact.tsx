@@ -35,7 +35,7 @@ export const Contact = () => {
           <img src={search} alt="search" className="absolute z-10 top-[66px] left-7  " />
           <Input
             classname="mx-4 mb-4 "
-            inputStyle='xl:w-[100%] 2xl:w-[100%] lg:w-[100%] md:w-[100%] sm:w-[100%] max-[640px]:w-[200%] max-[640px]:ml-24 '
+            inputStyle='xl:w-[100%] 2xl:w-[100%] lg:w-[100%] md:w-[100%] sm:w-[100%] max-[640px]:w-[175%]  '
             name="text"
             type="text"
             variant={Variant.text}
@@ -47,7 +47,9 @@ export const Contact = () => {
         </div>
 
         {isLoading ? (
-          <span className="absolute mt-28">Loading...</span>
+          <span className="absolute mt-28 flex items-center gap-2 ml-28">
+            <span className="w-5 h-5 border-2 border-t-transparent border-gray-300 rounded-full animate-spin"></span>
+          </span>
         ) : (
           <div className={clsx('sm:ml-0 mt-28', style.scrollbar, isOpen ? "ml-16":'')}>
             {Filter(user,searchUser).map((item) => (

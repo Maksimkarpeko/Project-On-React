@@ -13,7 +13,7 @@ export const BaseLayout: FC<LayoutProps> = ({ children, setPage, page, classname
       <header className={clsx('sm:block fixed top-0 left-0 z-10', isOpen ? "" :"hidden")}>
         <NavBar setPage={setPage} page={page}  />
       </header>
-      <main className={clsx('w-full sm:ml-[59px] min-h-screen   overflow-auto',
+      <main className={clsx('w-full sm:ml-[59px] min-h-screen overflow-x-hidden',
           classname)}>{children}</main>
     </div>
   );
