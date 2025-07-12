@@ -16,3 +16,4 @@ export { default as contactActive} from './menuActive/contactActive.svg';
 export { default as messageActive} from './menuActive/messageActive.svg';
 export { default as notificationActive} from './menuActive/notificationActive.svg';
 export { default as settingsActive} from './menuActive/settingsActive.svg';
+export { default as Back} from './icon/Back.svg'

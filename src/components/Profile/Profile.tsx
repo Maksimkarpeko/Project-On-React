@@ -1,4 +1,4 @@
-import {Bell,Link,Report,Old,TestImg,Teg,Email,Country,X,Birth} from 'assets/index'
+import {Bell,Link,Report,Old,TestImg,Teg,Email,Country,X,Birth,Back} from 'assets/index'
 import { Size } from 'components/common/Avatars/constants';
 import { Button } from 'components/common/Button/Button';
 import {  buttonSize } from 'components/common/Button/constant';
@@ -16,9 +16,9 @@ export const Profile:FC<ProfileProps> = ({setActiveId}) => {
   return (
     <>
       <div className='text-2xl cursor-pointer w-2 ml-[65px] sm:ml-[24%]' onClick={()=> setActiveId(null)}>
-        ←
+        <img src={Back} alt="Back" style={{width:"24px", height:"24px", maxWidth:"24px"}} />
       </div>
-      <div className=" flex flex-col w-[77.57%] h-screen 2xl:ml-[360px] xl:ml-[360px] sm:ml-[40%] lg:ml-[300px] sm:flex-col lg:flex-row">
+      <div className="xl:fixed flex flex-col w-[77.57%] h-screen 2xl:ml-[360px] xl:ml-[360px] sm:ml-[30%] lg:ml-[300px] sm:flex-col lg:flex-row">
         <div className="h-full w-[110%] lg:w-[40%] sm:w-[100%]">
           <ContactUser
             AvatarSize={Size.xxLarge}
@@ -28,25 +28,25 @@ export const Profile:FC<ProfileProps> = ({setActiveId}) => {
             name={user.username}
             statusClass="ml-4 pt-2 "
             nameClass="text-xl ml-4 font-bold"
-            classname="h-5 mt-[32px] ml-28 flex-col flex lg:ml-0 xl:ml-28 2xl:ml-28 sm:ml-1"
+            classname="h-5 mt-[32px] ml-20 flex-col flex lg:ml-0 xl:ml-28 2xl:ml-28 sm:ml-1"
             disablePointer={true}
           />
           <Button
             color={Color.blue}
             size={buttonSize.sizeLL}
             type="button"
-            classname="ml-32 mt-40 lg:ml-0 xl:ml-32 2xl:ml-32 sm:ml-1"
+            classname="ml-24 mt-40 lg:ml-0 xl:ml-32 2xl:ml-32 sm:ml-1"
           >
             Send Message
           </Button>
-          <ContainterIcon text="Mute notifications" img={Bell} classname="ml-32 mt-4 lg:ml-5  xl:ml-32 2xl:ml-32 sm:ml-1" />
-          <ContainterIcon text="Remove from contacts" img={Old} classname="ml-32 mt-4 lg:ml-5  xl:ml-32 2xl:ml-32 sm:ml-1" />
-          <ContainterIcon text="Copy link" img={Link} classname="ml-32 mt-4 lg:ml-5 2xl:ml-32 xl:ml-32  sm:ml-1" />
-          <ContainterIcon text="Report spam" img={Report} classname="ml-32 mt-4 lg:ml-5 2xl:ml-32 xl:ml-32  sm:ml-1" />
+          <ContainterIcon text="Mute notifications" img={Bell} classname="ml-24  lg:ml-5 md:mt-4  xl:ml-32 2xl:ml-32 sm:ml-1" />
+          <ContainterIcon text="Remove from contacts" img={Old} classname="ml-24  lg:ml-5  md:mt-4  xl:ml-32 2xl:ml-32 sm:ml-1" />
+          <ContainterIcon text="Copy link" img={Link} classname="ml-24  lg:ml-5  2xl:ml-32 md:mt-4 xl:ml-32  sm:ml-1" />
+          <ContainterIcon text="Report spam" img={Report} classname="ml-24 md:mt-4  lg:ml-5 2xl:ml-32 xl:ml-32  sm:ml-1" />
         </div>
-        <div className="w-[100%] lg:w-[50%] lg:mt-0 ml-32 sm:ml-0">
+        <div className="w-[100%] lg:w-[50%] lg:mt-0 ml-24 sm:ml-0">
           <h2 className='mt-[32px] text-lg font-bold mb-3'>About</h2>
-          <p className='w-[70%] text-sm text-left tracking-[0.24px]'>
+          <p className='w-[70%] text-sm text-left tracking-[0.24px] text-justify'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium doloremque molestias iure explicabo nemo facilis maxime reiciendis quis vitae velit saepe vero aut suscipit, adipisci perferendis doloribus ea dolor! Quasi quae reprehenderit iure velit quibusdam in officiis corporis cupiditate iste temporibus placeat id recusandae minima nobis illum culpa aliquid ducimus harum fugit, sint ad. Quae dolores debitis rem dolorum, veritatis quidem. Obcaecati quas minus aut dolorem eos esse, qui temporibus tenetur, sed animi dolor eum facilis sunt sint voluptatibus. 
             <br /> 
             <br />
@@ -54,14 +54,14 @@ export const Profile:FC<ProfileProps> = ({setActiveId}) => {
           </p>
           <div className='xl:flex xl:flex-row sm:flex sm:flex-col'>
             <div>
-                <ContainterIcon text={user.username} img={Teg} classname=" mt-2 mr-14" />
-                <ContainterIcon text={`${user.address.country},${getInitials(user.address.country)}`} img={Country} classname=" mt-2 mr-14" />
-                <ContainterIcon text="None" img={Birth} classname=" mt-2 mr-14" />
+                <ContainterIcon text={user.username} img={Teg} classname=" mr-14" />
+                <ContainterIcon text={`${user.address.country},${getInitials(user.address.country)}`} img={Country} classname="  mr-14" />
+                <ContainterIcon text="None" img={Birth} classname=" mr-14" />
             </div>
             <div>
-                <ContainterIcon text={user.email} img={Email} classname="mt-2" />
-                <ContainterIcon text={user.username} img={X} classname="mt-2" />
-                <ContainterIcon text="None" img={Report} classname="mt-2" />
+                <ContainterIcon text={user.email} img={Email} classname="" />
+                <ContainterIcon text={user.username} img={X} classname="" />
+                <ContainterIcon text="None" img={Report} classname="" />
             </div>
           </div>
         </div>
