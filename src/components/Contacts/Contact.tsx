@@ -72,9 +72,7 @@ export const Contact = () => {
           </div>
         )}
       </div>
-      <div className={clsx(activeID === null ? 'max-[640px]:hidden ' : '')}>
-        {activeID && <Profile setActiveId={setActiveID}/>}
-      </div>
+      {activeID && <Profile setActiveId={setActiveID}/>}
     </>
   );
 };
