@@ -1,9 +1,9 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect,useRef, useState } from 'react';
 
 import search from 'assets/img/search.svg';
 import testImg from 'assets/testImg.svg';
 import clsx from 'clsx';
-import style from 'components/Contacts/contact.module.scss';
+
 import { Profile } from 'components/Profile/Profile';
 import { Size } from 'components/common/Avatars/constants';
 import { ContactUser } from 'components/common/ContactUser/ContactUser';
