@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import search from 'assets/img/search.svg';
 import testImg from 'assets/testImg.svg';
@@ -10,27 +10,36 @@ import { ContactUser } from 'components/common/ContactUser/ContactUser';
 import { Input } from 'components/common/Input/Input';
 import { OtherStyle, Variant } from 'components/common/Input/constant';
 import { Color } from 'constants/color';
-import { fetchOneUser, fetchUsers, useIsLoading, useUsers } from 'store/user/useAllUsersStore';
+import { fetchOneUser, fetchUsers, useIsLoading, useTotal, useUsers } from 'store/user/useAllUsersStore';
 import { Filter } from 'utils/filter';
 import { useOpen } from 'store/navBarmenu/useOpenNav';
+import ReactPaginate from 'react-paginate';
+
+const ITEM_PARE_PAGE = 30;
 
 export const Contact = () => {
   const isOpen = useOpen();
+  const totalPage = useTotal();
   const [searchUser, setSearchUser] = useState<string>('');
+  const page = useRef(1);
   const user = useUsers();
   const isLoading = useIsLoading();
   const [activeID, setActiveID] = useState<number | null>(null);
   useEffect(() => {
-    fetchUsers();
+    fetchUsers(1,ITEM_PARE_PAGE);
   }, []);
-
+  const pageChangeHendler = ({selected}:{selected:number}) => {
+    page.current = selected
+    fetchUsers(selected + 1, ITEM_PARE_PAGE)
+  }
+  const countPage = Math.ceil((totalPage ?? 1) / ITEM_PARE_PAGE);
   return (
     <>
       <div>
 
       </div>
-      <div className={clsx('sm:w-[22.1%] sm:min-h-full absolute border-r', activeID !== null ? 'max-[640px]:hidden':'max-[640px]:w-[100%]')}>
-        <div className={clsx("sm:ml-0 sm:w-[22%] 2xl:w-[22%] xl:w-[22%] fixed bg-white z-10 ",isOpen ? "ml-16":'',)}>
+      <div className={clsx('lg:w-[23.1%] sm:min-h-full absolute border-r', activeID !== null ? 'max-[640px]:hidden':'max-[640px]:w-[100%]')}>
+        <div className={clsx("sm:ml-0 sm:w-[23%] 2xl:w-[22%] xl:w-[22%] fixed bg-white z-10 ",isOpen ? "ml-16":'',)}>
           <h2 className="my-3 ml-4 text-2xl font-bold">Contacts</h2>
           <img src={search} alt="search" className="absolute z-10 top-[66px] left-7  " />
           <Input
@@ -53,22 +62,35 @@ export const Contact = () => {
         ) : (
           <div className={clsx('sm:ml-0 mt-28', style.scrollbar, isOpen ? "ml-16":'')}>
             {Filter(user,searchUser).map((item) => (
-              <ContactUser
-                name={item.username}
-                statusClass="ml-4"
-                nameClass="ml-4"
-                AvatarSize={Size.Medium}
-                disableHover={false}
-                alt="User"
-                img={testImg}
-                key={item.id}
-                onClick={() => {
-                  setActiveID(item.id);
-                  fetchOneUser(item.id);
-                }}
-                isActive={activeID === item.id}
-              />
+                <ContactUser
+                  name={item.username}
+                  statusClass="ml-4"
+                  nameClass="ml-4"
+                  AvatarSize={Size.Medium}
+                  disableHover={false}
+                  alt="User"
+                  img={testImg}
+                  key={item.id}
+                  onClick={() => {
+                    setActiveID(item.id);
+                    fetchOneUser(item.id);
+                  }}
+                  isActive={activeID === item.id}
+                />
             ))}
+            <ReactPaginate
+              breakLabel="..."
+              nextLabel=">"
+              onPageChange={pageChangeHendler}
+              pageRangeDisplayed={1}
+              pageCount={countPage}
+              forcePage={page.current}
+              previousLabel="<"
+              renderOnZeroPageCount={null}
+              containerClassName = 'flex my-4 items-center justify-center'
+              pageClassName = 'px-1'
+              activeClassName = 'border-b border-b-black'
+            />
           </div>
         )}
       </div>

@@ -5,9 +5,10 @@ export interface storeState{
 	users:UserResponse[];
 	isLoading:boolean;
 	user:UserResponse|null;
+	total:number | null
 }
 interface storeAction{
-	fetchUsers: ()=>Promise<void>
+	fetchUsers: (page:number, limit:number)=>Promise<void>
 	fetchOneUser:(id:number) => Promise<void>
 }
 

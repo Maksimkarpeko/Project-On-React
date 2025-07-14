@@ -7,16 +7,17 @@ const initialState: storeState = {
   users: [],
   isLoading: false,
   user:null,
+  total:0
 };
 
 const useAllUsersStore = create<IInitialState>()((set) => ({
   ...initialState,
-  fetchUsers: async () => {
+  fetchUsers: async (page=1,limit = 30 ) => {
 		set({isLoading:true})
 		try {
-			const users = await getAllUsers();
+			const {users, total} = await getAllUsers(page,limit);
 			if(users){
-				set({users:users})
+				set({users,total} )
 			}
 		} catch (error:unknown) {
 			if (error instanceof Error){
@@ -32,7 +33,6 @@ const useAllUsersStore = create<IInitialState>()((set) => ({
 			if(user){
 				set({user:user})
 			}
-			console.log(user);
 		} catch (error:unknown) {
 			if (error instanceof Error){
 				console.error(error.message)
@@ -41,7 +41,8 @@ const useAllUsersStore = create<IInitialState>()((set) => ({
   }
 }));
 export const useUsers = () => useAllUsersStore((state) => state.users);
+export const useTotal = () => useAllUsersStore((state) => state.total);
 export const useIsLoading = () => useAllUsersStore((state) => state.isLoading);
-export const fetchUsers = () => useAllUsersStore.getState().fetchUsers();
+export const fetchUsers = (page:number, skip:number) => useAllUsersStore.getState().fetchUsers(page,skip);
 export const fetchOneUser = (id:number) => useAllUsersStore.getState().fetchOneUser(id);
 export const useUserId = () =>useAllUsersStore((state) => state.user);

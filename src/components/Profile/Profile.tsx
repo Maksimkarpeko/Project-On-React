@@ -15,10 +15,10 @@ export const Profile:FC<ProfileProps> = ({setActiveId}) => {
   if (!user) return null;
   return (
     <>
-      <div className='text-2xl cursor-pointer w-2 ml-[65px] sm:ml-[24%]' onClick={()=> setActiveId(null)}>
+      <div className='text-2xl cursor-pointer w-2 ml-[65px] sm:ml-[40%] lg:ml-[25%]' onClick={()=> setActiveId(null)}>
         <img src={Back} alt="Back" style={{width:"24px", height:"24px", maxWidth:"24px"}} />
       </div>
-      <div className="xl:fixed flex flex-col w-[77.57%] h-screen 2xl:ml-[360px] xl:ml-[360px] sm:ml-[30%] lg:ml-[300px] sm:flex-col lg:flex-row">
+      <div className="xl:fixed flex flex-col w-[77.57%] h-screen 2xl:ml-[360px] xl:ml-[360px] sm:ml-[40%] lg:ml-[300px] sm:flex-col lg:flex-row">
         <div className="h-full w-[110%] lg:w-[40%] sm:w-[100%]">
           <ContactUser
             AvatarSize={Size.xxLarge}

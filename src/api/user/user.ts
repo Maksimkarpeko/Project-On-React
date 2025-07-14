@@ -2,13 +2,16 @@ import { CatchError } from 'utils/error';
 import { api } from 'utils/apiConfig';
 import type { UserResponse } from 'api/user/type';
 
-export const getAllUsers = async () => {
+export const getAllUsers = async (page = 1, limit = 30) => {
+	const skip = (page - 1)* limit;
 	try {
-		const response = await api.get('users');
+		const response = await api.get(`users?limit=${limit}&skip=${skip}`);
 		const users = response.data.users as UserResponse[]
-		return users;	
+		const total = response.data.total as number
+		return {users,total};	
 	} catch (error:unknown) {
 		CatchError(error);
+		throw error
 	}
 };
 
