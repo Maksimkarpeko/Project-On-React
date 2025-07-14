@@ -22,7 +22,7 @@ export const Contact = () => {
   const isOpen = useOpen();
   const totalPage = useTotal();
   const [searchUser, setSearchUser] = useState<string>('');
-  const page = useRef(1);
+  const page = useRef(0);
   const user = useUsers();
   const isLoading = useIsLoading();
   const [activeID, setActiveID] = useState<number | null>(null);
