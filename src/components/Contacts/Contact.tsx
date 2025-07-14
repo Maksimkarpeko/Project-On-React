@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import search from 'assets/img/search.svg';
 import testImg from 'assets/testImg.svg';
@@ -14,6 +14,7 @@ import { fetchOneUser, fetchUsers, useIsLoading, useTotal, useUsers } from 'stor
 import { Filter } from 'utils/filter';
 import { useOpen } from 'store/navBarmenu/useOpenNav';
 import ReactPaginate from 'react-paginate';
+import { Virtuoso } from 'react-virtuoso'
 
 const ITEM_PARE_PAGE = 30;
 
@@ -25,6 +26,8 @@ export const Contact = () => {
   const user = useUsers();
   const isLoading = useIsLoading();
   const [activeID, setActiveID] = useState<number | null>(null);
+
+  console.log(scroll);
   useEffect(() => {
     fetchUsers(1,ITEM_PARE_PAGE);
   }, []);
@@ -60,38 +63,48 @@ export const Contact = () => {
             <span className="w-5 h-5 border-2 border-t-transparent border-gray-300 rounded-full animate-spin"></span>
           </span>
         ) : (
-          <div className={clsx('sm:ml-0 mt-28', style.scrollbar, isOpen ? "ml-16":'')}>
-            {Filter(user,searchUser).map((item) => (
-                <ContactUser
-                  name={item.username}
-                  statusClass="ml-4"
-                  nameClass="ml-4"
-                  AvatarSize={Size.Medium}
-                  disableHover={false}
-                  alt="User"
-                  img={testImg}
-                  key={item.id}
-                  onClick={() => {
-                    setActiveID(item.id);
-                    fetchOneUser(item.id);
-                  }}
-                  isActive={activeID === item.id}
+            <div className={clsx('sm:ml-0 mt-28 non-scrollable-wrapper flex flex-col h-[calc(100vh-112px)]', isOpen ? "ml-16":'')} >
+              <div className='flex-1 overflow-hidden'>
+                {
+                  <Virtuoso  
+                    style={{height: "calc(100vh - 112px)"}}
+                    data={Filter(user,searchUser)}
+                    itemContent={(__, item) => (
+                    <ContactUser
+                      name={item.username}
+                      statusClass="ml-4"
+                      nameClass="ml-4"
+                      AvatarSize={Size.Medium}
+                      disableHover={false}
+                      alt="User"
+                      img={testImg}
+                      key={item.id}
+                      onClick={() => {
+                        setActiveID(item.id);
+                        fetchOneUser(item.id);
+                      }}
+                      isActive={activeID === item.id}
+                    />
+                    )}>
+                  </Virtuoso>
+                }
+              </div>
+              <div className='mt-auto bg-white border-t border-gray-100'>
+                <ReactPaginate
+                  breakLabel="..."
+                  nextLabel=">"
+                  onPageChange={pageChangeHendler}
+                  pageRangeDisplayed={1}
+                  pageCount={countPage}
+                  forcePage={page.current}
+                  previousLabel="<"
+                  renderOnZeroPageCount={null}
+                  containerClassName = 'flex my-4 items-center justify-center'
+                  pageClassName = 'px-1'
+                  activeClassName = 'border-b border-b-black'
                 />
-            ))}
-            <ReactPaginate
-              breakLabel="..."
-              nextLabel=">"
-              onPageChange={pageChangeHendler}
-              pageRangeDisplayed={1}
-              pageCount={countPage}
-              forcePage={page.current}
-              previousLabel="<"
-              renderOnZeroPageCount={null}
-              containerClassName = 'flex my-4 items-center justify-center'
-              pageClassName = 'px-1'
-              activeClassName = 'border-b border-b-black'
-            />
-          </div>
+              </div>
+            </div>
         )}
       </div>
       {activeID && <Profile setActiveId={setActiveID}/>}
