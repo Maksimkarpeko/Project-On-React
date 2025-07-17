@@ -16,7 +16,7 @@ import { useOpen } from 'store/navBarmenu/useOpenNav';
 import ReactPaginate from 'react-paginate';
 import { Virtuoso } from 'react-virtuoso'
 
-const ITEM_PARE_PAGE = 30;
+const ITEM_PARE_PAGE = 208;
 
 export const Contact = () => {
   const isOpen = useOpen();
@@ -29,13 +29,8 @@ export const Contact = () => {
 
   console.log(scroll);
   useEffect(() => {
-    fetchUsers(1,ITEM_PARE_PAGE);
+    fetchUsers(ITEM_PARE_PAGE);
   }, []);
-  const pageChangeHendler = ({selected}:{selected:number}) => {
-    page.current = selected
-    fetchUsers(selected + 1, ITEM_PARE_PAGE)
-  }
-  const countPage = Math.ceil((totalPage ?? 1) / ITEM_PARE_PAGE);
   return (
     <>
       <div>
@@ -88,21 +83,6 @@ export const Contact = () => {
                     )}>
                   </Virtuoso>
                 }
-              </div>
-              <div className='mt-auto bg-white border-t border-gray-100'>
-                <ReactPaginate
-                  breakLabel="..."
-                  nextLabel=">"
-                  onPageChange={pageChangeHendler}
-                  pageRangeDisplayed={1}
-                  pageCount={countPage}
-                  forcePage={page.current}
-                  previousLabel="<"
-                  renderOnZeroPageCount={null}
-                  containerClassName = 'flex my-4 items-center justify-center'
-                  pageClassName = 'px-1'
-                  activeClassName = 'border-b border-b-black'
-                />
               </div>
             </div>
         )}

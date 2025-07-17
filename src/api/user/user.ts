@@ -2,10 +2,9 @@ import { CatchError } from 'utils/error';
 import { api } from 'utils/apiConfig';
 import type { UserResponse } from 'api/user/type';
 
-export const getAllUsers = async (page = 1, limit = 30) => {
-	const skip = (page - 1)* limit;
+export const getAllUsers = async (limit = 208) => {
 	try {
-		const response = await api.get(`users?limit=${limit}&skip=${skip}`);
+		const response = await api.get(`users?limit=${limit}`);
 		const users = response.data.users as UserResponse[]
 		const total = response.data.total as number
 		return {users,total};	
