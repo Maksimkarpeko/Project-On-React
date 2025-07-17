@@ -2,7 +2,7 @@ import { CatchError } from 'utils/error';
 import { api } from 'utils/apiConfig';
 import type { UserResponse } from 'api/user/type';
 
-export const getAllUsers = async (limit = 208) => {
+export const getAllUsers = async (limit:number | null = 208) => {
 	try {
 		const response = await api.get(`users?limit=${limit}`);
 		const users = response.data.users as UserResponse[]

@@ -1,4 +1,4 @@
-import { useEffect,useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import search from 'assets/img/search.svg';
 import testImg from 'assets/testImg.svg';
@@ -13,23 +13,20 @@ import { Color } from 'constants/color';
 import { fetchOneUser, fetchUsers, useIsLoading, useTotal, useUsers } from 'store/user/useAllUsersStore';
 import { Filter } from 'utils/filter';
 import { useOpen } from 'store/navBarmenu/useOpenNav';
-import ReactPaginate from 'react-paginate';
 import { Virtuoso } from 'react-virtuoso'
 
-const ITEM_PARE_PAGE = 208;
 
 export const Contact = () => {
   const isOpen = useOpen();
-  const totalPage = useTotal();
+  const total = useTotal();
   const [searchUser, setSearchUser] = useState<string>('');
-  const page = useRef(0);
   const user = useUsers();
   const isLoading = useIsLoading();
   const [activeID, setActiveID] = useState<number | null>(null);
 
   console.log(scroll);
   useEffect(() => {
-    fetchUsers(ITEM_PARE_PAGE);
+    fetchUsers(total);
   }, []);
   return (
     <>

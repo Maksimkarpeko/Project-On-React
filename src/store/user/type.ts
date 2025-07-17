@@ -8,7 +8,7 @@ export interface storeState{
 	total:number | null
 }
 interface storeAction{
-	fetchUsers: (limit:number)=>Promise<void>
+	fetchUsers: (limit:number|null)=>Promise<void>
 	fetchOneUser:(id:number) => Promise<void>
 }
 

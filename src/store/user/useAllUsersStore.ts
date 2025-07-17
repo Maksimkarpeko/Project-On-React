@@ -12,7 +12,7 @@ const initialState: storeState = {
 
 const useAllUsersStore = create<IInitialState>()((set) => ({
   ...initialState,
-  fetchUsers: async (limit = 208 ) => {
+  fetchUsers: async (limit:number|null = 208 ) => {
 		set({isLoading:true})
 		try {
 			const {users, total} = await getAllUsers(limit);
@@ -43,6 +43,6 @@ const useAllUsersStore = create<IInitialState>()((set) => ({
 export const useUsers = () => useAllUsersStore((state) => state.users);
 export const useTotal = () => useAllUsersStore((state) => state.total);
 export const useIsLoading = () => useAllUsersStore((state) => state.isLoading);
-export const fetchUsers = (limit:number) => useAllUsersStore.getState().fetchUsers(limit);
+export const fetchUsers = (limit:number|null) => useAllUsersStore.getState().fetchUsers(limit);
 export const fetchOneUser = (id:number) => useAllUsersStore.getState().fetchOneUser(id);
 export const useUserId = () =>useAllUsersStore((state) => state.user);
