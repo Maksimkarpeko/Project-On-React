@@ -12,8 +12,8 @@ export const Button: FC<ButtonProps> = ({
   onClick,
   disabled,
   children,
-  size,
-  color,
+  size = buttonSize.sizeL,
+  color = Color.blue,
   ...rest
 }) => {
   const buttonClassName = clsx({

@@ -39,7 +39,7 @@ export const Input: FC<InputProps> = ({
     },
     inputStyle
   );
-  const labelClassName = clsx({
+  const titleClassName = clsx({
     'text-blue-500': inputTitle == InputTitle.blueTitle,
     'text-red-500': inputTitle == InputTitle.redTitle,
     'text-gray-500': inputTitle == InputTitle.grayTitle,
@@ -47,7 +47,7 @@ export const Input: FC<InputProps> = ({
   return (
     <div className={clsx('relative', classname)}>
       {title && id && (
-        <label htmlFor={id} className={clsx('absolute text-sm left-4', labelClassName)}>
+        <label htmlFor={id} className={clsx('absolute text-sm left-4', titleClassName)}>
           {title}
         </label>
       )}

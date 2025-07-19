@@ -1,13 +1,13 @@
 import { CatchError } from 'utils/error';
 import { api } from 'utils/apiConfig';
-import type { UserResponse } from 'api/user/type';
-
-export const getAllUsers = async (limit:number | null = 208) => {
+import type { apiRespons, UserResponse } from 'api/user/type';
+import type { AxiosResponse } from 'axios';
+export const getAllUsers = async <T = UserResponse> (limit:number | null = 30, page:number = 1):Promise<{ users: T[]; total: number }> => {
+	const skip = (page-1)*(limit ?? 0)
 	try {
-		const response = await api.get(`users?limit=${limit}`);
-		const users = response.data.users as UserResponse[]
-		const total = response.data.total as number
-		return {users,total};	
+		const response:AxiosResponse<apiRespons<T>> = await api.get(`users?limit=${limit}&skip=${skip}`);
+		const {users,total} = response.data;
+		return {users, total}
 	} catch (error:unknown) {
 		CatchError(error);
 		throw error
@@ -15,7 +15,7 @@ export const getAllUsers = async (limit:number | null = 208) => {
 };
 
 
-export const fundUser = async (userId:number) =>{
+export const findUser = async (userId:number) =>{
 	try {
 		const response = await api.get(`users/${userId}`);
 		return response.data;

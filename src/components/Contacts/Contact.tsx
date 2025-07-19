@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import search from 'assets/img/search.svg';
 import testImg from 'assets/testImg.svg';
@@ -10,30 +10,37 @@ import { ContactUser } from 'components/common/ContactUser/ContactUser';
 import { Input } from 'components/common/Input/Input';
 import { OtherStyle, Variant } from 'components/common/Input/constant';
 import { Color } from 'constants/color';
-import { fetchOneUser, fetchUsers, useIsLoading, useTotal, useUsers } from 'store/user/useAllUsersStore';
+import { fetchOneUser, fetchUsers, useUserLoading, useUserTotal, useUsers } from 'store/user/useUserStore';
 import { Filter } from 'utils/filter';
-import { useOpen } from 'store/navBarmenu/useOpenNav';
+import { useIsNavOpen } from 'store/useOpenNav/useNavStore';
 import { Virtuoso } from 'react-virtuoso'
+import { Loader } from 'components/common/Loader/Loader';
 
 
 export const Contact = () => {
-  const isOpen = useOpen();
-  const total = useTotal();
+  const [page, setPage] = useState(1);
+  const limit = 30;
+  const isOpen = useIsNavOpen();
+  const total = useUserTotal();
   const [searchUser, setSearchUser] = useState<string>('');
   const user = useUsers();
-  const isLoading = useIsLoading();
-  const [activeID, setActiveID] = useState<number | null>(null);
+  const isLoading = useUserLoading();
+  const [activeId, setActiveId] = useState<number | null>(null);
 
-  console.log(scroll);
+
+  const filteredUsers = useMemo(() => Filter(user, searchUser), [user, searchUser])
   useEffect(() => {
-    fetchUsers(total);
-  }, []);
+    fetchUsers(limit,page);
+  }, [page]);
+
+  const handleLoadMore = () => {
+    if (isLoading || total !== null && user.length >= total) return;
+    setPage((prev) => prev + 1);
+  };
+
   return (
     <>
-      <div>
-
-      </div>
-      <div className={clsx('lg:w-[23.1%] sm:min-h-full absolute border-r', activeID !== null ? 'max-[640px]:hidden':'max-[640px]:w-[100%]')}>
+      <div className={clsx('lg:w-[23.1%] sm:min-h-full absolute border-r', activeId !== null ? 'max-[640px]:hidden':'max-[640px]:w-[100%]')}>
         <div className={clsx("sm:ml-0 sm:w-[23%] 2xl:w-[22%] xl:w-[22%] fixed bg-white z-10 ",isOpen ? "ml-16":'',)}>
           <h2 className="my-3 ml-4 text-2xl font-bold">Contacts</h2>
           <img src={search} alt="search" className="absolute z-10 top-[66px] left-7  " />
@@ -51,16 +58,14 @@ export const Contact = () => {
         </div>
 
         {isLoading ? (
-          <span className="absolute mt-28 flex items-center gap-2 ml-28">
-            <span className="w-5 h-5 border-2 border-t-transparent border-gray-300 rounded-full animate-spin"></span>
-          </span>
+          <Loader/>
         ) : (
             <div className={clsx('sm:ml-0 mt-28 non-scrollable-wrapper flex flex-col h-[calc(100vh-112px)]', isOpen ? "ml-16":'')} >
               <div className='flex-1 overflow-hidden'>
                 {
                   <Virtuoso  
                     style={{height: "calc(100vh - 112px)"}}
-                    data={Filter(user,searchUser)}
+                    data={filteredUsers}
                     itemContent={(__, item) => (
                     <ContactUser
                       name={item.username}
@@ -72,19 +77,20 @@ export const Contact = () => {
                       img={testImg}
                       key={item.id}
                       onClick={() => {
-                        setActiveID(item.id);
+                        setActiveId(item.id);
                         fetchOneUser(item.id);
                       }}
-                      isActive={activeID === item.id}
+                      isActive={activeId === item.id}
                     />
-                    )}>
-                  </Virtuoso>
+                    
+                    )}
+                    endReached={handleLoadMore}/>
                 }
               </div>
             </div>
         )}
       </div>
-      {activeID && <Profile setActiveId={setActiveID}/>}
+      {activeId && <Profile setActiveId={setActiveId}/>}
     </>
   );
 };
