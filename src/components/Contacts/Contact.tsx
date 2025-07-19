@@ -16,10 +16,9 @@ import { useIsNavOpen } from 'store/useOpenNav/useNavStore';
 import { Virtuoso } from 'react-virtuoso'
 import { Loader } from 'components/common/Loader/Loader';
 
-
+const limit = 30;
 export const Contact = () => {
   const [page, setPage] = useState(1);
-  const limit = 30;
   const isOpen = useIsNavOpen();
   const total = useUserTotal();
   const [searchUser, setSearchUser] = useState<string>('');
