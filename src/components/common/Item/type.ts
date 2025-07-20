@@ -5,6 +5,6 @@ export interface ItemProps extends HTMLAttributes<HTMLImageElement> {
 	activeImg?:string;
   classname?: string;
   alt: string;
-  setPage?: (type:string) => void;
+  callback?:() => void;
 	isActive?:boolean,
 }

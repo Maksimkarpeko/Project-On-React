@@ -1,18 +1,22 @@
-import {Bell,Link,Report,Old,TestImg,Teg,Email,Country,X,Birth,Back} from 'assets/index'
+import {Back,TestImg} from 'assets/index'
 import { Size } from 'components/common/Avatars/constants';
 import { Button } from 'components/common/Button/Button';
 import {  buttonSize } from 'components/common/Button/constant';
 import { ContactUser } from 'components/common/ContactUser/ContactUser';
-import { ContainterIcon } from 'components/common/ContainerIcon/ContainerIcon';
-import { useUserId } from 'store/user/useAllUsersStore';
-import { getInitials } from 'utils/getInitials';
+import { CustomIcon } from 'components/common/CustomIcon/CustomIcon';
+import { useSelectedUser } from 'store/user/useUserStore';
 import type { FC } from 'react';
 import type { ProfileProps } from './type';
 import { Color } from 'constants/color';
+import { actionsBlock, contactBlock, profileBlock } from 'constants/customIconArray';
 
 export const Profile:FC<ProfileProps> = ({setActiveId}) => {
-  const user = useUserId();
-  if (!user) return null;
+  const user = useSelectedUser();
+
+  if(!user) return null;
+
+  const ProfileBlock = profileBlock(user);
+  const ContactBlock = contactBlock(user);
   return (
     <>
       <div className='text-2xl cursor-pointer w-2 ml-[65px] sm:ml-[40%] lg:ml-[25%]' onClick={()=> setActiveId(null)}>
@@ -39,10 +43,7 @@ export const Profile:FC<ProfileProps> = ({setActiveId}) => {
           >
             Send Message
           </Button>
-          <ContainterIcon text="Mute notifications" img={Bell} classname="ml-24  lg:ml-5 md:mt-4  xl:ml-32 2xl:ml-32 sm:ml-1" />
-          <ContainterIcon text="Remove from contacts" img={Old} classname="ml-24  lg:ml-5  md:mt-4  xl:ml-32 2xl:ml-32 sm:ml-1" />
-          <ContainterIcon text="Copy link" img={Link} classname="ml-24  lg:ml-5  2xl:ml-32 md:mt-4 xl:ml-32  sm:ml-1" />
-          <ContainterIcon text="Report spam" img={Report} classname="ml-24 md:mt-4  lg:ml-5 2xl:ml-32 xl:ml-32  sm:ml-1" />
+          {actionsBlock.map(Item => (<CustomIcon key={Item.text} text={Item.text} classname={Item.classname} img={Item.img}/>))}
         </div>
         <div className="w-[100%] lg:w-[50%] lg:mt-0 ml-24 sm:ml-0">
           <h2 className='mt-[32px] text-lg font-bold mb-3'>About</h2>
@@ -54,14 +55,10 @@ export const Profile:FC<ProfileProps> = ({setActiveId}) => {
           </p>
           <div className='xl:flex xl:flex-row sm:flex sm:flex-col'>
             <div>
-                <ContainterIcon text={user.username} img={Teg} classname=" mr-14" />
-                <ContainterIcon text={`${user.address.country},${getInitials(user.address.country)}`} img={Country} classname="  mr-14" />
-                <ContainterIcon text="None" img={Birth} classname=" mr-14" />
+                {ProfileBlock.map(Item=>(<CustomIcon key={Item.text} text={Item.text} classname={Item.classname} img={Item.img}/>))}
             </div>
             <div>
-                <ContainterIcon text={user.email} img={Email} classname="" />
-                <ContainterIcon text={user.username} img={X} classname="" />
-                <ContainterIcon text="None" img={Report} classname="" />
+                {ContactBlock.map(Item => (<CustomIcon key={Item.text} text={Item.text} classname={Item.classname} img={Item.img}/>))}
             </div>
           </div>
         </div>

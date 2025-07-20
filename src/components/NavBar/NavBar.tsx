@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import logo from 'assets/img/Logo.svg';
 import keyboard from 'assets/menu/keyboard.svg';
 
-import { Item } from './Item/Item';
+import { Item } from '../common/Item/Item';
 import { navItem } from './constants';
 import type { NavBarProps } from './type';
 
@@ -19,11 +19,11 @@ export const NavBar: FC<NavBarProps> = ({ setPage, page }) => {
           img={img}
           activeImg={activeItem}
           alt={alt}
-          setPage={setPage}
+          callback={() => setPage?.(alt)}
           isActive={page === alt}
         />
       ))}
-      <Item img={keyboard} alt="Keyboard" classname="fixed top-[90%]" />
+      <Item img={keyboard} alt="Keyboard"  classname="fixed top-[90%]" />
     </nav>
   );
 };

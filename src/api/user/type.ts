@@ -7,3 +7,7 @@ export interface UserResponse {
 		country:string,
 	}
 }
+export interface apiRespons<T> {
+	users:T[],
+	total:number,
+}
