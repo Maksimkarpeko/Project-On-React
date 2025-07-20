@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useCallback } from 'react';
 
 import search from 'assets/img/search.svg';
 import testImg from 'assets/testImg.svg';
@@ -16,30 +16,44 @@ import { useIsNavOpen } from 'store/useOpenNav/useNavStore';
 import { Virtuoso } from 'react-virtuoso'
 import { Loader } from 'components/common/Loader/Loader';
 
-const limit = 30;
+const USERS_FETCH_LIMIT = 30;
 export const Contact = () => {
   const [page, setPage] = useState(1);
   const isOpen = useIsNavOpen();
   const total = useUserTotal();
-  const [searchUser, setSearchUser] = useState<string>('');
-  const user = useUsers();
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState<string>('');
+  const users = useUsers();
   const isLoading = useUserLoading();
-  const [activeId, setActiveId] = useState<number | null>(null);
+  const [selectUserId, setSelectUserId] = useState<number | null>(null);
 
-
-  const filteredUsers = useMemo(() => Filter(user, searchUser), [user, searchUser])
   useEffect(() => {
-    fetchUsers(limit,page);
+    const timer = setTimeout(() => {
+      setDebouncedSearchQuery(searchQuery);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
+  const filteredUsers = useMemo(() => Filter(users, debouncedSearchQuery), [users, debouncedSearchQuery]);
+  
+  useEffect(() => {
+    fetchUsers(USERS_FETCH_LIMIT,page);
   }, [page]);
 
-  const handleLoadMore = () => {
-    if (isLoading || total !== null && user.length >= total) return;
+  const handleLoadMore = useCallback(() => {
+    if (isLoading || total !== null && users.length >= total) return;
     setPage((prev) => prev + 1);
-  };
+  }, [isLoading, total, users.length]);
+
+  const handleUserClick = useCallback((userId: number) => {
+    setSelectUserId(userId);
+    fetchOneUser(userId);
+  }, []);
 
   return (
     <>
-      <div className={clsx('lg:w-[23.1%] sm:min-h-full absolute border-r', activeId !== null ? 'max-[640px]:hidden':'max-[640px]:w-[100%]')}>
+      <div className={clsx('lg:w-[23.1%] sm:min-h-full absolute border-r', selectUserId !== null ? 'max-[640px]:hidden':'max-[640px]:w-[100%]')}>
         <div className={clsx("sm:ml-0 sm:w-[23%] 2xl:w-[22%] xl:w-[22%] fixed bg-white z-10 ",isOpen ? "ml-16":'',)}>
           <h2 className="my-3 ml-4 text-2xl font-bold">Contacts</h2>
           <img src={search} alt="search" className="absolute z-10 top-[66px] left-7  " />
@@ -52,44 +66,39 @@ export const Contact = () => {
             otherStyle={OtherStyle.search}
             placeholder="Search"
             inputColor={Color.gray}
-            onChange={(e) => setSearchUser(e.target.value)}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
 
-        {isLoading ? (
-          <Loader/>
-        ) : (
-            <div className={clsx('sm:ml-0 mt-28 non-scrollable-wrapper flex flex-col h-[calc(100vh-112px)]', isOpen ? "ml-16":'')} >
-              <div className='flex-1 overflow-hidden'>
-                {
-                  <Virtuoso  
-                    style={{height: "calc(100vh - 112px)"}}
-                    data={filteredUsers}
-                    itemContent={(__, item) => (
-                    <ContactUser
-                      name={item.username}
-                      statusClass="ml-4"
-                      nameClass="ml-4"
-                      AvatarSize={Size.Medium}
-                      disableHover={false}
-                      alt="User"
-                      img={testImg}
-                      key={item.id}
-                      onClick={() => {
-                        setActiveId(item.id);
-                        fetchOneUser(item.id);
-                      }}
-                      isActive={activeId === item.id}
-                    />
-                    
-                    )}
-                    endReached={handleLoadMore}/>
-                }
-              </div>
-            </div>
-        )}
+        <div className={clsx('sm:ml-0 mt-28 non-scrollable-wrapper flex flex-col h-[calc(100vh-112px)]', isOpen ? "ml-16":'')} >
+          <div className='flex-1 overflow-hidden'>
+            <Virtuoso  
+              key="contacts-virtuoso"
+              style={{height: "calc(100vh - 112px)"}}
+              data={filteredUsers}
+              itemContent={(__, item) => (
+                <ContactUser
+                  name={item.username}
+                  statusClass="ml-4"
+                  nameClass="ml-4"
+                  AvatarSize={Size.Medium}
+                  disableHover={false}
+                  alt="User"
+                  img={testImg}
+                  key={item.id}
+                  onClick={() => handleUserClick(item.id)}
+                  isActive={selectUserId === item.id}
+                />
+              )}
+              endReached={handleLoadMore}
+              components={{
+                Footer: () => isLoading ? <Loader /> : null
+              }}
+            />
+          </div>
+        </div>
       </div>
-      {activeId && <Profile setActiveId={setActiveId}/>}
+      {selectUserId && <Profile setActiveId={setSelectUserId}/>}
     </>
   );
 };

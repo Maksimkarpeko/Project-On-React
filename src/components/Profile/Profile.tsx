@@ -43,7 +43,7 @@ export const Profile:FC<ProfileProps> = ({setActiveId}) => {
           >
             Send Message
           </Button>
-          {actionsBlock.map(Item => (<CustomIcon text={Item.text} classname={Item.classname} img={Item.img}/>))}
+          {actionsBlock.map(Item => (<CustomIcon key={Item.text} text={Item.text} classname={Item.classname} img={Item.img}/>))}
         </div>
         <div className="w-[100%] lg:w-[50%] lg:mt-0 ml-24 sm:ml-0">
           <h2 className='mt-[32px] text-lg font-bold mb-3'>About</h2>
@@ -55,10 +55,10 @@ export const Profile:FC<ProfileProps> = ({setActiveId}) => {
           </p>
           <div className='xl:flex xl:flex-row sm:flex sm:flex-col'>
             <div>
-                {ProfileBlock.map(Item=>(<CustomIcon text={Item.text} classname={Item.classname} img={Item.img}/>))}
+                {ProfileBlock.map(Item=>(<CustomIcon key={Item.text} text={Item.text} classname={Item.classname} img={Item.img}/>))}
             </div>
             <div>
-                {ContactBlock.map(Item => (<CustomIcon text={Item.text} classname={Item.classname} img={Item.img}/>))}
+                {ContactBlock.map(Item => (<CustomIcon key={Item.text} text={Item.text} classname={Item.classname} img={Item.img}/>))}
             </div>
           </div>
         </div>

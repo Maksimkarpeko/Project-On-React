@@ -1,4 +1,4 @@
-import { findUser, getAllUsers } from 'api/user/user';
+import { fetchUserByIdApi,fetchUsersApi } from 'api/user/user';
 import { create } from 'zustand';
 
 import type { UserStor, UserStoreState } from './type';
@@ -11,20 +11,22 @@ const initialState: UserStoreState = {
   total:0
 };
 
-const useUserStore = create<UserStor>()(immer((set) => ({
+const useUserStore = create<UserStor>()(immer((set, get) => ({
   ...initialState,
   fetchUsers: async (limit:number|null = 30,page:number= 1 ) => {
-		set({isLoading:true})
+		if (page === 1) {
+			set({isLoading:true})
+		}
 		try {
-			const {users, total} = await getAllUsers(limit,page);
+			const {users, total} = await fetchUsersApi(limit,page);
 			if(users){
 				set((state) => {
-				if (page === 1) {
-					state.users = users;
-				} else {
-					state.users.push(...users);
-				}
-				state.total = total;
+					if (page === 1) {
+						state.users = users;
+					} else {
+						state.users = [...state.users, ...users];
+					}
+					state.total = total;
 				});
 			}
 		} catch (error:unknown) {
@@ -37,7 +39,7 @@ const useUserStore = create<UserStor>()(immer((set) => ({
   },
   fetchOneUser: async (id) =>{
 		try {
-			const user = await findUser(id);
+			const user = await fetchUserByIdApi(id);
 			if(user){
 				set({user:user})
 			}
