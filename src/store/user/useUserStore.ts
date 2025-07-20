@@ -11,7 +11,7 @@ const initialState: UserStoreState = {
   total:0
 };
 
-const useUserStore = create<UserStor>()(immer((set, get) => ({
+const useUserStore = create<UserStor>()(immer((set) => ({
   ...initialState,
   fetchUsers: async (limit:number|null = 30,page:number= 1 ) => {
 		if (page === 1) {
