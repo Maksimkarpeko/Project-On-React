@@ -53,13 +53,19 @@ export const Contact = () => {
 
   return (
     <>
-      <div className={clsx('lg:w-[23.1%] sm:min-h-full absolute border-r', selectUserId !== null ? 'max-[640px]:hidden':'max-[640px]:w-[100%]')}>
-        <div className={clsx("sm:ml-0 sm:w-[23%] 2xl:w-[22%] xl:w-[22%] fixed bg-white z-10 ",isOpen ? "ml-16":'',)}>
+      <div className={clsx('lg:w-[23.1%] sm:min-h-full absolute border-r ', selectUserId !== null ? 'max-[640px]:hidden':'max-[640px]:w-[100%]')}>
+        <div
+          className={clsx(
+            'sm:ml-0 lg:w-[23%] 2xl:w-[22%] xl:w-[22%] fixed bg-white z-10 overflow-hidden sm:w-screen lg:block sm:hidden',
+            isOpen ? 'ml-16' : '',
+            selectUserId !== null ? 'max-[640px]:hidden' : 'max-[640px]:block'
+          )}
+        >
           <h2 className="my-3 ml-4 text-2xl font-bold">Contacts</h2>
           <img src={search} alt="search" className="absolute z-10 top-[66px] left-7  " />
           <Input
             classname="mx-4 mb-4 "
-            inputStyle='xl:w-[100%] 2xl:w-[100%] lg:w-[100%] md:w-[100%] sm:w-[100%] max-[640px]:w-[175%]  '
+            inputStyle=''
             name="text"
             type="text"
             variant={Variant.text}

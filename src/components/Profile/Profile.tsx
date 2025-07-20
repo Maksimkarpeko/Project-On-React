@@ -5,24 +5,41 @@ import {  buttonSize } from 'components/common/Button/constant';
 import { ContactUser } from 'components/common/ContactUser/ContactUser';
 import { CustomIcon } from 'components/common/CustomIcon/CustomIcon';
 import { useSelectedUser } from 'store/user/useUserStore';
-import type { FC } from 'react';
+import { useRef, useState, type FC } from 'react';
 import type { ProfileProps } from './type';
 import { Color } from 'constants/color';
 import { actionsBlock, contactBlock, profileBlock } from 'constants/customIconArray';
+import { ModalWindow } from 'components/common/ModalWindow/ModalWindow';
 
 export const Profile:FC<ProfileProps> = ({setActiveId}) => {
   const user = useSelectedUser();
-
+  const [activeIconId, setActiveIconId] = useState<number | null>(null);
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const ref = useRef<HTMLSpanElement>(null);
+  const CopyText = async (text:string) =>{
+    if(!ref.current){
+      console.error("Nothing!!");
+    }
+    try{
+      await navigator.clipboard.writeText(text);
+      setIsOpenModal(true);
+      setTimeout(()=>{
+        setIsOpenModal(false)
+      },2000)
+    }catch(error){
+      console.log(error);
+    }
+  }
   if(!user) return null;
 
   const ProfileBlock = profileBlock(user);
   const ContactBlock = contactBlock(user);
   return (
     <>
-      <div className='text-2xl cursor-pointer w-2 ml-[65px] sm:ml-[40%] lg:ml-[25%]' onClick={()=> setActiveId(null)}>
+      <div className='text-2xl cursor-pointer w-2 ml-[65px]  lg:ml-[25%]' onClick={()=> setActiveId(null)}>
         <img src={Back} alt="Back" style={{width:"24px", height:"24px", maxWidth:"24px"}} />
       </div>
-      <div className="xl:fixed flex flex-col w-[77.57%] h-screen 2xl:ml-[360px] xl:ml-[360px] sm:ml-[40%] lg:ml-[300px] sm:flex-col lg:flex-row">
+      <div className="xl:fixed flex flex-col w-[77.57%] h-screen 2xl:ml-[360px] xl:ml-[360px] sm:ml-[20%] lg:ml-[300px] sm:flex-col lg:flex-row">
         <div className="h-full w-[110%] lg:w-[40%] sm:w-[100%]">
           <ContactUser
             AvatarSize={Size.xxLarge}
@@ -43,7 +60,18 @@ export const Profile:FC<ProfileProps> = ({setActiveId}) => {
           >
             Send Message
           </Button>
-          {actionsBlock.map(Item => (<CustomIcon key={Item.text} text={Item.text} classname={Item.classname} img={Item.img}/>))}
+          {actionsBlock.map((Item,index) => (
+            <CustomIcon 
+              key={Item.text} 
+              text={Item.text} 
+              classname={Item.classname} 
+              img={Item.img} 
+              onClick={()=> setActiveIconId((prev)=> prev === index ? null : index)} 
+              isActive={activeIconId === index} 
+              activeIcon={Item.activeIcon ? Item.activeIcon : Item.img}
+              activeText={Item.activeText ? Item.activeText : Item.text} 
+            />
+          ))}
         </div>
         <div className="w-[100%] lg:w-[50%] lg:mt-0 ml-24 sm:ml-0">
           <h2 className='mt-[32px] text-lg font-bold mb-3'>About</h2>
@@ -55,14 +83,34 @@ export const Profile:FC<ProfileProps> = ({setActiveId}) => {
           </p>
           <div className='xl:flex xl:flex-row sm:flex sm:flex-col'>
             <div>
-                {ProfileBlock.map(Item=>(<CustomIcon key={Item.text} text={Item.text} classname={Item.classname} img={Item.img}/>))}
+                {ProfileBlock.map(Item=>(
+                  <CustomIcon 
+                    key={Item.text} 
+                    text={Item.text} 
+                    classname={Item.classname} 
+                    img={Item.img}
+                    ref={ref}
+                    onClick={() => CopyText(Item.text)}
+                  />
+                ))}
             </div>
             <div>
-                {ContactBlock.map(Item => (<CustomIcon key={Item.text} text={Item.text} classname={Item.classname} img={Item.img}/>))}
+                {ContactBlock.map(Item => (
+                  <CustomIcon
+                    key={Item.text} 
+                    text={Item.text} 
+                    classname={Item.classname} 
+                    img={Item.img}
+                    ref={ref}
+                    onClick={() => CopyText(Item.text)}
+                  />))}
             </div>
           </div>
         </div>
       </div>
+      {
+        isOpenModal && <ModalWindow>The text is copied</ModalWindow>
+      }
     </>
   );
 };

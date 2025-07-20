@@ -1,9 +1,9 @@
 import type { UserResponse } from 'api/user/type';
-import {Bell,Link,Report,Old,Teg,Email,Country,X,Birth} from 'assets/index'
+import {Bell,Link,Report,Old,Teg,Email,Country,X,Birth,ActiveBell} from 'assets/index'
 import { getInitials } from 'utils/getInitials';
 export const actionsBlock = [
-  { text: "Mute notifications", img: Bell, classname: "ml-24 lg:ml-5 md:mt-4 xl:ml-32 2xl:ml-32 sm:ml-1" },
-  { text: "Remove from contacts", img: Old, classname: "ml-24 lg:ml-5 md:mt-4 xl:ml-32 2xl:ml-32 sm:ml-1" },
+  { text: "Mute notifications", img: Bell, classname: "ml-24 lg:ml-5 md:mt-4 xl:ml-32 2xl:ml-32 sm:ml-1", activeIcon:ActiveBell, activeText:'Unmute notifications' },
+  { text: "Remove from contacts", img: Old, classname: "ml-24 lg:ml-5 md:mt-4 xl:ml-32 2xl:ml-32 sm:ml-1",  },
   { text: "Copy link", img: Link, classname: "ml-24 lg:ml-5 2xl:ml-32 md:mt-4 xl:ml-32 sm:ml-1" },
   { text: "Report spam", img: Report, classname: "ml-24 md:mt-4 lg:ml-5 2xl:ml-32 xl:ml-32 sm:ml-1" },
 ];
