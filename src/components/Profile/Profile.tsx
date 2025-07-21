@@ -13,7 +13,7 @@ import { ModalWindow } from 'components/common/ModalWindow/ModalWindow';
 
 export const Profile:FC<ProfileProps> = ({setActiveId}) => {
   const user = useSelectedUser();
-  const [activeIconId, setActiveIconId] = useState<number | null>(null);
+  const [activeIconIds, setActiveIconIds] = useState<number[]>([]);
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const ref = useRef<HTMLSpanElement>(null);
   const CopyText = async (text:string) =>{
@@ -31,6 +31,15 @@ export const Profile:FC<ProfileProps> = ({setActiveId}) => {
     }
   }
   if(!user) return null;
+
+
+  const handelActive = (index:number) =>{
+    setActiveIconIds((prev) =>(
+      prev.includes(index)
+      ?prev.filter((id) => id !== index)
+      : [...prev, index]
+    ))
+  }
 
   const ProfileBlock = profileBlock(user);
   const ContactBlock = contactBlock(user);
@@ -66,8 +75,8 @@ export const Profile:FC<ProfileProps> = ({setActiveId}) => {
               text={Item.text} 
               classname={Item.classname} 
               img={Item.img} 
-              onClick={()=> setActiveIconId((prev)=> prev === index ? null : index)} 
-              isActive={activeIconId === index} 
+              onClick={()=> handelActive(index)}
+              isActive={activeIconIds.includes(index)} 
               activeIcon={Item.activeIcon ? Item.activeIcon : Item.img}
               activeText={Item.activeText ? Item.activeText : Item.text} 
             />
