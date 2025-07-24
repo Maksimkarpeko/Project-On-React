@@ -21,11 +21,7 @@ const useUserStore = create<UserStor>()(immer((set) => ({
 			const {users, total} = await fetchUsersApi(limit,page);
 			if(users){
 				set((state) => {
-					if (page === 1) {
-						state.users = users;
-					} else {
-						state.users = [...state.users, ...users];
-					}
+					page === 1 ? state.users = users : state.users =  [...state.users, ...users];
 					state.total = total;
 				});
 			}
