@@ -1,9 +1,9 @@
 export interface storeNavState {
-    open:boolean,
+    isOpen:boolean,
 }
 interface storeNavAction {
-    isOpen: () => void,
-    isClose:() => void,
+    isOpenNav: () => void,
+    isCloseNav:() => void,
 }
 
 export interface storeNavInitialState extends storeNavAction, storeNavState{}
