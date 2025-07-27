@@ -43,3 +43,6 @@ Then start the project on the local server with the command:
 ```bash
 $ npm run start:dev
 ```
+
+
+Swager: http://localhost:8000/api
