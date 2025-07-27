@@ -9,7 +9,8 @@ export { default as Country } from './icon/location.svg';
 export { default as X } from './icon/X.svg';
 export { default as Birth } from './icon/birth.svg';
 export { default as ErrorImg} from './img/ErrorImg.svg';
-export { default as Logo} from './img/Logo.svg';
+export { default as Logo } from './img/LogoS.svg';
+export { default as LogoXL } from './img/LogoXL.svg'
 export { default as search} from './img/search.svg';
 export { default as DiscoverActive} from './menuActive/DiscoverActive.png';
 export { default as contactActive} from './menuActive/contactActive.svg';

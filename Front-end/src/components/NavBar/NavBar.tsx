@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import logo from 'assets/img/Logo.svg';
+import { Logo } from 'assets/index';
 import keyboard from 'assets/menu/keyboard.svg';
 
 import { Item } from '../common/Item/Item';
@@ -11,7 +11,7 @@ export const NavBar: FC<NavBarProps> = ({ setPage, page }) => {
   return (
     <nav className="w-[59px] min-h-[100vh] bg-gray-100 text-white fixed">
       <div className="pt-4 px-[14px] pb-8">
-        <img src={logo} alt="Logo" />
+        <img src={Logo} alt="Logo" />
       </div>
       {navItem.map(({ img, activeItem, alt }) => (
         <Item

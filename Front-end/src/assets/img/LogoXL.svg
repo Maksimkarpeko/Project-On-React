@@ -1,0 +1,17 @@
+<svg width="101.410156" height="120.250000" viewBox="0 0 101.41 120.25" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<linearGradient x1="101.407074" y1="4.111618" x2="26.683983" y2="114.986366" id="paint_linear_80_1161_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FEC519"/>
+			<stop offset="0.278985" stop-color="#E62E5C"/>
+			<stop offset="0.760754" stop-color="#45A3E6"/>
+			<stop offset="1.000000" stop-color="#5CE6C3"/>
+		</linearGradient>
+	</defs>
+	<path id="Back" d="M68.97 116.01C51.68 108.54 47.11 91.37 52.01 77.96C52.01 77.96 63.36 81.48 72.32 84.29C81.28 87.1 86.8 83.73 89.87 79.34C93.01 74.96 93.95 68.23 88.5 61.67C83.04 55.11 70.82 40.11 70.82 40.11L101.41 4.51L95.01 0L61.98 20.01C58.41 19.22 54.7 18.8 50.89 18.8C22.78 18.8 0 41.58 0 69.69C0 99.44 23.27 120.25 52.19 120.25C57.48 120.25 65.23 118.83 68.97 116.01Z" fill="url(#paint_linear_80_1161_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+	<path id="Subtract" d="" fill="#DAE4F2" fill-opacity="1.000000" fill-rule="nonzero"/>
+	<path id="Head" d="M83.87 65.51C85.8 67.84 86.36 69.87 86.39 71.43C86.42 73.05 85.87 74.59 84.98 75.85L84.96 75.87L84.94 75.89C83.96 77.3 82.74 78.32 81.26 78.86C79.82 79.38 77.57 79.64 74.12 78.55L48.51 70.58C48.51 70.58 28.57 65.43 35.09 45.12C15.17 72.64 30.89 108.54 55.01 114.25C28.56 114.96 6.01 96.13 6.01 69.69C6.01 43.12 29.62 21.86 56.28 25.13L54.52 30.83L87.28 11.72L62.97 40.01C69.92 48.53 76.84 57.06 83.87 65.51Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd"/>
+	<path id="Combined Shape" d="" fill="#7373BF" fill-opacity="1.000000" fill-rule="nonzero"/>
+</svg>
