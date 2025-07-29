@@ -1,0 +1,9 @@
+export const validateEmail = (value: { email: string }) => {
+  const error: Partial<typeof value> = {};
+  if (!value.email) {
+    error.email = 'Email is required';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value.email)) {
+    error.email = 'Invalid email format';
+  }
+  return error;
+};

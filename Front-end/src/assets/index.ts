@@ -19,3 +19,4 @@ export { default as notificationActive} from './menuActive/notificationActive.sv
 export { default as settingsActive} from './menuActive/settingsActive.svg';
 export { default as Back} from './icon/Back.svg'
 export { default as ActiveBell} from './icon/activeBell.svg'
+export { default as defaultAvatar} from "./Avatar.svg"

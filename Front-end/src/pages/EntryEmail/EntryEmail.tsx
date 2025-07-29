@@ -4,21 +4,14 @@ import { Variant } from 'components/common/Input/constant';
 import { Color } from 'constants/color';
 import { Links } from 'constants/links';
 import { useFormik } from 'formik';
+import { validateEmail } from './validateEmail';
 
 export const EntryEmail = () => {
     const formik = useFormik({
         initialValues: {
         email: '',
         },
-        validate: (value) => {
-            const error: Partial<typeof value> = {};
-            if (!value.email) {
-                error.email = 'Email is required';
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value.email)) {
-                error.email = 'Invalid email format';
-            }
-            return error;
-        },
+        validate: validateEmail,
         onSubmit: (value) => {
             console.log(value);
         },
@@ -27,10 +20,10 @@ export const EntryEmail = () => {
     return (
         <>
         <Entry
-            text='We’ll send you a sign-in code'
+            subTitle='Next step you will create password'
             title="What’s your email?"
-            formikEmail={formik}
-            navigateLink={Links.entryEmailPassword}
+            emailForm={formik}
+            navigateLink={Links.entryPassword}
         >
             <Input
                 name="email"
@@ -43,7 +36,7 @@ export const EntryEmail = () => {
                     formik.setFieldValue('email', e.target.value);
                 }}
             />
-            {!formik.isValid && <div style={{ color: 'red' }}>{error}</div>}
+            {!formik.isValid && formik.errors.email && <div style={{ color: 'red' }}>{error}</div>}
         </Entry>
         </>
     );
