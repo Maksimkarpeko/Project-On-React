@@ -15,7 +15,7 @@ export const Start:FC<StartProps> = ({title,...rest}) => {
             <h1 className="mb-2 font-bold text-2xl">{title}</h1>
             <p className="mb-8 text-center">Modern social network <br />
             built for you, not advertisers</p>
-            <Link to={Links.entryEmail}>
+            <Link to={Links.singUp}>
                 <Button type="button" color={Color.blue} size={buttonSize.sizeL}>
                     Continue with email
                 </Button>   

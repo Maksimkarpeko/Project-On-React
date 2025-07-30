@@ -12,9 +12,7 @@ export const Entry: FC<EntryProps> = ({
   title,
   navigateLink,
   subTitle,
-  emailForm,
-  passwordForm,
-  usernameForm,
+  formik,
   bioForm,
   onClick,
   ...rest
@@ -22,28 +20,12 @@ export const Entry: FC<EntryProps> = ({
   const navigate = useNavigate();
   const handleNextStep = async () => {
     let hasErrors = false;
-    if (emailForm) {
-      const errorsEmail = await emailForm.validateForm();
-      if (errorsEmail.email) {
+    if (formik) {
+      const errors = await formik.validateForm();
+      if (errors.email || errors.password || errors.username) {
         hasErrors = true;
       } else {
-        emailForm.handleSubmit();
-      }
-    }
-    if (passwordForm) {
-      const errorsPassword = await passwordForm.validateForm();
-      if (errorsPassword.password) {
-        hasErrors = true;
-      } else {
-        passwordForm.handleSubmit();
-      }
-    }
-    if(usernameForm){
-      const errorsUserName = await usernameForm.validateForm();
-      if(errorsUserName.username){
-        hasErrors = true;
-      } else {
-        usernameForm?.handleSubmit();
+        await formik.handleSubmit();
       }
     }
     if (!hasErrors) {

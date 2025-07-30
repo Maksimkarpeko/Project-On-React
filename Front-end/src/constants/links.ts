@@ -1,8 +1,7 @@
 export enum Links {
   startPage = '/',
-  entryEmail = '/EntryEmail',
-  entryPassword = '/EntryPassword',
-  entryUserName = '/EntryUserName',
+  singUp = "/SingUp",
+  singIn = "/SingIn",
   entryBio = '/EntryBio',
   homePage = '/Home',
   errorError = '/ErrorPage',
