@@ -9,7 +9,6 @@ import type { EntryProps } from './type';
 export const Entry: FC<EntryProps> = ({
   children,
   title,
-  navigateLink,
   subTitle,
   formik,
   bioForm,

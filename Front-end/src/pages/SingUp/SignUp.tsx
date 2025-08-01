@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { signUp } from 'api/singUp/singUp';
 import { Entry } from 'components/Entry/Entry';
@@ -10,7 +11,6 @@ import { Links } from 'constants/links';
 import { useFormik } from 'formik';
 
 import { validate } from './validate';
-import { useNavigate } from 'react-router-dom';
 
 export const SingUp = () => {
   const navigate = useNavigate();
@@ -30,11 +30,12 @@ export const SingUp = () => {
             email: value.email,
             password: value.password,
             username: value.username,
-          },setErrorApiMessage
+          },
+          setErrorApiMessage,
         );
         setErrorApi(false);
-        navigate(Links.entryBio)
-      } catch(error) {
+        navigate(Links.entryBio);
+      } catch (error) {
         setErrorApi(true);
       }
     },
@@ -43,13 +44,7 @@ export const SingUp = () => {
   const errorPassword = formik.errors.password;
   const errorUserName = formik.errors.username;
   return (
-    <Entry
-      navigateLink={Links.entryBio}
-      subTitle=""
-      title="Create new account"
-      formik={formik}
-      errorApi={errorApi}
-    >
+    <Entry subTitle="" title="Create new account" formik={formik} errorApi={errorApi}>
       <Input
         name="email"
         placeholder="Email"
@@ -63,9 +58,7 @@ export const SingUp = () => {
           formik.setFieldValue('email', e.target.value);
         }}
       />
-      {formik.touched.email && formik.errors.email && (
-        <Error errorMessage={errorEmail} />
-      )}
+      {formik.touched.email && formik.errors.email && <Error errorMessage={errorEmail} />}
       <Input
         name="password"
         placeholder="Password"
@@ -79,9 +72,7 @@ export const SingUp = () => {
           formik.setFieldValue('password', e.target.value);
         }}
       />
-      {formik.touched.password && formik.errors.password && (
-        <Error errorMessage={errorPassword} />
-      )}
+      {formik.touched.password && formik.errors.password && <Error errorMessage={errorPassword} />}
       <Input
         name="username"
         placeholder="Name"
@@ -95,11 +86,9 @@ export const SingUp = () => {
           formik.setFieldValue('username', e.target.value);
         }}
       />
-      {formik.touched.username && formik.errors.username && (
-        <Error errorMessage={errorUserName} />
-      )}
+      {formik.touched.username && formik.errors.username && <Error errorMessage={errorUserName} />}
 
-      {errorApi && <Error errorMessage={errorApiMessage}/>}
+      {errorApi && <Error errorMessage={errorApiMessage} />}
     </Entry>
   );
 };

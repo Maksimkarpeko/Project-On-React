@@ -20,6 +20,7 @@ export const Start:FC<StartProps> = ({title,...rest}) => {
                     Continue with email
                 </Button>   
             </Link>
+            <p className='mt-5'>If you have account go to {<Link to={Links.singIn} className='text-blue-500 hover:opacity-50  hover:border-b hover:border-blue-600'>Sign In</Link>}</p>
         </div>
     )
 }

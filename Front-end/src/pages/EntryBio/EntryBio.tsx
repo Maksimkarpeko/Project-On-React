@@ -1,12 +1,11 @@
 import { useRef, useState } from 'react';
 
+import { defaultAvatar } from 'assets/index';
 import { Entry } from 'components/Entry/Entry';
 import { Input } from 'components/common/Input/Input';
 import { Variant } from 'components/common/Input/constant';
 import { Color } from 'constants/color';
-import { Links } from 'constants/links';
 import { useFormik } from 'formik';
-import { defaultAvatar } from 'assets/index';
 
 export const EntryBio = () => {
   const refInput = useRef<HTMLInputElement | null>(null);
@@ -33,12 +32,7 @@ export const EntryBio = () => {
   };
   return (
     <>
-      <Entry
-        navigateLink={Links.homePage}
-        subTitle="Introduce yourself"
-        title="New account"
-        bioForm={formik}
-      >
+      <Entry subTitle="Introduce yourself" title="New account" bioForm={formik}>
         <input
           type="file"
           name="avatar"
@@ -47,7 +41,13 @@ export const EntryBio = () => {
           ref={refInput}
           onChange={handleFileChange}
         />
-        <img src={previe || defaultAvatar} alt='avatar' className='cursor-pointer rounded-full' onClick={handleInput} width={"100px"} />
+        <img
+          src={previe || defaultAvatar}
+          alt="avatar"
+          className="cursor-pointer rounded-full"
+          onClick={handleInput}
+          width={'100px'}
+        />
         <Input
           name="name"
           inputColor={Color.darkGray}
