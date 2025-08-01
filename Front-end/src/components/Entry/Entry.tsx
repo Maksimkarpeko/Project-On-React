@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { Button } from 'components/common/Button/Button';
 import { buttonSize } from 'components/common/Button/constant';
@@ -15,21 +14,12 @@ export const Entry: FC<EntryProps> = ({
   formik,
   bioForm,
   onClick,
+  errorApi,
   ...rest
 }) => {
-  const navigate = useNavigate();
-  const handleNextStep = async () => {
-    let hasErrors = false;
-    if (formik) {
-      const errors = await formik.validateForm();
-      if (errors.email || errors.password || errors.username) {
-        hasErrors = true;
-      } else {
-        await formik.handleSubmit();
-      }
-    }
-    if (!hasErrors) {
-        navigate(navigateLink);
+  const handleNextStep =  () => {
+    if(formik){
+      formik.handleSubmit();
     }
   };
   return (

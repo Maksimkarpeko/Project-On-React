@@ -1,72 +1,105 @@
+import { useState } from 'react';
+
+import { signUp } from 'api/singUp/singUp';
 import { Entry } from 'components/Entry/Entry';
+import { Error } from 'components/common/Error/Error';
 import { Input } from 'components/common/Input/Input';
+import { Variant } from 'components/common/Input/constant';
+import { Color } from 'constants/color';
 import { Links } from 'constants/links';
 import { useFormik } from 'formik';
 
-import { Variant } from 'components/common/Input/constant';
-import { Color } from 'constants/color';
 import { validate } from './validate';
+import { useNavigate } from 'react-router-dom';
 
 export const SingUp = () => {
-	const formik = useFormik({
-		initialValues:{
-			email:'',
-			password:'',
-			username:'',
-		},
-		validate:validate,
-		onSubmit:(value)=>{
-			console.log(value);
-		}
-	})
-	const errorEmail = formik.errors.email;
-	const errorPassword = formik.errors.password;
-	const errorUserName = formik.errors.username;
+  const navigate = useNavigate();
+  const [errorApi, setErrorApi] = useState<boolean>(false);
+  const [errorApiMessage, setErrorApiMessage] = useState<string>('');
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+      username: '',
+    },
+    validate: validate,
+    onSubmit: async (value) => {
+      try {
+        await signUp(
+          {
+            email: value.email,
+            password: value.password,
+            username: value.username,
+          },setErrorApiMessage
+        );
+        setErrorApi(false);
+        navigate(Links.entryBio)
+      } catch(error) {
+        setErrorApi(true);
+      }
+    },
+  });
+  const errorEmail = formik.errors.email;
+  const errorPassword = formik.errors.password;
+  const errorUserName = formik.errors.username;
   return (
-    <Entry navigateLink={Links.entryBio} subTitle="" title="Create new account" >
+    <Entry
+      navigateLink={Links.entryBio}
+      subTitle=""
+      title="Create new account"
+      formik={formik}
+      errorApi={errorApi}
+    >
       <Input
         name="email"
         placeholder="Email"
         type="email"
         variant={Variant.text}
-        inputColor={Color.gray}
+        inputColor={Color.darkGray}
         value={formik.values.email}
-				classname='mb-2'
+        classname="mb-4"
+        onBlur={formik.handleBlur}
         onChange={(e) => {
           formik.setFieldValue('email', e.target.value);
         }}
       />
-      {formik.errors.email && <div style={{ color: 'red' }}>{errorEmail}</div>}
+      {formik.touched.email && formik.errors.email && (
+        <Error errorMessage={errorEmail} />
+      )}
       <Input
         name="password"
         placeholder="Password"
         type="password"
-				classname='mb-2'
+        classname="mb-4"
         variant={Variant.text}
-        inputColor={Color.gray}
+        inputColor={Color.darkGray}
         value={formik.values.password}
+        onBlur={formik.handleBlur}
         onChange={(e) => {
           formik.setFieldValue('password', e.target.value);
         }}
       />
-      {formik.errors.password && (
-        <div style={{ color: 'red' }}>{errorPassword}</div>
+      {formik.touched.password && formik.errors.password && (
+        <Error errorMessage={errorPassword} />
       )}
       <Input
-        name="name"
+        name="username"
         placeholder="Name"
-        type="name"
-				classname='mb-2'
+        type="username"
+        classname="mb-4"
         variant={Variant.text}
-        inputColor={Color.gray}
+        inputColor={Color.darkGray}
         value={formik.values.username}
+        onBlur={formik.handleBlur}
         onChange={(e) => {
           formik.setFieldValue('username', e.target.value);
         }}
       />
-      {!formik.isValid && formik.errors.username && (
-        <div style={{ color: 'red' }}>{errorUserName}</div>
+      {formik.touched.username && formik.errors.username && (
+        <Error errorMessage={errorUserName} />
       )}
+
+      {errorApi && <Error errorMessage={errorApiMessage}/>}
     </Entry>
   );
 };

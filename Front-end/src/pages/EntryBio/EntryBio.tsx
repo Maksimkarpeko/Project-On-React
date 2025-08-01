@@ -50,7 +50,7 @@ export const EntryBio = () => {
         <img src={previe || defaultAvatar} alt='avatar' className='cursor-pointer rounded-full' onClick={handleInput} width={"100px"} />
         <Input
           name="name"
-          inputColor={Color.gray}
+          inputColor={Color.darkGray}
           type="name"
           placeholder="First name"
           variant={Variant.text}
@@ -58,7 +58,7 @@ export const EntryBio = () => {
         />
         <Input
           name="name"
-          inputColor={Color.gray}
+          inputColor={Color.darkGray}
           type="name"
           placeholder="Last name"
           variant={Variant.text}
