@@ -6,10 +6,10 @@ import { Button } from "components/common/Button/Button"
 import { Color } from "constants/color"
 import { buttonSize } from "components/common/Button/constant"
 import { Links } from "constants/links"
-import { checkAuth } from "api/checkAuth/checkAuth"
+import { checkAuth } from "api/Auth/auth"
 
 
-export const Start:FC<StartProps> = ({title,...rest}) => {
+export const StartScreen:FC<StartProps> = ({title,...rest}) => {
     const navigator = useNavigate();
     useEffect(()=>{
         if(localStorage.getItem('token')){

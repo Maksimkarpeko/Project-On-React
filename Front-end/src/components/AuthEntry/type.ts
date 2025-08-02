@@ -8,7 +8,7 @@ export interface EntryProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   subTitle: ReactNode;
   errorApi?:boolean,
-  formikForSingUp?: FormikProps<{email:string,password:string, username:string}>,
-  formikForSingIn?: FormikProps<{email:string,password:string}>,
+  formikForSignUp?: FormikProps<{email:string,password:string, username:string}>,
+  formikForSignIn?: FormikProps<{email:string,password:string}>,
   bioForm?: FormikProps<{ firstName: string; lastName: string; avatar: string | null }>;
 }

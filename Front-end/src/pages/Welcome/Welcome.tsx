@@ -1,9 +1,9 @@
-import { Start } from "components/Start/Start"
+import { StartScreen } from 'components/StartScreen/StartScreen';
 
 export const Welcome = () => {
-    return(
-        <>
-            <Start title="Openland"/>
-        </>
-    )
-}
+  return (
+    <>
+      <StartScreen title="Openland" />
+    </>
+  );
+};

@@ -1,52 +1,40 @@
 import { useRef, useState } from 'react';
 
+import { editUserForSingUp } from 'api/editUser/editUser';
 import { defaultAvatar } from 'assets/index';
-import { Entry } from 'components/Entry/Entry';
+import { AuthEntry } from 'components/AuthEntry/AuthEntry';
 import { Input } from 'components/common/Input/Input';
 import { Variant } from 'components/common/Input/constant';
 import { Color } from 'constants/color';
+import { validateBio } from 'constants/validate';
 import { useFormik } from 'formik';
-import { editUserForSingUp } from 'api/editUser/editUser';
 
 export const EntryBio = () => {
   const refInput = useRef<HTMLInputElement | null>(null);
-  const [previe, setPrevie] = useState<string | null>(null);
-  const [errorApiMessage, setErrorApiMessage ] = useState<string>('');
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [errorApiMessage, setErrorApiMessage] = useState<string>('');
   const formik = useFormik({
     initialValues: {
       firstName: '',
       lastName: '',
       avatar: null as string | null,
     },
-    validate:(values)=>{
-      const errors: Partial<typeof values> = {};
-
-      if (!values.firstName.trim()) {
-        errors.firstName = 'First name is required';
-      }
-
-      if (!values.lastName.trim()) {
-        errors.lastName = 'Last name is required';
-      }
-
-
-      return errors;
-    },
+    validate: validateBio,
     onSubmit: (value) => {
       console.log(value);
       editUserForSingUp({
-        firstName:value.firstName,
-        lastName:value.lastName,
-        img:value.avatar,
+        firstName: value.firstName,
+        lastName: value.lastName,
+        img: value.avatar,
         setErrorApiMessage,
-      })
+      });
     },
   });
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.currentTarget.files?.[0];
     if (file) {
       formik.setFieldValue('avatar', file);
-      setPrevie(URL.createObjectURL(file));
+      setPreviewUrl(URL.createObjectURL(file));
     }
   };
   const handleInput = () => {
@@ -54,7 +42,7 @@ export const EntryBio = () => {
   };
   return (
     <>
-      <Entry subTitle="Introduce yourself" title="New account" bioForm={formik}>
+      <AuthEntry subTitle="Introduce yourself" title="New account" bioForm={formik}>
         <input
           type="file"
           name="avatar"
@@ -64,7 +52,7 @@ export const EntryBio = () => {
           onChange={handleFileChange}
         />
         <img
-          src={previe || defaultAvatar}
+          src={previewUrl || defaultAvatar}
           alt="avatar"
           className="cursor-pointer rounded-full"
           onClick={handleInput}
@@ -93,7 +81,7 @@ export const EntryBio = () => {
             formik.setFieldValue('lastName', e.target.value);
           }}
         />
-      </Entry>
+      </AuthEntry>
     </>
   );
 };

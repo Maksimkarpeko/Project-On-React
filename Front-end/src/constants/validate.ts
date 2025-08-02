@@ -1,6 +1,6 @@
-import type { validateValue } from './type';
+import type { validateBioOptions, validateSignInOptions, validateValue } from './typeValidate';
 
-export const validate = (value: validateValue) => {
+export const validateSignUp = (value: validateValue) => {
   const errors: Partial<typeof value> = {};
   if (!value.email) {
     errors.email = 'Email is required';
@@ -29,3 +29,36 @@ export const validate = (value: validateValue) => {
 
   return errors;
 };
+
+export const validateSignIn = (values:validateSignInOptions) => {
+  const errors: Partial<typeof values> = {};
+
+  if (!values.email) {
+    errors.email = 'Email is required';
+  } else if (
+    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+  ) {
+    errors.email = 'Invalid email address';
+  }
+
+  if (!values.password) {
+    errors.password = 'Password is required';
+  }
+
+  return errors;
+}
+
+export const validateBio = (values:validateBioOptions)=>{
+  const errors: Partial<typeof values> = {};
+
+  if (!values.firstName.trim()) {
+    errors.firstName = 'First name is required';
+  }
+
+  if (!values.lastName.trim()) {
+    errors.lastName = 'Last name is required';
+  }
+
+
+  return errors;
+}
