@@ -4,23 +4,17 @@ import type { editUserForSingUpProps } from "./type";
 
 export const editUserForSingUp = async ({firstName,lastName,img,setErrorApiMessage}:editUserForSingUpProps) =>{
     try{
-        let data:FormData | editUserForSingUpProps = {
-            firstName:"",
-            lastName:"",
-            img:null,
-            setErrorApiMessage,
-        };
-        let headers = {};
-        if (img instanceof File){
-            data = new FormData();
-            data.append("firstName",firstName);
-            data.append("lastName",lastName);
-            data.append("image",img);
-            headers = { 'Content-Type': 'multipart/form-data' };
-        }
-        const response = await api.patch('/users',data,headers);
+        const formData = new FormData();
+
+        formData.append("firstName",firstName);
+        formData.append("lastName",lastName);
+        const response = await api.patch('/users',formData,{
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        })
         console.log(response.data);
-        return response.data;
+        return response.data
     }
     catch(error:unknown){
         setErrorApiMessage(CatchError(error));

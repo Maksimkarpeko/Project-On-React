@@ -33,6 +33,7 @@ export const EntryBio = () => {
       return errors;
     },
     onSubmit: (value) => {
+      console.log(value);
       editUserForSingUp({
         firstName:value.firstName,
         lastName:value.lastName,
