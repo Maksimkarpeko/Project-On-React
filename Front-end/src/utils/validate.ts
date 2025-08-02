@@ -30,14 +30,12 @@ export const validateSignUp = (value: validateValue) => {
   return errors;
 };
 
-export const validateSignIn = (values:validateSignInOptions) => {
+export const validateSignIn = (values: validateSignInOptions) => {
   const errors: Partial<typeof values> = {};
 
   if (!values.email) {
     errors.email = 'Email is required';
-  } else if (
-    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-  ) {
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
     errors.email = 'Invalid email address';
   }
 
@@ -46,9 +44,9 @@ export const validateSignIn = (values:validateSignInOptions) => {
   }
 
   return errors;
-}
+};
 
-export const validateBio = (values:validateBioOptions)=>{
+export const validateBio = (values: validateBioOptions) => {
   const errors: Partial<typeof values> = {};
 
   if (!values.firstName.trim()) {
@@ -59,6 +57,5 @@ export const validateBio = (values:validateBioOptions)=>{
     errors.lastName = 'Last name is required';
   }
 
-
   return errors;
-}
+};

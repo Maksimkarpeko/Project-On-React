@@ -1,7 +1,7 @@
 import type { HTMLAttributes } from 'react';
 
 import type { Color } from 'constants/color';
-import type { OptionSelect } from 'constants/utills';
+import type { OptionSelect } from 'utils/utills';
 
 export interface SelectProps extends HTMLAttributes<HTMLSelectElement> {
   options: OptionSelect;

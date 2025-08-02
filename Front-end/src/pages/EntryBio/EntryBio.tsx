@@ -1,13 +1,13 @@
 import { useRef, useState } from 'react';
 
-import { editUserForSingUp } from 'api/editUser/editUser';
+import { updateUserForSingUp } from 'api/user/user';
 import { defaultAvatar } from 'assets/index';
 import { AuthEntry } from 'components/AuthEntry/AuthEntry';
 import { Input } from 'components/common/Input/Input';
 import { Variant } from 'components/common/Input/constant';
 import { Color } from 'constants/color';
-import { validateBio } from 'constants/validate';
 import { useFormik } from 'formik';
+import { validateBio } from 'utils/validate';
 
 export const EntryBio = () => {
   const refInput = useRef<HTMLInputElement | null>(null);
@@ -22,7 +22,7 @@ export const EntryBio = () => {
     validate: validateBio,
     onSubmit: (value) => {
       console.log(value);
-      editUserForSingUp({
+      updateUserForSingUp({
         firstName: value.firstName,
         lastName: value.lastName,
         img: value.avatar,

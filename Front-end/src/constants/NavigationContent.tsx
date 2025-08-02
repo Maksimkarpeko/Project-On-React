@@ -1,7 +1,7 @@
 import { Contact } from "components/Contacts/Contact";
 import type { ReactNode } from "react";
 
-export const PageComponent:Record<string,ReactNode> = {
+export const NavigationContent:Record<string,ReactNode> = {
     Discover:"Discover",
     Contact:<Contact/>,
     Message:"Message",

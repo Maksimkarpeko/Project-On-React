@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { signUp } from 'api/Auth/auth';
+import { signUp } from 'api/auth/auth';
 import { AuthEntry } from 'components/AuthEntry/AuthEntry';
 import { ErrorMessage } from 'components/common/ErrorMessage/ErrorMessage';
 import { Input } from 'components/common/Input/Input';
 import { Variant } from 'components/common/Input/constant';
 import { Color } from 'constants/color';
 import { Links } from 'constants/links';
-import { validateSignUp } from 'constants/validate';
 import { useFormik } from 'formik';
+import { validateSignUp } from 'utils/validate';
 
 export const SignUp = () => {
   const navigate = useNavigate();
