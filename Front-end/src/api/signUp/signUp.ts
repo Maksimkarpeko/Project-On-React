@@ -11,6 +11,8 @@ export const signUp = async ({ email, username, password }: SingUpOptions,setErr
 			username,
 			password
 		});
+		localStorage.setItem('token',response.data.access_token)
+		localStorage.setItem('refresh', response.data.refresh_token);
 		return response.data
 	}catch(error:unknown){
 		setErrorApiMessage(CatchError(error));

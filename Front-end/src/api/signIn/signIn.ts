@@ -12,6 +12,7 @@ export const signIn =  async ({email,password}:SingInOptions, setErrorApiMessage
             throw new Error('access_token не найден в ответе');
         }
         localStorage.setItem('token',response.data.access_token)
+		localStorage.setItem('refresh', response.data.refresh_token);
         return response.data
     }
     catch(error:unknown){

@@ -6,18 +6,39 @@ import { Input } from 'components/common/Input/Input';
 import { Variant } from 'components/common/Input/constant';
 import { Color } from 'constants/color';
 import { useFormik } from 'formik';
+import { editUserForSingUp } from 'api/editUser/editUser';
 
 export const EntryBio = () => {
   const refInput = useRef<HTMLInputElement | null>(null);
   const [previe, setPrevie] = useState<string | null>(null);
+  const [errorApiMessage, setErrorApiMessage ] = useState<string>('');
   const formik = useFormik({
     initialValues: {
       firstName: '',
       lastName: '',
       avatar: null as string | null,
     },
+    validate:(values)=>{
+      const errors: Partial<typeof values> = {};
+
+      if (!values.firstName.trim()) {
+        errors.firstName = 'First name is required';
+      }
+
+      if (!values.lastName.trim()) {
+        errors.lastName = 'Last name is required';
+      }
+
+
+      return errors;
+    },
     onSubmit: (value) => {
-      console.log(value);
+      editUserForSingUp({
+        firstName:value.firstName,
+        lastName:value.lastName,
+        img:value.avatar,
+        setErrorApiMessage,
+      })
     },
   });
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,19 +70,27 @@ export const EntryBio = () => {
           width={'100px'}
         />
         <Input
-          name="name"
+          name="firstname"
           inputColor={Color.darkGray}
-          type="name"
+          type="firstname"
           placeholder="First name"
           variant={Variant.text}
+          value={formik.values.firstName}
           classname="my-4"
+          onChange={(e) => {
+            formik.setFieldValue('firstName', e.target.value);
+          }}
         />
         <Input
-          name="name"
+          name="lastname"
           inputColor={Color.darkGray}
-          type="name"
+          type="lastname"
           placeholder="Last name"
+          value={formik.values.lastName}
           variant={Variant.text}
+          onChange={(e) => {
+            formik.setFieldValue('lastName', e.target.value);
+          }}
         />
       </Entry>
     </>

@@ -18,11 +18,14 @@ export const Entry: FC<EntryProps> = ({
   ...rest
 }) => {
   const handleNextStep =  () => {
-    if(formikForSingUp){
+    if (formikForSingUp) {
       formikForSingUp.handleSubmit();
     }
-    if(formikForSingIn){
+    if (formikForSingIn) {
       formikForSingIn.handleSubmit();
+    }
+    if (bioForm) {
+      bioForm.handleSubmit();
     }
   };
   return (

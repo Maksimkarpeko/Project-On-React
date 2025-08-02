@@ -10,5 +10,5 @@ export interface EntryProps extends HTMLAttributes<HTMLDivElement> {
   errorApi?:boolean,
   formikForSingUp?: FormikProps<{email:string,password:string, username:string}>,
   formikForSingIn?: FormikProps<{email:string,password:string}>,
-  bioForm?: FormikProps<{ firstName: string; lastName: string; avatar: string| null }>;
+  bioForm?: FormikProps<{ firstName: string; lastName: string; avatar: string | null }>;
 }
