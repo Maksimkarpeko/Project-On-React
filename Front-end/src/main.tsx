@@ -6,8 +6,8 @@ import { Links } from 'constants/links';
 import { EntryBio } from 'pages/EntryBio/EntryBio';
 import { Error } from 'pages/Error/Error.tsx';
 import { Home } from 'pages/Home/Home';
-import { SingIn } from 'pages/SingIn/SignIn';
-import { SingUp } from 'pages/SingUp/SignUp';
+import { SignIn } from 'pages/SignIn/SignIn';
+import { SignUp } from 'pages/SignUp/SignUp';
 import { Welcome } from 'pages/Welcome/Welcome';
 
 import './index.scss';
@@ -15,8 +15,8 @@ import './index.scss';
 const router = createBrowserRouter([
   { path: Links.startPage, element: <Welcome /> },
   { path: Links.entryBio, element: <EntryBio /> },
-  { path: Links.singUp, element: <SingUp /> },
-  { path: Links.singIn, element: <SingIn /> },
+  { path: Links.singUp, element: <SignUp /> },
+  { path: Links.singIn, element: <SignIn /> },
   { path: Links.homePage, element: <Home /> },
   { path: Links.errorError, element: <Error /> },
 ]);

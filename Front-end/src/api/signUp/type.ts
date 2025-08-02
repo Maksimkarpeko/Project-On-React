@@ -1,4 +1,4 @@
-export interface singUpOptions {
+export interface SingUpOptions {
 	email:string,
 	username:string,
 	password:string,

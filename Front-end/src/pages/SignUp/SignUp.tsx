@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { signUp } from 'api/singUp/singUp';
+import { signUp } from 'api/signUp/signUp';
 import { Entry } from 'components/Entry/Entry';
-import { Error } from 'components/common/Error/Error';
+import { ErrorMessage } from 'components/common/ErrorMessage/ErrorMessage';
 import { Input } from 'components/common/Input/Input';
 import { Variant } from 'components/common/Input/constant';
 import { Color } from 'constants/color';
@@ -12,7 +12,7 @@ import { useFormik } from 'formik';
 
 import { validate } from './validate';
 
-export const SingUp = () => {
+export const SignUp = () => {
   const navigate = useNavigate();
   const [errorApi, setErrorApi] = useState<boolean>(false);
   const [errorApiMessage, setErrorApiMessage] = useState<string>('');
@@ -44,7 +44,7 @@ export const SingUp = () => {
   const errorPassword = formik.errors.password;
   const errorUserName = formik.errors.username;
   return (
-    <Entry subTitle="" title="Create new account" formik={formik} errorApi={errorApi}>
+    <Entry subTitle="" title="Create new account" formikForSingUp={formik} errorApi={errorApi}>
       <Input
         name="email"
         placeholder="Email"
@@ -53,12 +53,11 @@ export const SingUp = () => {
         inputColor={Color.darkGray}
         value={formik.values.email}
         classname="mb-4"
-        onBlur={formik.handleBlur}
         onChange={(e) => {
           formik.setFieldValue('email', e.target.value);
         }}
       />
-      {formik.touched.email && formik.errors.email && <Error errorMessage={errorEmail} />}
+      {formik.touched.email && formik.errors.email && <ErrorMessage errorMessage={errorEmail} />}
       <Input
         name="password"
         placeholder="Password"
@@ -67,12 +66,11 @@ export const SingUp = () => {
         variant={Variant.text}
         inputColor={Color.darkGray}
         value={formik.values.password}
-        onBlur={formik.handleBlur}
         onChange={(e) => {
           formik.setFieldValue('password', e.target.value);
         }}
       />
-      {formik.touched.password && formik.errors.password && <Error errorMessage={errorPassword} />}
+      {formik.touched.password && formik.errors.password && <ErrorMessage errorMessage={errorPassword} />}
       <Input
         name="username"
         placeholder="Name"
@@ -81,14 +79,13 @@ export const SingUp = () => {
         variant={Variant.text}
         inputColor={Color.darkGray}
         value={formik.values.username}
-        onBlur={formik.handleBlur}
         onChange={(e) => {
           formik.setFieldValue('username', e.target.value);
         }}
       />
-      {formik.touched.username && formik.errors.username && <Error errorMessage={errorUserName} />}
+      {formik.touched.username && formik.errors.username && <ErrorMessage errorMessage={errorUserName} />}
 
-      {errorApi && <Error errorMessage={errorApiMessage} />}
+      {errorApi && <ErrorMessage errorMessage={errorApiMessage} />}
     </Entry>
   );
 };

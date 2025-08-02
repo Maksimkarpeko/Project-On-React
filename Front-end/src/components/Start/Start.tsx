@@ -1,14 +1,22 @@
-import type { FC } from "react"
+import { useEffect, type FC } from "react"
 import type { StartProps } from "./type"
 import { LogoXL } from "assets/index"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Button } from "components/common/Button/Button"
 import { Color } from "constants/color"
 import { buttonSize } from "components/common/Button/constant"
 import { Links } from "constants/links"
+import { checkAuth } from "api/checkAuth/checkAuth"
 
 
 export const Start:FC<StartProps> = ({title,...rest}) => {
+    const navigator = useNavigate();
+    useEffect(()=>{
+        if(localStorage.getItem('token')){
+            checkAuth();
+            navigator(Links.homePage)
+        }
+    },[])
     return(
         <div {...rest} className="h-screen flex flex-col justify-center items-center">
             <img src={LogoXL} alt="logo" className="mb-4"/>

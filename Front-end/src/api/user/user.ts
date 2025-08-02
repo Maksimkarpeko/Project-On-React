@@ -1,4 +1,4 @@
-import { CatchError } from 'utils/error';
+import { CatchError } from 'utils/catchError';
 import { api } from 'utils/apiConfig';
 import type { apiRespons, UserResponse } from 'api/user/type';
 import type { AxiosResponse } from 'axios';

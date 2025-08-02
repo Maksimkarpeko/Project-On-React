@@ -16,6 +16,5 @@ export const CatchError = (error: unknown) => {
     errorMessage = `Error ${error.message}`;
   }
 
-  console.error(errorMessage);
 	return errorMessage;
 };

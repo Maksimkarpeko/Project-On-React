@@ -10,15 +10,19 @@ export const Entry: FC<EntryProps> = ({
   children,
   title,
   subTitle,
-  formik,
+  formikForSingUp,
+  formikForSingIn,
   bioForm,
   onClick,
   errorApi,
   ...rest
 }) => {
   const handleNextStep =  () => {
-    if(formik){
-      formik.handleSubmit();
+    if(formikForSingUp){
+      formikForSingUp.handleSubmit();
+    }
+    if(formikForSingIn){
+      formikForSingIn.handleSubmit();
     }
   };
   return (
