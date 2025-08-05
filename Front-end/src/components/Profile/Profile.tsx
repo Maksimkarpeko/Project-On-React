@@ -13,7 +13,7 @@ import { getSelectedUser } from 'store/user/useUserStore';
 
 import type { ProfileProps } from './type';
 
-export const Profile: FC<ProfileProps> = ({ setActiveId }) => {
+export const Profile: FC<ProfileProps> = ({ setActive }) => {
   const user = getSelectedUser();
   const [activeIconIds, setActiveIconIds] = useState<number[]>([]);
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
@@ -45,7 +45,7 @@ export const Profile: FC<ProfileProps> = ({ setActiveId }) => {
     <>
       <div
         className="text-2xl cursor-pointer w-2 ml-[65px]  lg:ml-[25%]"
-        onClick={() => setActiveId(null)}
+        onClick={() => setActive(null)}
       >
         <img src={Back} alt="Back" style={{ width: '24px', height: '24px', maxWidth: '24px' }} />
       </div>

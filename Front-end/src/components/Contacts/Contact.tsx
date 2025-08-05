@@ -23,14 +23,14 @@ import { Filter } from 'utils/filter';
 
 const USERS_FETCH_LIMIT = 30;
 export const Contact = () => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(2);
   const isOpen = useIsOpen();
   const total = useUserTotal();
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState<string>('');
   const users = useUsers();
   const isLoading = useUserLoading();
-  const [selectUserId, setSelectUserId] = useState<number | null>(null);
+  const [selectUser, setSelectUser] = useState<string|null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -54,9 +54,9 @@ export const Contact = () => {
     setPage((prev) => prev + 1);
   }, [isLoading, total, users.length]);
 
-  const handleUserClick = useCallback((userId: number) => {
-    setSelectUserId(userId);
-    getOneUser(userId);
+  const handleUserClick = useCallback((userName:string) => {
+    setSelectUser(userName);
+    getOneUser(userName);
   }, []);
 
   return (
@@ -64,14 +64,14 @@ export const Contact = () => {
       <div
         className={clsx(
           'lg:w-[23.1%] sm:min-h-full absolute lg:border-r',
-          selectUserId !== null ? "" : 'w-screen border-r'
+          selectUser !== null ? "" : 'w-screen border-r'
         )}
       >
         <div
           className={clsx(
             'sm:ml-0 lg:w-[23%] 2xl:w-[22%] xl:w-[22%] fixed bg-white z-10 overflow-hidden sm:w-screen lg:block',
             isOpen ? 'ml-16' : '',
-            selectUserId !== null ? 'hidden' : 'block',
+            selectUser !== null ? 'hidden' : 'block',
           )}
         >
           <h2 className="my-3 ml-4 text-2xl font-bold">Contacts</h2>
@@ -93,7 +93,7 @@ export const Contact = () => {
           className={clsx(
             'sm:ml-0 mt-28 non-scrollable-wrapper flex flex-col h-[calc(100vh-112px)] lg:w-full',
             isOpen ? 'ml-16' : '',
-            selectUserId !== null ? '' : 'sm:w-full',
+            selectUser !== null ? '' : 'sm:w-full',
           )}
         >
           <Virtuoso
@@ -110,8 +110,8 @@ export const Contact = () => {
                 alt="User"
                 img={testImg}
                 key={item.id}
-                onClick={() => handleUserClick(item.id)}
-                isActive={selectUserId === item.id}
+                onClick={() => handleUserClick(item.username)}
+                isActive={selectUser === item.username}
               />
             )}
             endReached={handleLoadMore}
@@ -121,7 +121,7 @@ export const Contact = () => {
           />
         </div>
       </div>
-      {selectUserId && <Profile setActiveId={setSelectUserId} />}
+      {selectUser && <Profile setActive={setSelectUser} />}
     </>
   );
 };

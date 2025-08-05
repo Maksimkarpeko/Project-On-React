@@ -8,13 +8,13 @@ export interface UserResponse {
 	}
 }
 export interface apiRespons<T> {
-	users:T[],
+	data:T[],
 	total:number,
 }
 
 export interface editUserForSingUpProps {
 	firstName:string, 
 	lastName:string,
-	img:string|File | null,
+	img:string | null,
 	setErrorApiMessage: (error:string) => void
 }

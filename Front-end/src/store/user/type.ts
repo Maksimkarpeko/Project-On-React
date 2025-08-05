@@ -9,7 +9,7 @@ export interface UserStoreState{
 }
 interface UserStoreAction{
 	fetchUsers: (limit:number|null,page:number)=>Promise<void>
-	fetchOneUser:(id:number) => Promise<void>
+	fetchOneUser:(userName:string) => Promise<void>
 }
 
 export interface UserStor extends UserStoreState,UserStoreAction{};

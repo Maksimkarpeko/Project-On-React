@@ -8,9 +8,13 @@ import { Variant } from 'components/common/Input/constant';
 import { Color } from 'constants/color';
 import { useFormik } from 'formik';
 import { validateBio } from 'utils/validate';
+import { ErrorMessage } from 'components/common/ErrorMessage/ErrorMessage';
+import { useNavigate } from 'react-router-dom';
+import { Links } from 'constants/links';
 
 export const EntryBio = () => {
   const refInput = useRef<HTMLInputElement | null>(null);
+  const navigate = useNavigate();
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [errorApiMessage, setErrorApiMessage] = useState<string>('');
   const formik = useFormik({
@@ -20,14 +24,20 @@ export const EntryBio = () => {
       avatar: null as string | null,
     },
     validate: validateBio,
-    onSubmit: (value) => {
-      console.log(value);
-      updateUserForSingUp({
-        firstName: value.firstName,
-        lastName: value.lastName,
-        img: value.avatar,
-        setErrorApiMessage,
-      });
+    onSubmit: async (value) => {
+      try{
+        console.log(value);
+        await updateUserForSingUp({
+          firstName: value.firstName,
+          lastName: value.lastName,
+          img: value.avatar,
+          setErrorApiMessage,
+        });
+        navigate(Links.homePage)
+      }catch{
+        setErrorApiMessage("this just a Problem")
+      }
+      
     },
   });
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,9 +69,9 @@ export const EntryBio = () => {
           width={'100px'}
         />
         <Input
-          name="firstname"
+          name="firstName"
           inputColor={Color.darkGray}
-          type="firstname"
+          type="firstName"
           placeholder="First name"
           variant={Variant.text}
           value={formik.values.firstName}
@@ -71,9 +81,9 @@ export const EntryBio = () => {
           }}
         />
         <Input
-          name="lastname"
+          name="lastName"
           inputColor={Color.darkGray}
-          type="lastname"
+          type="lastName"
           placeholder="Last name"
           value={formik.values.lastName}
           variant={Variant.text}
@@ -81,6 +91,7 @@ export const EntryBio = () => {
             formik.setFieldValue('lastName', e.target.value);
           }}
         />
+        {errorApiMessage && <ErrorMessage errorMessage={errorApiMessage}/>}
       </AuthEntry>
     </>
   );
