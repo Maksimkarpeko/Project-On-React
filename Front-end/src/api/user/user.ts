@@ -14,7 +14,6 @@ export const getUsers = async <T = UserResponse>(
     const response: AxiosResponse<apiRespons<T>> = await api.get(`/users`, {
       params: { page: skip, limit: limit },
     });
-		console.log(response.data);
     const { data, total } = response.data;
     return { users:data, total };
   } catch (error: unknown) {
@@ -48,7 +47,6 @@ export const updateUserForSingUp = async ({
       formData.append('image', img);
     }
     const response = await api.patch('/users', formData);
-    console.log(response.data);
     return response.data;
   } catch (error: unknown) {
     setErrorApiMessage(CatchError(error));

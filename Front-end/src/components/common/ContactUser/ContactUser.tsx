@@ -16,6 +16,8 @@ export const ContactUser: FC<ContactUserProps> = ({
   classname,
   nameClass,
   statusClass,
+  phoneText,
+  isOnlineUser,
   disablePointer,
   ...rest}) => {
   const containterStyle = clsx(
@@ -38,7 +40,7 @@ export const ContactUser: FC<ContactUserProps> = ({
     isActive ?'text-white':'',
     nameClass
   )
-  const [isOnline] = useState<boolean>(true);
+  const [isOnline] = useState<boolean|undefined>(isOnlineUser);
   return (
     <div className={containterStyle} {...rest}>
       <Avatars
@@ -51,7 +53,9 @@ export const ContactUser: FC<ContactUserProps> = ({
       <div className="flex flex-col">
         <span className={styleNameClass}>{name}</span>
         <span className={clsx(statusTextClass,isOnline ? "text-blue-500" : '')}> 
-          {isOnline ? 'online' : 'offline'}
+          {isOnline === true && "online"}
+          {isOnline === false && "ofline"}
+          {phoneText}
         </span>
       </div>
     </div>

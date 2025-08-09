@@ -5,11 +5,13 @@ export interface ContactUserProps extends HTMLAttributes<HTMLDivElement> {
 	name:string,
 	img:string,
 	alt:string,
+	isOnlineUser?:boolean,
 	classname?:string,
 	isActive?:boolean,
 	AvatarSize:Size,
 	disableHover:boolean,
 	nameClass?:string,
 	statusClass?:string,
-	disablePointer?:boolean
+	phoneText?:string,
+	disablePointer?:boolean,
 }

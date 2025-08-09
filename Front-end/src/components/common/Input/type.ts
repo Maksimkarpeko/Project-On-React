@@ -3,7 +3,6 @@ import type { InputHTMLAttributes } from 'react';
 import { Color } from 'constants/color';
 
 import type { InputTitle, OtherStyle, Variant } from './constant';
-import type { FormikProps } from 'formik';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   type: string;

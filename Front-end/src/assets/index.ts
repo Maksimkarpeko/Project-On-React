@@ -18,5 +18,27 @@ export { default as messageActive} from './menuActive/messageActive.svg';
 export { default as notificationActive} from './menuActive/notificationActive.svg';
 export { default as settingsActive} from './menuActive/settingsActive.svg';
 export { default as Back} from './icon/Back.svg'
-export { default as ActiveBell} from './icon/activeBell.svg'
+export { default as ActiveDarkBell} from './icon/activeDarkBell.svg'
 export { default as defaultAvatar} from "./Avatar.svg"
+export { default as Communities} from "./icon/Communities.svg"
+export { default as Invite} from "./icon/Invite.svg"
+export { default as Edit} from "./icon/Edit.svg"
+export { default as Account} from "./icon/Account.svg"
+export { default as Appearance} from "./icon/Appearance.svg"
+export { default as Subcriptions} from "./icon/Subscriptions.png"
+export { default as Wallet} from "./icon/Wallet.svg"
+export { default as About} from "./icon/About.png"
+export { default as Guide} from "./icon/Guide.png"
+export { default as Help} from "./icon/Help.png"
+export { default as Install} from "./icon/Install.png"
+export { default as SingOut} from "./icon/Sing out.png"
+export { default as ActiveAccount} from "./icon/ActiveAccount.png"
+export { default as ActiveAppearance} from "./icon/ActiveAppearance.png"
+export { default as ActiveCommunities} from "./icon/ActiveCommunities.png"
+export { default as ActiveEdit} from "./icon/ActiveEdit.png"
+export { default as ActiveInvite} from "./icon/ActiveInvite.png"
+export { default as ActiveSubscriptions} from "./icon/ActiveSubscriptions.png"
+export { default as ActiveWallet} from "./icon/ActiveWallet.png"
+export { default as ActiveEmail} from "./icon/ActiveEmail.png"
+export { default as ActiveBell} from "./icon/ActiveBell.png"
+

@@ -7,5 +7,7 @@ export interface CustomIconProps extends HTMLAttributes<HTMLDivElement>{
     isActive?:boolean,
     activeIcon?:string,
     activeText?:string,
-    ref?:Ref<HTMLSpanElement>
+    ref?:Ref<HTMLSpanElement>,
+    classnameImg?:string,
+    activeClassName?:string,
 }

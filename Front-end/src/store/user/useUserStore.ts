@@ -26,7 +26,6 @@ const useUserStore = create<UserStor>()(
             state.users = page === 1 ? users : [...state.users, ...users];
             state.total = total;
           });
-          console.log(users);
       } catch (error: unknown) {
         if (error instanceof Error) {
           throw error;

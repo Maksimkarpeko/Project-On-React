@@ -112,6 +112,7 @@ export const Contact = () => {
                 key={item.id}
                 onClick={() => handleUserClick(item.username)}
                 isActive={selectUser === item.username}
+                isOnlineUser
               />
             )}
             endReached={handleLoadMore}

@@ -6,5 +6,5 @@ export interface AvatarsProps extends HTMLAttributes<HTMLImageElement>{
 	alt:string,
 	classname?:string,
 	size:Size,
-	isOnline:boolean,
+	isOnline:boolean | undefined,
 }

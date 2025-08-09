@@ -31,13 +31,13 @@ export const Select: FC<SelectProps> = ({
         id={id}
         {...rest}
         className={clsx(
-          ' border border-gray-300 text-black text-sm rounded-lg w-80 p-2.5 outline-none',
+          'border border-gray-500 text-black text-sm rounded-lg p-2.5 outline-none',
           selectClassName,
           classname,
         )}
       >
         {options.map((option) => (
-          <option value={option.value} key={option.value + 1}>
+          <option value={option.value} key={option.value}>
             {option.label}
           </option>
         ))}

@@ -4,7 +4,7 @@ export interface UserResponse {
 	img:string,
 	email:string,
 	address:{
-		country:string,
+		country:string | null,
 	}
 }
 export interface apiRespons<T> {

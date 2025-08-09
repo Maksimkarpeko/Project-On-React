@@ -61,6 +61,7 @@ export const Profile: FC<ProfileProps> = ({ setActive }) => {
             nameClass="text-xl ml-4 font-bold"
             classname="h-5 mt-[60px] ml-20 flex-col flex lg:ml-0 xl:ml-28 2xl:ml-28 sm:ml-1"
             disablePointer={true}
+            isOnlineUser
           />
           <Button
             color={Color.blue}

@@ -47,7 +47,7 @@ export const Input: FC<InputProps> = ({
   return (
     <div className={clsx('relative', classname)}>
       {title && id && (
-        <label htmlFor={id} className={clsx('absolute text-sm left-4', titleClassName)}>
+        <label htmlFor={id} className={clsx('absolute text-sm left-4 text-gray-400', titleClassName)}>
           {title}
         </label>
       )}
