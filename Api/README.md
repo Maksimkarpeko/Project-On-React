@@ -15,7 +15,7 @@ URL='http://localhost:8000'
 
 DATABASE_URL="postgresql://postgres:123@localhost:5434/nest?schema=public"
 TOKEN_SECRET="your_secret"
-
+REFRESH_TOKEN_SECRET = 'asdasd'
 # Upload configuration
 UPLOAD_DIR="./uploads"
 MAX_FILE_SIZE=1024 * 1024 * 10 #10MB
