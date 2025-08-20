@@ -1,16 +1,16 @@
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { updateUserForSingUp } from 'api/user/user';
 import { defaultAvatar } from 'assets/index';
 import { AuthEntry } from 'components/AuthEntry/AuthEntry';
+import { ErrorMessage } from 'components/common/ErrorMessage/ErrorMessage';
 import { Input } from 'components/common/Input/Input';
 import { Variant } from 'components/common/Input/constant';
 import { Color } from 'constants/color';
+import { Links } from 'constants/links';
 import { useFormik } from 'formik';
 import { validateBio } from 'utils/validate';
-import { ErrorMessage } from 'components/common/ErrorMessage/ErrorMessage';
-import { useNavigate } from 'react-router-dom';
-import { Links } from 'constants/links';
 
 export const EntryBio = () => {
   const refInput = useRef<HTMLInputElement | null>(null);
@@ -25,7 +25,7 @@ export const EntryBio = () => {
     },
     validate: validateBio,
     onSubmit: async (value) => {
-      try{
+      try {
         console.log(value);
         await updateUserForSingUp({
           firstName: value.firstName,
@@ -33,17 +33,16 @@ export const EntryBio = () => {
           img: value.avatar,
           setErrorApiMessage,
         });
-        navigate(Links.homePage)
-      }catch{
-        setErrorApiMessage("this just a Problem")
+        navigate(Links.homePage);
+      } catch {
+        setErrorApiMessage('this just a Problem');
       }
-      
     },
   });
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.currentTarget.files?.[0];
     if (file) {
-      formik.setFieldValue('avatar', file);
+      formik.setFieldValue('avatar', file.name);
       setPreviewUrl(URL.createObjectURL(file));
     }
   };
@@ -91,7 +90,7 @@ export const EntryBio = () => {
             formik.setFieldValue('lastName', e.target.value);
           }}
         />
-        {errorApiMessage && <ErrorMessage errorMessage={errorApiMessage}/>}
+        {errorApiMessage && <ErrorMessage errorMessage={errorApiMessage} />}
       </AuthEntry>
     </>
   );

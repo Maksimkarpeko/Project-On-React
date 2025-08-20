@@ -1,13 +1,18 @@
-import { SettingNav } from "components/SettingNav/SettingNav"
-import { SettingNavigationContent } from "constants/NavigationContent";
-import { useState } from "react";
+import { useEffect, useState } from 'react';
+
+import { SettingNav } from 'components/SettingNav/SettingNav';
+import { SettingNavigationContent } from 'constants/NavigationContent';
+import { getAuthUser } from 'store/user/useUserStore';
 
 export const Setting = () => {
-    const [activeTab, setActiveTab] = useState<string>('');
-    return(
-        <div className="flex">
-            <SettingNav setTab={setActiveTab} tab={activeTab}/>
-            {SettingNavigationContent[activeTab] ?? null}
-        </div>
-    )
-}
+  const [activeTab, setActiveTab] = useState<string>('');
+  useEffect(() => {
+    getAuthUser();
+  }, []);
+  return (
+    <div className="flex">
+      <SettingNav setTab={setActiveTab} tab={activeTab} />
+      {SettingNavigationContent[activeTab] ?? null}
+    </div>
+  );
+};

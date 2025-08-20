@@ -53,3 +53,14 @@ export const updateUserForSingUp = async ({
     throw error;
   }
 };
+
+
+export const getInfoAuth = async () => {
+  try {
+    const response = await api.get("/users/me");
+    return response.data;
+  } catch (error:unknown) {
+    CatchError(error);
+    throw error
+  }
+}

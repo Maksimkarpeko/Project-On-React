@@ -11,10 +11,10 @@ import { Input } from 'components/common/Input/Input';
 import { OtherStyle, Variant } from 'components/common/Input/constant';
 import { Loader } from 'components/common/Loader/Loader';
 import { Color } from 'constants/color';
-import { useIsOpen } from 'store/useNavStore/useNavStore';
+import { useIsOpen } from 'store/useFlagStore/useFlagStore';
 import {
-  getOneUser,
   getAllUsers,
+  getOneUser,
   useUserLoading,
   useUserTotal,
   useUsers,
@@ -30,7 +30,7 @@ export const Contact = () => {
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState<string>('');
   const users = useUsers();
   const isLoading = useUserLoading();
-  const [selectUser, setSelectUser] = useState<string|null>(null);
+  const [selectUser, setSelectUser] = useState<string | null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -54,7 +54,7 @@ export const Contact = () => {
     setPage((prev) => prev + 1);
   }, [isLoading, total, users.length]);
 
-  const handleUserClick = useCallback((userName:string) => {
+  const handleUserClick = useCallback((userName: string) => {
     setSelectUser(userName);
     getOneUser(userName);
   }, []);
@@ -64,7 +64,7 @@ export const Contact = () => {
       <div
         className={clsx(
           'lg:w-[23.1%] sm:min-h-full absolute lg:border-r',
-          selectUser !== null ? "" : 'w-screen border-r'
+          selectUser !== null ? '' : 'w-screen border-r',
         )}
       >
         <div

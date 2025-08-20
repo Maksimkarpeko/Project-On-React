@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import errorImg from 'assets/img/ErrorImg.svg';
 import { Button } from 'components/common/Button/Button';
 import { buttonSize } from 'components/common/Button/constant';
-import { Links } from 'constants/links';
 import { Color } from 'constants/color';
+import { Links } from 'constants/links';
 
 export const Error = () => {
   return (
@@ -13,7 +13,7 @@ export const Error = () => {
       <p className="text-2xl font-bold font-sans mt-4 mb-2">Something went wrong</p>
       <p className="mb-8">
         Return home or contact our team at{' '}
-        <a href="https://mail.ru" target='_blank' className="text-blue-600">
+        <a href="https://mail.ru" target="_blank" className="text-blue-600">
           hello@openland.com
         </a>
       </p>

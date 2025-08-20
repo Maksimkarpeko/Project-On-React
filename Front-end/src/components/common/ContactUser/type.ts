@@ -2,7 +2,7 @@ import type { HTMLAttributes } from "react";
 import type { Size } from "../Avatars/constants";
 
 export interface ContactUserProps extends HTMLAttributes<HTMLDivElement> {
-	name:string,
+	name?:string,
 	img:string,
 	alt:string,
 	isOnlineUser?:boolean,

@@ -8,37 +8,40 @@ export { default as Email } from './icon/mail.svg';
 export { default as Country } from './icon/location.svg';
 export { default as X } from './icon/X.svg';
 export { default as Birth } from './icon/birth.svg';
-export { default as ErrorImg} from './img/ErrorImg.svg';
+export { default as ErrorImg } from './img/ErrorImg.svg';
 export { default as Logo } from './img/LogoS.svg';
-export { default as LogoXL } from './img/LogoXL.svg'
-export { default as search} from './img/search.svg';
-export { default as DiscoverActive} from './menuActive/DiscoverActive.png';
-export { default as contactActive} from './menuActive/contactActive.svg';
-export { default as messageActive} from './menuActive/messageActive.svg';
-export { default as notificationActive} from './menuActive/notificationActive.svg';
-export { default as settingsActive} from './menuActive/settingsActive.svg';
-export { default as Back} from './icon/Back.svg'
-export { default as ActiveDarkBell} from './icon/activeDarkBell.svg'
-export { default as defaultAvatar} from "./Avatar.svg"
-export { default as Communities} from "./icon/Communities.svg"
-export { default as Invite} from "./icon/Invite.svg"
-export { default as Edit} from "./icon/Edit.svg"
-export { default as Account} from "./icon/Account.svg"
-export { default as Appearance} from "./icon/Appearance.svg"
-export { default as Subcriptions} from "./icon/Subscriptions.png"
-export { default as Wallet} from "./icon/Wallet.svg"
-export { default as About} from "./icon/About.png"
-export { default as Guide} from "./icon/Guide.png"
-export { default as Help} from "./icon/Help.png"
-export { default as Install} from "./icon/Install.png"
-export { default as SingOut} from "./icon/Sing out.png"
-export { default as ActiveAccount} from "./icon/ActiveAccount.png"
-export { default as ActiveAppearance} from "./icon/ActiveAppearance.png"
-export { default as ActiveCommunities} from "./icon/ActiveCommunities.png"
-export { default as ActiveEdit} from "./icon/ActiveEdit.png"
-export { default as ActiveInvite} from "./icon/ActiveInvite.png"
-export { default as ActiveSubscriptions} from "./icon/ActiveSubscriptions.png"
-export { default as ActiveWallet} from "./icon/ActiveWallet.png"
-export { default as ActiveEmail} from "./icon/ActiveEmail.png"
-export { default as ActiveBell} from "./icon/ActiveBell.png"
-
+export { default as LogoXL } from './img/LogoXL.svg';
+export { default as search } from './img/search.svg';
+export { default as DiscoverActive } from './menuActive/DiscoverActive.png';
+export { default as contactActive } from './menuActive/contactActive.svg';
+export { default as messageActive } from './menuActive/messageActive.svg';
+export { default as notificationActive } from './menuActive/notificationActive.svg';
+export { default as settingsActive } from './menuActive/settingsActive.svg';
+export { default as Back } from './icon/Back.svg';
+export { default as ActiveDarkBell } from './icon/activeDarkBell.svg';
+export { default as defaultAvatar } from './Avatar.svg';
+export { default as Communities } from './icon/Communities.svg';
+export { default as Invite } from './icon/Invite.svg';
+export { default as Edit } from './icon/Edit.svg';
+export { default as Account } from './icon/Account.svg';
+export { default as Appearance } from './icon/Appearance.svg';
+export { default as Subcriptions } from './icon/Subscriptions.png';
+export { default as Wallet } from './icon/Wallet.svg';
+export { default as About } from './icon/About.png';
+export { default as Guide } from './icon/Guide.png';
+export { default as Help } from './icon/Help.png';
+export { default as Install } from './icon/Install.png';
+export { default as SingOut } from './icon/Sing out.png';
+export { default as ActiveAccount } from './icon/ActiveAccount.png';
+export { default as ActiveAppearance } from './icon/ActiveAppearance.png';
+export { default as ActiveCommunities } from './icon/ActiveCommunities.png';
+export { default as ActiveEdit } from './icon/ActiveEdit.png';
+export { default as ActiveInvite } from './icon/ActiveInvite.png';
+export { default as ActiveSubscriptions } from './icon/ActiveSubscriptions.png';
+export { default as ActiveWallet } from './icon/ActiveWallet.png';
+export { default as ActiveEmail } from './icon/ActiveEmail.png';
+export { default as ActiveBell } from './icon/ActiveBell.png';
+export { default as ActiveInstall } from './icon/ActiveInstall.png';
+export { default as ActiveGuide } from './icon/ActiveGuide.png';
+export { default as ActiveHelp } from './icon/ActiveHelp.png';
+export { default as ActiveAboutUs } from './icon/ActiveAbout.png';

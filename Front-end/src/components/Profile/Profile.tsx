@@ -9,12 +9,12 @@ import { CustomIcon } from 'components/common/CustomIcon/CustomIcon';
 import { Modal } from 'components/common/Modal/Modal';
 import { Color } from 'constants/color';
 import { actionsBlock, contactBlock, profileBlock } from 'constants/customIconArray';
-import { getSelectedUser } from 'store/user/useUserStore';
+import { useSelectedUser } from 'store/user/useUserStore';
 
 import type { ProfileProps } from './type';
 
 export const Profile: FC<ProfileProps> = ({ setActive }) => {
-  const user = getSelectedUser();
+  const user = useSelectedUser();
   const [activeIconIds, setActiveIconIds] = useState<number[]>([]);
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const ref = useRef<HTMLSpanElement>(null);
@@ -49,7 +49,7 @@ export const Profile: FC<ProfileProps> = ({ setActive }) => {
       >
         <img src={Back} alt="Back" style={{ width: '24px', height: '24px', maxWidth: '24px' }} />
       </div>
-      <div className="xl:fixed flex flex-col w-[77.57%] h-screen 2xl:ml-[360px] xl:ml-[360px] sm:ml-[20%] lg:ml-[300px] sm:flex-col lg:flex-row">
+      <div className="xl:fixed flex flex-col w-[77.57%] h-screen 2xl:ml-[20%] xl:ml-[360px] sm:ml-[20%] lg:ml-[300px] sm:flex-col lg:flex-row">
         <div className="h-full w-[100%] lg:w-[40%] sm:w-[100%]">
           <ContactUser
             AvatarSize={Size.xxLarge}
