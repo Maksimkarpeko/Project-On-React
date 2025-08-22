@@ -10,7 +10,9 @@ export const Select: FC<SelectProps> = ({
   classname,
   id,
   label,
+  value,
   selectColor,
+  name,
   ...rest
 }) => {
   const selectClassName = clsx({
@@ -27,8 +29,9 @@ export const Select: FC<SelectProps> = ({
         </label>
       )}
       <select
-        name=""
+        name="id"
         id={id}
+        value={value}
         {...rest}
         className={clsx(
           'border border-gray-500 text-black text-sm rounded-lg p-2.5 outline-none',

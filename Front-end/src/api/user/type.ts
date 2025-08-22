@@ -18,3 +18,15 @@ export interface editUserForSingUpProps {
 	img:string | null,
 	setErrorApiMessage: (error:string) => void
 }
+
+export interface updateUserAuthProps {
+	firstName:string,
+	lastName:string,
+	bio:string,
+	location: string,
+	address:string,
+	userName:string,
+	day:number,
+	month:string,
+	year:string,
+}

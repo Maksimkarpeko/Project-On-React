@@ -1,28 +1,33 @@
 export const InfoBlock = [
     {
-        name:"First Name",
-        id:"First Name",
+        name:"firstName",
+        id:"FirstName",
         title:"First Name",
     },
     {
-        name:"Last Name",
-        id:"Last Name",
+        name:"lastName",
+        id:"LastName",
         title:"Last Name",
     },
     {
-        name:"About",
+        name:"about",
         id:"About",
         title:"About",
     },    
     {
-        name:"Location",
-        id:"Location",
-        title:"Location",
+        name:"city",
+        id:"City",
+        title:"City",
     },
     {
-        name:"Status",
-        id:"Status",
-        title:"Status",
+        name:"address",
+        id:"Address",
+        title:"Address",
+    },
+    {
+        name:"location",
+        id:"Location",
+        title:"Location",
     },
 ]
 

@@ -8,5 +8,7 @@ export interface SelectProps extends HTMLAttributes<HTMLSelectElement> {
   classname?: string;
   label?: string;
   id?: string;
+  value:string,
   selectColor?: Color;
+  name?:string
 }

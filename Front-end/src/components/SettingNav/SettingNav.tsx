@@ -30,7 +30,7 @@ export const SettingNav: FC<SettingNavProps> = ({ setTab, tab }) => {
   };
   const singOut = () => {};
   return (
-    <div className={clsx('md:w-[25%] md:block border-r h-[98vh]', isOpen ? 'hidden' : 'w-[100%]')}>
+    <div className={clsx('md:w-[25%]  md:block border-r h-[100vh] sm:m-0 ml-[15%]', isOpen ? 'hidden' : 'w-[100%]')}>
       <h1 className="text-2xl font-bold ml-4 mt-3">Setting</h1>
       <div>
         <ContactUser
@@ -58,7 +58,7 @@ export const SettingNav: FC<SettingNavProps> = ({ setTab, tab }) => {
               OpenAction();
             }}
             activeText={item.text}
-            isActive={tab === item.alt}
+            isActive={tab === item.alt && isOpen}
             activeClassName="bg-blue-500 text-white"
             key={item.alt}
           />
@@ -72,7 +72,7 @@ export const SettingNav: FC<SettingNavProps> = ({ setTab, tab }) => {
             classnameImg={item.classnameImg}
             classname="cursor-pointer w-full"
             onClick={() => handelTab?.(item.alt)}
-            isActive={tab === item.alt}
+            isActive={tab === item.alt && isOpen}
             activeText={item.text}
             activeClassName="bg-blue-500 text-white"
             key={item.alt}
@@ -86,7 +86,7 @@ export const SettingNav: FC<SettingNavProps> = ({ setTab, tab }) => {
             activeIcon={item.activeImg}
             classnameImg={item.classnameImg}
             classname="cursor-pointer w-full"
-            isActive={tab === item.alt}
+            isActive={tab === item.alt && isOpen}
             activeText={item.text}
             activeClassName="bg-blue-500 text-white"
             onClick={() => handelTab?.(item.alt)}
@@ -101,7 +101,7 @@ export const SettingNav: FC<SettingNavProps> = ({ setTab, tab }) => {
             activeIcon={item.activeImg}
             classnameImg={item.classnameImg}
             classname="cursor-pointer w-full"
-            isActive={tab === item.alt}
+            isActive={tab === item.alt && isOpen}
             activeText={item.text}
             activeClassName="bg-blue-500 text-white"
             onClick={() => handelTab?.(item.alt)}

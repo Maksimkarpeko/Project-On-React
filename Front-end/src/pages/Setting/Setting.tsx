@@ -7,7 +7,7 @@ import { getAuthUser } from 'store/user/useUserStore';
 export const Setting = () => {
   const [activeTab, setActiveTab] = useState<string>('');
   useEffect(() => {
-    getAuthUser();
+    console.log(getAuthUser());
   }, []);
   return (
     <div className="flex">
