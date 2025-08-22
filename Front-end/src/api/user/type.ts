@@ -25,8 +25,10 @@ export interface updateUserAuthProps {
 	bio:string,
 	location: string,
 	address:string,
-	userName:string,
+	username:string,
 	day:number,
 	month:string,
-	year:string,
+	years:number,
+	setApiError: (error:string) => void,
+	country:string,
 }

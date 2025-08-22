@@ -3,6 +3,6 @@ export interface formikInitial {
   lastName: string;
   about: string;
   location: string;
-  city: string;
+  country: string;
   address: string;
 }

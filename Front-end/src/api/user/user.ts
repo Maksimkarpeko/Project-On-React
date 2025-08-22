@@ -1,10 +1,11 @@
+import { data } from 'react-router-dom';
+
 import type { UserResponse, apiRespons, updateUserAuthProps } from 'api/user/type';
 import type { AxiosResponse } from 'axios';
 import { api } from 'utils/apiConfig';
 import { CatchError } from 'utils/catchError';
 
 import type { editUserForSingUpProps } from './type';
-import { data } from 'react-router-dom';
 
 export const getUsers = async <T = UserResponse>(
   limit: number | null = 30,
@@ -72,25 +73,29 @@ export const updateUserAuth = async ({
   firstName,
   lastName,
   location,
+  country,
   month,
-  userName,
-  year,
+  username,
+  years,
+  setApiError,
 }: updateUserAuthProps) => {
   try {
-    const data = day + month + year;
-    const response = await api.patch('/users',{
+    const dayStr = String(day).padStart(2, "0")
+    const data = new Date(`${years}-${month}-${dayStr}T00:00:00.000Z`);
+    const response = await api.patch('/users', {
       address,
       bio,
-      birthday:data,
+      birthday: data,
       firstName,
       lastName,
       location,
-      userName,
+      username,
+      country,
     });
     console.log(response.data);
     return response.data;
   } catch (error: unknown) {
-    CatchError(error);
+    setApiError(CatchError(error));
     throw error;
   }
 };

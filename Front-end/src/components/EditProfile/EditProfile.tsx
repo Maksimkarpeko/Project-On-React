@@ -1,3 +1,6 @@
+import { useState } from 'react';
+
+import { updateUserAuth } from 'api/user/user';
 import { Back } from 'assets/index';
 import clsx from 'clsx';
 import { Button } from 'components/common/Button/Button';
@@ -14,6 +17,8 @@ import { useCloseFlagAction, useIsOpen } from 'store/useFlagStore/useFlagStore';
 import type { formikInitial } from './type';
 
 export const EditProfile = () => {
+  const [apiError, setApiError] = useState<string>('');
+  const [apiSuccess, setApiSuccess] = useState<string>('');
   const CloseAction = useCloseFlagAction();
   const isOpen = useIsOpen();
 
@@ -23,7 +28,7 @@ export const EditProfile = () => {
       firstName: '',
       lastName: '',
       about: '',
-      city: '',
+      country: '',
       address: '',
       location: '',
       day: 0,
@@ -46,14 +51,14 @@ export const EditProfile = () => {
 
       if (!values.about) {
         errors.about = 'About is required';
-      } 
+      }
 
       if (!values.location) {
         errors.location = 'Location is required';
       }
 
-      if (!values.city) {
-        errors.city = 'City is required';
+      if (!values.country) {
+        errors.country = 'City is required';
       }
 
       if (!values.address) {
@@ -85,7 +90,24 @@ export const EditProfile = () => {
       return errors;
     },
     onSubmit: (value) => {
-      console.log(value);
+      try {
+        updateUserAuth({
+          address: value.address,
+          bio: value.about,
+          country: value.country,
+          day: value.day,
+          firstName: value.firstName,
+          lastName: value.lastName,
+          location: value.location,
+          month: value.months,
+          username: value.userName,
+          years: value.years,
+          setApiError,
+        });
+        setApiSuccess("Data changed successfully")
+      } catch {
+        setApiError('An error has occurred');
+      }
     },
   });
   const errorUserName = formik.errors.userName;
@@ -202,6 +224,8 @@ export const EditProfile = () => {
               {errorYears && formik.touched.years && <ErrorMessage errorMessage={errorYears} />}
             </div>
           </div>
+          {apiError && <ErrorMessage errorMessage={apiError} />}
+          {apiSuccess && <div className='text-green-600'>{apiSuccess}</div>}
           <Button
             type="button"
             color={Color.blue}

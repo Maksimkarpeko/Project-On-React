@@ -15,9 +15,9 @@ export const InfoBlock = [
         title:"About",
     },    
     {
-        name:"city",
-        id:"City",
-        title:"City",
+        name:"country",
+        id:"Country",
+        title:"Country",
     },
     {
         name:"address",
