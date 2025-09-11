@@ -4,6 +4,8 @@ import { CatchError } from 'utils/catchError';
 
 import type { AuthResponse, SingInOptions } from './type';
 import type { SingUpOptions } from './type';
+import type { NavigateFunction } from 'react-router-dom';
+import { Links } from 'constants/links';
 
 export const checkAuth = async () => {
   try {
@@ -18,6 +20,7 @@ export const checkAuth = async () => {
 export const signIn = async (
   { email, password }: SingInOptions,
   setErrorApiMessage: (error: string) => void,
+  navigate:NavigateFunction
 ):Promise<AuthResponse> => {
   try {
     const response = await api.post('/auth/sign-in', {
@@ -25,10 +28,11 @@ export const signIn = async (
       password,
     });
     if (!response?.data?.access_token) {
-      throw new Error('access_token не найден в ответе');
+      throw new Error('access_token not found in the response');
     }
     localStorage.setItem('token', response.data.access_token);
     localStorage.setItem('refresh', response.data.refresh_token);
+    navigate(Links.homePage)
     return response.data;
   } catch (error: unknown) {
     setErrorApiMessage(CatchError(error));

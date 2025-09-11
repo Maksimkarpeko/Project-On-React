@@ -28,10 +28,8 @@ export const SignIn = () => {
             password: value.password,
           },
           setErrorApiMessage,
+          navigate,
         );
-        if (localStorage.getItem('token')) {
-          navigate(Links.homePage);
-        }
       } catch {
         setErrorApiMessage('It just problem');
       }

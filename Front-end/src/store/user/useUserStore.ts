@@ -23,7 +23,10 @@ const useUserStore = create<UserStor>()(
         try {
           const { users, total } = await getUsers(limit, page);
           set((state) => {
-            state.users = page === 1 ? users : [...state.users, ...users];
+            state.users =
+              page === 1
+                ? users
+                : Array.from(new Map([...state.users, ...users].map((u) => [u.id, u])).values());
             state.total = total;
           });
         } catch (error: unknown) {

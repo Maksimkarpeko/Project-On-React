@@ -97,7 +97,6 @@ export const Contact = () => {
           )}
         >
           <Virtuoso
-            key="contacts-virtuoso"
             style={{ height: 'calc(100vh - 112px)' }}
             data={filteredUsers}
             itemContent={(__, item) => (
@@ -109,7 +108,6 @@ export const Contact = () => {
                 disableHover={false}
                 alt="User"
                 img={testImg}
-                key={item.id}
                 onClick={() => handleUserClick(item.username)}
                 isActive={selectUser === item.username}
                 isOnlineUser

@@ -3,9 +3,7 @@ export interface UserResponse {
 	username:string,
 	img:string,
 	email:string,
-	address:{
-		country:string | null,
-	}
+	country:string | null,
 }
 export interface apiRespons<T> {
 	data:T[],

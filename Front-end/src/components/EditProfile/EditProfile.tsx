@@ -31,39 +31,20 @@ export const EditProfile = () => {
       country: '',
       address: '',
       location: '',
-      day: 0,
-      months: '',
-      years: 0,
+      day: 11,
+      months: '09',
+      years: 2000,
     },
     validate: (values) => {
       const errors: Record<string, string> = {};
-      if (!values.firstName) {
-        errors.firstName = 'First name is required';
-      } else if (values.firstName.length < 2) {
+      if (values.firstName.length < 2) {
         errors.firstName = 'First name should be at least 2 characters';
       }
-
-      if (!values.lastName) {
-        errors.lastName = 'Last name is required';
-      } else if (values.lastName.length < 2) {
+      
+      if (values.lastName.length < 2) {
         errors.lastName = 'Last name should be at least 2 characters';
       }
 
-      if (!values.about) {
-        errors.about = 'About is required';
-      }
-
-      if (!values.location) {
-        errors.location = 'Location is required';
-      }
-
-      if (!values.country) {
-        errors.country = 'City is required';
-      }
-
-      if (!values.address) {
-        errors.address = 'Address is required';
-      }
 
       if (!values.day || values.day < 1 || values.day > 31) {
         errors.day = 'Day should be between 1 and 31';
@@ -79,9 +60,7 @@ export const EditProfile = () => {
         errors.years = 'Year must be between 1900 and the current year';
       }
 
-      if (!values.userName) {
-        errors.userName = 'Username is required';
-      } else if (values.userName.length < 3) {
+      if (values.userName.length < 3) {
         errors.userName = 'Must be at least 3 characters';
       } else if (values.userName.length > 20) {
         errors.userName = 'Must be 20 characters or less';
@@ -120,11 +99,11 @@ export const EditProfile = () => {
         onClick={() => {
           CloseAction();
         }}
-        className={clsx('sm:m-0 ml-[15%] w-[20%] md:hidden block ', isOpen ? '' : 'hidden')}
+        className={clsx('sm:m-0 pl-[15%] w-[20%] md:hidden block ', isOpen ? '' : 'hidden')}
       >
         <img src={Back} alt="back" />
       </div>
-      <div className={clsx('sm:mx-auto flex flex-col md:block ml-[5%]', isOpen ? '' : 'hidden')}>
+      <div className={clsx(' flex flex-col md:block w-[70%] lg:pl-[20%] md:pl-[10%]', isOpen ? '' : 'hidden')}>
         <div>
           <h2 className="text-2xl font-bold mt-3">Edit profile</h2>
         </div>
@@ -146,7 +125,7 @@ export const EditProfile = () => {
                   formik.setFieldValue(item.name, e.target.value);
                 }}
                 classname="mb-4"
-                inputStyle="sm:w-[448px] w-[80%]"
+                inputStyle="sm:w-[448px] w-[100%]"
               />
               {formik.errors[item.name as keyof formikInitial] &&
                 formik.touched[item.name as keyof formikInitial] && (
@@ -194,6 +173,7 @@ export const EditProfile = () => {
             </div>
             <div>
               <Select
+                defaultValue={'09'}
                 name="months"
                 id="months"
                 options={months}
@@ -209,6 +189,7 @@ export const EditProfile = () => {
             </div>
             <div>
               <Input
+                defaultValue={'2000'}
                 name="years"
                 placeholder="years"
                 type="number"

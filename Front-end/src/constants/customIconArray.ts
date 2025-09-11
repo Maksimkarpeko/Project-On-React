@@ -65,7 +65,7 @@ export const actionsBlock = [
 export const profileBlock = (user: UserResponse) => [
   { text: user.username, img: Teg, classname: 'mr-14 cursor-pointer' },
   {
-    text: `${user.address?.country === undefined ? 'You need to enter the data' : user.address?.country},${getInitialsForCountry(user.address?.country)}`,
+    text: `${user.country === undefined ? 'You need to enter the data' : user.country}${getInitialsForCountry(user.country)}`,
     img: Country,
     classname: 'mr-14 cursor-pointer',
   },
