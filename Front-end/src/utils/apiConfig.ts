@@ -1,7 +1,8 @@
 import axios, { type InternalAxiosRequestConfig } from 'axios';
+import { BASE_URL } from 'constants/links';
 
 export const api = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: BASE_URL,
 });
 
 api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
@@ -17,7 +18,7 @@ api.interceptors.response.use(
     const originalRequest = error.config;
     if (error.response.status === 401) {
       try{
-        const refreshToken = await axios.post('http://localhost:8000/auth/refresh',{
+        const refreshToken = await axios.post(`${BASE_URL}/auth/refresh`,{
           refresh_token: localStorage.getItem("refresh")
         });
         localStorage.setItem('token', refreshToken.data.access_token);

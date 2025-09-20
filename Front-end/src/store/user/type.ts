@@ -13,4 +13,4 @@ interface UserStoreAction{
 	fetchAuthUser:() => Promise<void>
 }
 
-export interface UserStor extends UserStoreState,UserStoreAction{};
+export interface UserStore extends UserStoreState,UserStoreAction{};

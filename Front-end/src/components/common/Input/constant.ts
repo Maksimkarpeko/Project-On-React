@@ -9,3 +9,4 @@ export enum InputTitle {
   redTitle = 'red',
   grayTitle = 'gray',
 }
+

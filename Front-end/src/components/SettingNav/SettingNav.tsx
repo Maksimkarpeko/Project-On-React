@@ -28,7 +28,9 @@ export const SettingNav: FC<SettingNavProps> = ({ setTab, tab }) => {
   const handelTab = (tab: string) => {
     setTab(tab);
   };
-  const singOut = () => {};
+  const singOut = () => {
+    
+  };
   return (
     <div className={clsx('md:w-[25%]  md:block border-r h-[100vh] sm:m-0 ml-[15%]', isOpen ? 'hidden' : 'w-[100%]')}>
       <h1 className="text-2xl font-bold ml-4 mt-3">Setting</h1>

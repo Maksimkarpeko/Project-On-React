@@ -23,7 +23,7 @@ export const EntryBio = () => {
       lastName: '',
       avatar: null as string | null,
     },
-    validate: validateBio,
+    validationSchema: validateBio,
     onSubmit: async (value) => {
       try {
         console.log(value);

@@ -1,4 +1,4 @@
-export enum buttonColor {
+export enum buttonOpacity {
 	limpidS = 'limpidS',
 	limpidL = 'limpidL',
 	limpidXl = 'limpidXl'

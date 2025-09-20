@@ -1,8 +1,9 @@
 import type { InputHTMLAttributes } from 'react';
 
-import { Color } from 'constants/color';
+import { Color} from 'constants/color';
 
 import type { InputTitle, OtherStyle, Variant } from './constant';
+import type { Size } from 'constants/size';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   type: string;
@@ -16,4 +17,5 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   id?: string;
   otherStyle?:OtherStyle,
   inputStyle?:string,
+  sizeInput?: Size 
 }

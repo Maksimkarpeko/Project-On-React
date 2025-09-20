@@ -15,6 +15,8 @@ import { useFormik } from 'formik';
 import { useCloseFlagAction, useIsOpen } from 'store/useFlagStore/useFlagStore';
 
 import type { formikInitial } from './type';
+import { Size } from 'constants/size';
+import { EditProfileSchema } from 'utils/validate';
 
 export const EditProfile = () => {
   const [apiError, setApiError] = useState<string>('');
@@ -35,39 +37,7 @@ export const EditProfile = () => {
       months: '09',
       years: 2000,
     },
-    validate: (values) => {
-      const errors: Record<string, string> = {};
-      if (values.firstName.length < 2) {
-        errors.firstName = 'First name should be at least 2 characters';
-      }
-      
-      if (values.lastName.length < 2) {
-        errors.lastName = 'Last name should be at least 2 characters';
-      }
-
-
-      if (!values.day || values.day < 1 || values.day > 31) {
-        errors.day = 'Day should be between 1 and 31';
-      }
-
-      if (!values.months) {
-        errors.months = 'Month is required';
-      }
-
-      if (!values.years) {
-        errors.years = 'Year is required';
-      } else if (values.years < 1900 || values.years > new Date().getFullYear()) {
-        errors.years = 'Year must be between 1900 and the current year';
-      }
-
-      if (values.userName.length < 3) {
-        errors.userName = 'Must be at least 3 characters';
-      } else if (values.userName.length > 20) {
-        errors.userName = 'Must be 20 characters or less';
-      }
-
-      return errors;
-    },
+    validationSchema: EditProfileSchema,
     onSubmit: (value) => {
       try {
         updateUserAuth({
@@ -103,7 +73,7 @@ export const EditProfile = () => {
       >
         <img src={Back} alt="back" />
       </div>
-      <div className={clsx(' flex flex-col md:block w-[70%] lg:pl-[20%] md:pl-[10%]', isOpen ? '' : 'hidden')}>
+      <div className={clsx('flex flex-col md:block w-[70%] lg:pl-[20%] md:pl-[10%]', isOpen ? '' : 'hidden')}>
         <div>
           <h2 className="text-2xl font-bold mt-3">Edit profile</h2>
         </div>
@@ -117,8 +87,9 @@ export const EditProfile = () => {
                 id={item.id}
                 type="text"
                 variant={Variant.text}
-                inputColor={Color.bigDarkGray}
+                inputColor={Color.darkGray}
                 title={item.title}
+                sizeInput={Size.L}
                 key={item.id}
                 value={formik.values[item.name as keyof formikInitial]}
                 onChange={(e) => {
@@ -140,10 +111,11 @@ export const EditProfile = () => {
             id="userName"
             type="text"
             variant={Variant.text}
-            inputColor={Color.bigDarkGray}
+            inputColor={Color.darkGray}
             title="Username"
             key="userName"
             value={formik.values.userName}
+            sizeInput={Size.L}
             onChange={(e) => {
               formik.setFieldValue(`userName`, e.target.value);
             }}
@@ -161,13 +133,14 @@ export const EditProfile = () => {
                 placeholder="Day"
                 type="number"
                 variant={Variant.text}
-                inputColor={Color.bigDarkGray}
+                inputColor={Color.darkGray}
                 className="border w-24 h-14 p-4 bg-gray-200 rounded-md mr-4"
                 value={formik.values.day}
                 onChange={(e) => {
                   formik.setFieldValue('day', e.target.value);
                 }}
                 classname="mb-4"
+                sizeInput={Size.L}
               />
               {errorDay && formik.touched.day && <ErrorMessage errorMessage={errorDay} />}
             </div>
@@ -194,13 +167,14 @@ export const EditProfile = () => {
                 placeholder="years"
                 type="number"
                 variant={Variant.text}
-                inputColor={Color.bigDarkGray}
+                inputColor={Color.darkGray}
                 className="border w-24 h-14 p-4 bg-gray-200 rounded-md mr-4"
                 value={formik.values.years}
                 onChange={(e) => {
                   formik.setFieldValue('years', e.target.value);
                 }}
                 classname="mb-4"
+                sizeInput={Size.L}
               />
               {errorYears && formik.touched.years && <ErrorMessage errorMessage={errorYears} />}
             </div>

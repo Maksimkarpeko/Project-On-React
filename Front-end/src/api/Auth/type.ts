@@ -1,8 +1,8 @@
-export interface SingInOptions {
+export interface SignInOptions {
     email:string,
     password:string,
 }
-export interface SingUpOptions {
+export interface SignUpOptions {
 	email:string,
 	username:string,
 	password:string,
@@ -11,4 +11,8 @@ export interface SingUpOptions {
 export interface AuthResponse{
     refresh_Token:string,
     access_Token:string,
+}
+
+export interface ErrorApiOptions {
+    setErrorApiMessage: (error: string) => void
 }

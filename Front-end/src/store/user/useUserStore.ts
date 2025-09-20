@@ -3,7 +3,8 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
-import type { UserStor, UserStoreState } from './type';
+import type { UserStore, UserStoreState } from './type';
+import { userServices } from 'services/userServices';
 
 const initialState: UserStoreState = {
   users: [],
@@ -12,7 +13,7 @@ const initialState: UserStoreState = {
   total: 0,
 };
 
-const useUserStore = create<UserStor>()(
+const useUserStore = create<UserStore>()(
   devtools(
     immer((set) => ({
       ...initialState,
@@ -21,7 +22,7 @@ const useUserStore = create<UserStor>()(
           set({ isLoading: true });
         }
         try {
-          const { users, total } = await getUsers(limit, page);
+          const { users, total } = await userServices.fetchUsers(limit,page);
           set((state) => {
             state.users =
               page === 1
@@ -39,7 +40,7 @@ const useUserStore = create<UserStor>()(
       },
       fetchOneUser: async (userName) => {
         try {
-          const user = await getUserById(userName);
+          const user = await userServices.fetchOneUser(userName);
           set({ user: user });
         } catch (error: unknown) {
           if (error instanceof Error) {
@@ -49,7 +50,7 @@ const useUserStore = create<UserStor>()(
       },
       fetchAuthUser: async () => {
         try {
-          const user = await getInfoAuth();
+          const user = await userServices.fetchAuthUser();
           set({ user: user });
         } catch (error: unknown) {
           if (error instanceof Error) {

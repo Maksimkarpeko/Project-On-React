@@ -1,9 +1,10 @@
 import type { FC } from 'react';
 
 import clsx from 'clsx';
-import { Color } from 'constants/color';
+import {Color } from 'constants/color';
 
 import type { SelectProps } from './type';
+import { Size } from 'constants/size';
 
 export const Select: FC<SelectProps> = ({
   options,
@@ -13,14 +14,17 @@ export const Select: FC<SelectProps> = ({
   value,
   selectColor,
   name,
+  size,
   ...rest
 }) => {
   const selectClassName = clsx({
     'bg-gray-100': selectColor == Color.gray,
     'bg-gray-200': selectColor == Color.darkGray,
-    'bg-gray-100 pt-4 pb-2': selectColor == Color.bigGray,
-    'bg-gray-200 pt-4 pb-2': selectColor == Color.bigDarkGray,
   });
+  const selectSize:Record<Size,string> = {
+    [Size.S]: 'pt-4 pb-2',
+    [Size.L]: 'pt-8 pb-4',
+  }
   return (
     <div className="relative">
       {label && id && (
@@ -29,13 +33,14 @@ export const Select: FC<SelectProps> = ({
         </label>
       )}
       <select
-        name="id"
+        name={name}
         id={id}
         value={value}
         {...rest}
         className={clsx(
           'border border-gray-500 text-black text-sm rounded-lg p-2.5 outline-none',
           selectClassName,
+          selectSize,
           classname,
         )}
       >

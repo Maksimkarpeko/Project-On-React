@@ -7,9 +7,8 @@ import { ErrorMessage } from 'components/common/ErrorMessage/ErrorMessage';
 import { Input } from 'components/common/Input/Input';
 import { Variant } from 'components/common/Input/constant';
 import { Color } from 'constants/color';
-import { Links } from 'constants/links';
 import { useFormik } from 'formik';
-import { validateSignIn } from 'utils/validate';
+import { signInSchema } from 'utils/validate';
 
 export const SignIn = () => {
   const [errorApiMessage, setErrorApiMessage] = useState<string>('');
@@ -19,7 +18,7 @@ export const SignIn = () => {
       email: '',
       password: '',
     },
-    validate: validateSignIn,
+    validationSchema: signInSchema,
     onSubmit: (value) => {
       try {
         signIn(
@@ -27,7 +26,7 @@ export const SignIn = () => {
             email: value.email,
             password: value.password,
           },
-          setErrorApiMessage,
+          {setErrorApiMessage},
           navigate,
         );
       } catch {

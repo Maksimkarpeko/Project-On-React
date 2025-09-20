@@ -5,4 +5,6 @@ export enum Links {
   entryBio = '/EntryBio',
   homePage = '/Home',
   errorError = '/ErrorPage',
-  }
+}
+
+export const BASE_URL = 'http://localhost:8000';

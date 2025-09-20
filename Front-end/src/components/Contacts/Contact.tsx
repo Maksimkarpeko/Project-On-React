@@ -69,7 +69,7 @@ export const Contact = () => {
       >
         <div
           className={clsx(
-            'sm:ml-0 lg:w-[23%] 2xl:w-[22%] xl:w-[22%] fixed bg-white z-10 overflow-hidden sm:w-screen lg:block',
+            'sm:ml-0 lg:w-[23%] 2xl:w-[22%] xl:w-[22%] fixed bg-white z-10 overflow-hidden sm:w-screen lg:block z-50',
             isOpen ? 'ml-16' : '',
             selectUser !== null ? 'hidden' : 'block',
           )}

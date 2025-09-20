@@ -9,7 +9,7 @@ import { Variant } from 'components/common/Input/constant';
 import { Color } from 'constants/color';
 import { Links } from 'constants/links';
 import { useFormik } from 'formik';
-import { validateSignUp } from 'utils/validate';
+import { singUpSchema } from 'utils/validate';
 
 export const SignUp = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ export const SignUp = () => {
       password: '',
       username: '',
     },
-    validate: validateSignUp,
+    validationSchema: singUpSchema,
     onSubmit: async (value) => {
       try {
         await signUp(
@@ -29,12 +29,14 @@ export const SignUp = () => {
             email: value.email,
             password: value.password,
             username: value.username,
-          },
-          setErrorApiMessage,
+          }
         );
         setErrorApi(false);
         navigate(Links.entryBio);
-      } catch (error) {
+      } catch (error:unknown) {
+        if (error instanceof Error) {
+          setErrorApiMessage(error.message);
+        }
         setErrorApi(true);
       }
     },
@@ -87,7 +89,7 @@ export const SignUp = () => {
       {formik.touched.username && formik.errors.username && (
         <ErrorMessage errorMessage={errorUserName} />
       )}
-
+      
       {errorApi && <ErrorMessage errorMessage={errorApiMessage} />}
     </AuthEntry>
   );
