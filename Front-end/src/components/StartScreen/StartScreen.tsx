@@ -1,7 +1,7 @@
 import { type FC, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { checkAuth } from 'api/auth1';
+import { checkAuth } from 'api/auth';
 import { LogoXL } from 'assets/index';
 import { Button } from 'components/common/Button/Button';
 import { buttonSize } from 'components/common/Button/constant';
