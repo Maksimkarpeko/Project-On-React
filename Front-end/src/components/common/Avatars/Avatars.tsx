@@ -1,11 +1,13 @@
-import type { FC } from 'react';
+import { useState, type FC } from 'react';
 
 import clsx from 'clsx';
 
 import { Size } from './constants';
 import type { AvatarsProps } from './type';
+import { IconError } from 'assets/index';
 
 export const Avatars: FC<AvatarsProps> = ({ img, alt, classname, size, isOnline, ...rest }) => {
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   const sizeStyle = clsx({
     'w-6': size == Size.xSmall,
     'w-8': size == Size.Small,
@@ -24,7 +26,9 @@ export const Avatars: FC<AvatarsProps> = ({ img, alt, classname, size, isOnline,
   return (
     <>
       <div className={clsx('relative',classname)}>
-        <img src={img} alt={alt} {...rest} className={clsx(sizeStyle)} />
+        <img src={img} alt={alt} {...rest} loading='lazy' className={clsx(sizeStyle)} onError={(erorr)=>{
+          (erorr.target as HTMLImageElement).src = IconError
+        }} />
         {isOnline && (
           <span
             className={clsx(sizeOnline, 'absolute bg-blue-500 border-2 border-white rounded-full')}

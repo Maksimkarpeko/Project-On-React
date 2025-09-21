@@ -1,11 +1,12 @@
-import axios,{type AxiosError} from 'axios';
-import { api } from 'utils/apiConfig';
-import { CatchError } from 'utils/catchError';
+import type { NavigateFunction } from 'react-router-dom';
+
+import axios, { type AxiosError } from 'axios';
+import { BASE_URL, Links } from 'constants/links';
+import { api } from 'utils/api-сonfig';
+import { CatchError } from 'utils/catch-error';
 
 import type { AuthResponse, ErrorApiOptions, SignInOptions } from './type';
 import type { SignUpOptions } from './type';
-import type { NavigateFunction } from 'react-router-dom';
-import { BASE_URL, Links } from 'constants/links';
 
 export const checkAuth = async () => {
   try {
@@ -20,11 +21,12 @@ export const checkAuth = async () => {
 export const signIn = async (
   { email, password }: SignInOptions,
   setErrorApiMessage: ErrorApiOptions,
-  navigate:NavigateFunction
-):Promise<AuthResponse> => {
+  navigate: NavigateFunction,
+): Promise<AuthResponse> => {
   try {
+    const emailLowerCase = email.toLowerCase();
     const response = await api.post('/auth/sign-in', {
-      email,
+      emailLowerCase,
       password,
     });
     if (!response?.data?.access_token) {
@@ -32,7 +34,7 @@ export const signIn = async (
     }
     localStorage.setItem('token', response.data.access_token);
     localStorage.setItem('refresh', response.data.refresh_token);
-    navigate(Links.homePage)
+    navigate(Links.homePage);
     return response.data;
   } catch (error: unknown) {
     setErrorApiMessage.setErrorApiMessage(CatchError(error));
@@ -40,22 +42,25 @@ export const signIn = async (
   }
 };
 
-export const signUp = async (
-  { email, username, password }: SignUpOptions,
-):Promise<AuthResponse> => {
+export const signUp = async ({
+  email,
+  username,
+  password,
+}: SignUpOptions): Promise<AuthResponse> => {
   try {
+    const emailLowerCase = email.toLowerCase();
     const response = await api.post('/auth/sign-up', {
-      email,
+      emailLowerCase,
       username,
       password,
     });
     localStorage.setItem('token', response.data.access_token);
     localStorage.setItem('refresh', response.data.refresh_token);
     return response.data;
-  } catch (error:unknown) {
+  } catch (error: unknown) {
     if ((error as AxiosError).response?.status === 403) {
       throw new Error('Something went wrong');
     }
-    throw new Error("The user has already been created");
+    throw new Error('The user has already been created');
   }
 };

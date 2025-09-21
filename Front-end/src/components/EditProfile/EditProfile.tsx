@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { updateUserAuth } from 'api/user/user';
+import { updateUserAuth } from 'api/user';
 import { Back } from 'assets/index';
 import clsx from 'clsx';
 import { Button } from 'components/common/Button/Button';

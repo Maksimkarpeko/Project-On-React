@@ -1,7 +1,7 @@
 export enum Links {
   startScreen = '/',
-  singUp = "/SingUp",
-  singIn = "/SingIn",
+  signUp = "/SignUp",
+  signIn = "/SignIn",
   entryBio = '/EntryBio',
   homePage = '/Home',
   errorError = '/ErrorPage',

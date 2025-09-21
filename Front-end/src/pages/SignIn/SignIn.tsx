@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { signIn } from 'api/Auth/auth';
+import { signIn } from 'api/auth';
 import { AuthEntry } from 'components/AuthEntry/AuthEntry';
 import { ErrorMessage } from 'components/common/ErrorMessage/ErrorMessage';
 import { Input } from 'components/common/Input/Input';

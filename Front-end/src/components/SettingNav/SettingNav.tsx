@@ -16,8 +16,11 @@ import { useCloseFlagAction, useIsOpen, useOpenFlagAction } from 'store/useFlagS
 import { useSelectedUser } from 'store/user/useUserStore';
 
 import type { SettingNavProps } from './type';
+import { useNavigate } from 'react-router-dom';
+import { Links } from 'constants/links';
 
 export const SettingNav: FC<SettingNavProps> = ({ setTab, tab }) => {
+  const navigation = useNavigate();
   const isOpen = useIsOpen();
   const OpenAction = useOpenFlagAction();
   const CloseAction = useCloseFlagAction();
@@ -29,7 +32,8 @@ export const SettingNav: FC<SettingNavProps> = ({ setTab, tab }) => {
     setTab(tab);
   };
   const singOut = () => {
-    
+    localStorage.clear();
+    navigation(Links.startScreen)
   };
   return (
     <div className={clsx('md:w-[25%]  md:block border-r h-[100vh] sm:m-0 ml-[15%]', isOpen ? 'hidden' : 'w-[100%]')}>
@@ -45,6 +49,7 @@ export const SettingNav: FC<SettingNavProps> = ({ setTab, tab }) => {
           nameClass="mt-3 pl-4"
           statusClass="pl-4"
           classname="ml-[10px]"
+          isOnlineUser 
         />
       </div>
       <div className="mt-4">
@@ -117,8 +122,8 @@ export const SettingNav: FC<SettingNavProps> = ({ setTab, tab }) => {
           activeIcon={SingOut}
           classnameImg="pl-4"
           classname="cursor-pointer w-full"
-          onClick={() => {
-            console.log('#');
+          onClick={()=>{
+            singOut();
           }}
         />
       </div>

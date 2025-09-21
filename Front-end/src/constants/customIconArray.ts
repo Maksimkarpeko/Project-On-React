@@ -35,7 +35,7 @@ import {
   Wallet,
   X,
 } from 'assets/index';
-import { getInitialsForCountry } from 'utils/getInitialsForCountry';
+import { getInitialsForCountry } from 'utils/get-initials-country';
 
 export const actionsBlock = [
   {

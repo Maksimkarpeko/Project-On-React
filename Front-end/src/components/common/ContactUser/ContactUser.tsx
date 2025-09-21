@@ -1,4 +1,4 @@
-import { type FC, useState} from 'react';
+import { type FC} from 'react';
 
 
 import { Avatars } from '../Avatars/Avatars';
@@ -40,7 +40,7 @@ export const ContactUser: FC<ContactUserProps> = ({
     isActive ?'text-white':'',
     nameClass
   )
-  const [isOnline] = useState<boolean|undefined>(isOnlineUser);
+  const isOnline = isOnlineUser;
   return (
     <div className={containterStyle} {...rest}>
       <Avatars
@@ -53,8 +53,7 @@ export const ContactUser: FC<ContactUserProps> = ({
       <div className="flex flex-col">
         <span className={styleNameClass}>{name}</span>
         <span className={clsx(statusTextClass,isOnline ? "text-blue-500" : '')}> 
-          {isOnline === true && "online"}
-          {isOnline === false && "ofline"}
+          {isOnline ? 'online' : 'offline'}
           {phoneText}
         </span>
       </div>

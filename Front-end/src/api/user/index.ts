@@ -2,8 +2,8 @@ import { data } from 'react-router-dom';
 
 import type { UserResponse, apiRespons, updateUserAuthProps } from 'api/user/type';
 import type { AxiosResponse } from 'axios';
-import { api } from 'utils/apiConfig';
-import { CatchError } from 'utils/catchError';
+import { api } from 'utils/api-сonfig';
+import { CatchError } from 'utils/catch-error';
 
 import type { editUserForSingUpProps } from './type';
 
@@ -80,7 +80,7 @@ export const updateUserAuth = async ({
   setApiError,
 }: updateUserAuthProps) => {
   try {
-    const dayStr = String(day).padStart(2, "0")
+    const dayStr = String(day).padStart(2, '0');
     const data = new Date(`${years}-${month}-${dayStr}T00:00:00.000Z`);
     const response = await api.patch('/users', {
       address,

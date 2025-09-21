@@ -1,10 +1,10 @@
-import { getInfoAuth, getUserById, getUsers } from 'api/user/user';
+import { getInfoAuth, getUserById, getUsers } from 'api/user';
+import { userServices } from 'services/user-services';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
 import type { UserStore, UserStoreState } from './type';
-import { userServices } from 'services/userServices';
 
 const initialState: UserStoreState = {
   users: [],
@@ -22,7 +22,7 @@ const useUserStore = create<UserStore>()(
           set({ isLoading: true });
         }
         try {
-          const { users, total } = await userServices.fetchUsers(limit,page);
+          const { users, total } = await userServices.fetchUsers(limit, page);
           set((state) => {
             state.users =
               page === 1

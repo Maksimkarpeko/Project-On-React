@@ -21,6 +21,8 @@ import {
 } from 'store/user/useUserStore';
 import { Filter } from 'utils/filter';
 
+
+
 const USERS_FETCH_LIMIT = 30;
 export const Contact = () => {
   const [page, setPage] = useState(2);
@@ -63,13 +65,13 @@ export const Contact = () => {
     <>
       <div
         className={clsx(
-          'lg:w-[23.1%] sm:min-h-full absolute lg:border-r',
+          'lg:w-[23.1%] sm:min-h-full absolute lg:border-r z-50',
           selectUser !== null ? '' : 'w-screen border-r',
         )}
       >
         <div
           className={clsx(
-            'sm:ml-0 lg:w-[23%] 2xl:w-[22%] xl:w-[22%] fixed bg-white z-10 overflow-hidden sm:w-screen lg:block z-50',
+            'sm:ml-0 lg:w-[23%] 2xl:w-[22%] xl:w-[22%] fixed bg-white overflow-hidden sm:w-screen lg:block',
             isOpen ? 'ml-16' : '',
             selectUser !== null ? 'hidden' : 'block',
           )}

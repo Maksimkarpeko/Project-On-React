@@ -1,28 +1,39 @@
-import { StrictMode } from 'react';
+import { lazy, StrictMode, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-
-import { StartScreen } from 'components/StartScreen/StartScreen';
 import { Links } from 'constants/links';
-import { EntryBio } from 'pages/EntryBio/EntryBio';
-import { Error } from 'pages/Error/Error.tsx';
-import { Home } from 'pages/Home/Home';
-import { SignIn } from 'pages/SignIn/SignIn';
-import { SignUp } from 'pages/SignUp/SignUp';
+import { Loader } from 'components/common/Loader/Loader';
 
 import './index.scss';
 
+const StartScreen = lazy(() =>
+  import('components/StartScreen/StartScreen').then((module) => ({ default: module.StartScreen })),
+);
+const Onboarding = lazy(() =>
+  import('pages/Onboarding/Onboarding').then((module) => ({ default: module.Onboarding })),
+);
+const Error = lazy(() => import('pages/Error/Error').then((module) => ({ default: module.Error })));
+const SignIn = lazy(() =>
+  import('pages/SignIn/SignIn').then((module) => ({ default: module.SignIn })),
+);
+const SignUp = lazy(() =>
+  import('pages/SignUp/SignUp').then((module) => ({ default: module.SignUp })),
+);
+const Home = lazy(() => import('pages/Home/Home').then((module) => ({ default: module.Home })));
+
 const router = createBrowserRouter([
   { path: Links.startScreen, element: <StartScreen /> },
-  { path: Links.entryBio, element: <EntryBio /> },
-  { path: Links.singUp, element: <SignUp /> },
-  { path: Links.singIn, element: <SignIn /> },
+  { path: Links.entryBio, element: <Onboarding /> },
+  { path: Links.signUp, element: <SignUp /> },
+  { path: Links.signIn, element: <SignIn /> },
   { path: Links.homePage, element: <Home /> },
   { path: Links.errorError, element: <Error /> },
 ]);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Suspense fallback={<Loader />}>
+      <RouterProvider router={router} />
+    </Suspense>
   </StrictMode>,
 );

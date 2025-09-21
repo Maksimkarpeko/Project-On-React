@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { updateUserForSingUp } from 'api/user/user';
+import { updateUserForSingUp } from 'api/user';
 import { defaultAvatar } from 'assets/index';
 import { AuthEntry } from 'components/AuthEntry/AuthEntry';
 import { ErrorMessage } from 'components/common/ErrorMessage/ErrorMessage';
@@ -12,7 +12,7 @@ import { Links } from 'constants/links';
 import { useFormik } from 'formik';
 import { validateBio } from 'utils/validate';
 
-export const EntryBio = () => {
+export const Onboarding = () => {
   const refInput = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
