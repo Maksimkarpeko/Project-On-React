@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { SettingNav } from 'components/SettingNav/SettingNav';
-import { SettingNavigationContent } from 'constants/NavigationContent';
+import { SettingNavigationContent } from 'constants/navigationContent';
 import { getAuthUser } from 'store/user/useUserStore';
 
 export const Setting = () => {

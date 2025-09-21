@@ -8,11 +8,11 @@ import { ErrorMessage } from 'components/common/ErrorMessage/ErrorMessage';
 import { Input } from 'components/common/Input/Input';
 import { Variant } from 'components/common/Input/constant';
 import { Select } from 'components/common/Select/Select';
-import { InfoBlock } from 'constants/InputEdit';
+import { InfoBlock } from 'constants/inputOptions';
 import { Color } from 'constants/color';
 import { months } from 'constants/months';
 import { useFormik } from 'formik';
-import { useCloseFlagAction, useIsOpen } from 'store/useFlagStore/useFlagStore';
+import { useCloseFlagAction, useIsOpen } from 'store/useFlagCopyModal/useFlagCopyModal';
 
 import type { formikInitial } from './type';
 import { Size } from 'constants/size';

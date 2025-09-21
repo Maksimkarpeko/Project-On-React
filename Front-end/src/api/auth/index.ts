@@ -1,7 +1,7 @@
 import type { NavigateFunction } from 'react-router-dom';
 
 import axios, { type AxiosError } from 'axios';
-import { BASE_URL, Links } from 'constants/links';
+import { Links } from 'constants/links';
 import { api } from 'utils/api-сonfig';
 import { CatchError } from 'utils/catch-error';
 
@@ -10,7 +10,7 @@ import type { SignUpOptions } from './type';
 
 export const checkAuth = async () => {
   try {
-    const response = await axios.post(`${BASE_URL}/auth/refresh`);
+    const response = await axios.post(`${process.env.BASE_URL}/auth/refresh`);
     localStorage.setItem('token', response.data.access_token);
   } catch (error: unknown) {
     CatchError(error);

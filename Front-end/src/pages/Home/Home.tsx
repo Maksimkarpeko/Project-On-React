@@ -1,6 +1,6 @@
 import{ useEffect, useState} from 'react';
 import { BaseLayout } from 'components/layouts/baseLayout/BaseLayout';
-import { NavigationContent } from 'constants/NavigationContent';
+import { NavigationContent } from 'constants/navigationContent';
 import { useNavigate } from 'react-router-dom';
 import { Links } from 'constants/links';
 

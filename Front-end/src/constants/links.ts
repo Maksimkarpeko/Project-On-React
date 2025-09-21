@@ -7,4 +7,3 @@ export enum Links {
   errorError = '/ErrorPage',
 }
 
-export const BASE_URL = 'http://localhost:8000';
