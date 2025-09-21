@@ -11,7 +11,7 @@ import { Input } from 'components/common/Input/Input';
 import { OtherStyle, Variant } from 'components/common/Input/constant';
 import { Loader } from 'components/common/Loader/Loader';
 import { Color } from 'constants/color';
-import { useIsOpen } from 'store/useFlagStore/useFlagStore';
+import { useIsOpen } from 'store/useFlagCopyModal/useFlagCopyModal';
 import {
   getAllUsers,
   getOneUser,

@@ -12,7 +12,7 @@ import {
   preferencesBlock,
   settingBlock,
 } from 'constants/customIconArray';
-import { useCloseFlagAction, useIsOpen, useOpenFlagAction } from 'store/useFlagStore/useFlagStore';
+import { useCloseFlagAction, useIsOpen, useOpenFlagAction } from 'store/useFlagCopyModal/useFlagCopyModal';
 import { useSelectedUser } from 'store/user/useUserStore';
 
 import type { SettingNavProps } from './type';

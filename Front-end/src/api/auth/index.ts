@@ -24,9 +24,8 @@ export const signIn = async (
   navigate: NavigateFunction,
 ): Promise<AuthResponse> => {
   try {
-    const emailLowerCase = email.toLowerCase();
     const response = await api.post('/auth/sign-in', {
-      emailLowerCase,
+      email,
       password,
     });
     if (!response?.data?.access_token) {
@@ -48,9 +47,8 @@ export const signUp = async ({
   password,
 }: SignUpOptions): Promise<AuthResponse> => {
   try {
-    const emailLowerCase = email.toLowerCase();
     const response = await api.post('/auth/sign-up', {
-      emailLowerCase,
+      email,
       username,
       password,
     });
