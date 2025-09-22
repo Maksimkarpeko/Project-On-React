@@ -10,7 +10,7 @@ import type { SignUpOptions } from './type';
 
 export const checkAuth = async () => {
   try {
-    const response = await axios.post(`${process.env.BASE_URL}/auth/refresh`);
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/auth/refresh`);
     localStorage.setItem('token', response.data.access_token);
   } catch (error: unknown) {
     CatchError(error);

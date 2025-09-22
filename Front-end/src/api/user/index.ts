@@ -1,5 +1,3 @@
-import { data } from 'react-router-dom';
-
 import type { UserResponse, apiRespons, updateUserAuthProps } from 'api/user/type';
 import type { AxiosResponse } from 'axios';
 import { api } from 'utils/api-сonfig';
