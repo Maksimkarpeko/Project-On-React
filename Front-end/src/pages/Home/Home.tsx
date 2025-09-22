@@ -13,10 +13,8 @@ export function Home() {
     }
   })
   return (
-    <>
       <BaseLayout setPage={setPage} page={page}>
         {NavigationContent[page] ?? null}
       </BaseLayout>
-    </>
   );
 }

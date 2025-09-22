@@ -2,7 +2,6 @@ import type { UserResponse, apiResponse, updateUserAuthProps } from 'api/user/ty
 import type { AxiosResponse } from 'axios';
 import { api } from 'utils/api-сonfig';
 import { ShowError } from 'utils/show-error';
-
 import type { editUserForSingUpProps } from './type';
 
 export const getUsers = async (
@@ -59,35 +58,19 @@ export const getInfoAuth = async () => {
   }
 };
 
-export const updateUserAuth = async ({
-  address,
-  bio,
-  day,
-  firstName,
-  lastName,
-  location,
-  country,
-  month,
-  username,
-  years,
-}: updateUserAuthProps) => {
+export const updateUserAuth = async (payload: updateUserAuthProps) => {
   try {
-    const dayStr = String(day).padStart(2, '0');
-    const data = new Date(`${years}-${month}-${dayStr}T00:00:00.000Z`);
-    const response = await api.patch('/users', {
-      address,
-      bio,
-      birthday: data,
-      firstName,
-      lastName,
-      location,
-      username,
-      country,
-    });
+    const dayStr = String(payload.day).padStart(2, '0');
+    const data = new Date(`${payload.years}-${payload.month}-${dayStr}T00:00:00.000Z`);
+    const dataSend = {
+      ...payload,
+      data
+    }
+    const response = await api.patch('/users', dataSend);
     console.log(response.data);
     return response.data;
   } catch (error: unknown) {
     ShowError(error);
-    throw new Error(String(error));
+    throw error;
   }
 };
