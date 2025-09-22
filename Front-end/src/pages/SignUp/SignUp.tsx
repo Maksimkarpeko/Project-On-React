@@ -89,7 +89,6 @@ export const SignUp = () => {
       {formik.touched.username && formik.errors.username && (
         <ErrorMessage errorMessage={errorUserName} />
       )}
-      
       {errorApi && <ErrorMessage errorMessage={errorApiMessage} />}
     </AuthEntry>
   );

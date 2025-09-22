@@ -5,8 +5,8 @@ export interface UserResponse {
 	email:string,
 	country:string | null,
 }
-export interface apiRespons<T> {
-	data:T[],
+export interface apiResponse {
+	data:UserResponse[],
 	total:number,
 }
 
@@ -14,7 +14,6 @@ export interface editUserForSingUpProps {
 	firstName:string, 
 	lastName:string,
 	img:string | null,
-	setErrorApiMessage: (error:string) => void
 }
 
 export interface updateUserAuthProps {
@@ -27,6 +26,5 @@ export interface updateUserAuthProps {
 	day:number,
 	month:string,
 	years:number,
-	setApiError: (error:string) => void,
 	country:string,
 }

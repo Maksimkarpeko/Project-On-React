@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const CatchError = (error: unknown) => {
+export const ShowError = (error: unknown) => {
   let errorMessage = 'Data upload error';
   if (axios.isAxiosError(error)) {
     const axiosError = error;
@@ -15,6 +15,6 @@ export const CatchError = (error: unknown) => {
   } else if (error instanceof Error) {
     errorMessage = `Error ${error.message}`;
   }
-
+  console.error(errorMessage); 
 	return errorMessage;
 };

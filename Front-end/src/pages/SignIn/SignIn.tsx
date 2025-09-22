@@ -11,6 +11,7 @@ import { useFormik } from 'formik';
 import { signInSchema } from 'utils/validate';
 
 export const SignIn = () => {
+  const [errorApi, setErrorApi] = useState<boolean>(false);
   const [errorApiMessage, setErrorApiMessage] = useState<string>('');
   const navigate = useNavigate();
   const formik = useFormik({
@@ -19,18 +20,21 @@ export const SignIn = () => {
       password: '',
     },
     validationSchema: signInSchema,
-    onSubmit: (value) => {
+    onSubmit: async (value) => {
       try {
-        signIn(
+        await signIn(
           {
             email: value.email,
             password: value.password,
           },
-          {setErrorApiMessage},
           navigate,
         );
-      } catch {
-        setErrorApiMessage('It just problem');
+        setErrorApi(false)
+      } catch (error:unknown) {
+        if (error instanceof Error) {
+          setErrorApiMessage(error.message);
+        }
+        setErrorApi(true);
       }
     },
   });
@@ -66,8 +70,7 @@ export const SignIn = () => {
       {formik.touched.password && formik.errors.password && (
         <ErrorMessage errorMessage={errorPassword} />
       )}
-
-      {errorApiMessage && <ErrorMessage errorMessage={errorApiMessage} />}
+      {errorApi && <ErrorMessage errorMessage={errorApiMessage} />}
     </AuthEntry>
   );
 };

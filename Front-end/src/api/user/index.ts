@@ -1,24 +1,24 @@
-import type { UserResponse, apiRespons, updateUserAuthProps } from 'api/user/type';
+import type { UserResponse, apiResponse, updateUserAuthProps } from 'api/user/type';
 import type { AxiosResponse } from 'axios';
 import { api } from 'utils/api-сonfig';
-import { CatchError } from 'utils/catch-error';
+import { ShowError } from 'utils/show-error';
 
 import type { editUserForSingUpProps } from './type';
 
-export const getUsers = async <T = UserResponse>(
-  limit: number | null = 30,
+export const getUsers = async (
+  limit: number = 30,
   page: number = 2,
-): Promise<{ users: T[]; total: number }> => {
+): Promise<{ users: UserResponse[]; total: number }> => {
   const skip = page - 1;
   try {
-    const response: AxiosResponse<apiRespons<T>> = await api.get(`/users`, {
+    const response: AxiosResponse<apiResponse> = await api.get(`/users`, {
       params: { page: skip, limit: limit },
     });
     const { data, total } = response.data;
     return { users: data, total };
   } catch (error: unknown) {
-    CatchError(error);
-    throw error;
+    ShowError(error);
+    throw new Error(String(error));
   }
 };
 
@@ -27,17 +27,12 @@ export const getUserById = async (userName: string) => {
     const response = await api.get(`/users/${userName}`);
     return response.data;
   } catch (error: unknown) {
-    CatchError(error);
-    throw error;
+    ShowError(error);
+    throw new Error(String(error));
   }
 };
 
-export const updateUserForSingUp = async ({
-  firstName,
-  lastName,
-  img,
-  setErrorApiMessage,
-}: editUserForSingUpProps) => {
+export const updateUserForSingUp = async ({ firstName, lastName, img }: editUserForSingUpProps) => {
   try {
     const formData = new FormData();
 
@@ -49,8 +44,8 @@ export const updateUserForSingUp = async ({
     const response = await api.patch('/users', formData);
     return response.data;
   } catch (error: unknown) {
-    setErrorApiMessage(CatchError(error));
-    throw error;
+    ShowError(error);
+    throw new Error(String(error));
   }
 };
 
@@ -59,8 +54,8 @@ export const getInfoAuth = async () => {
     const response = await api.get('/users/me');
     return response.data;
   } catch (error: unknown) {
-    CatchError(error);
-    throw error;
+    ShowError(error);
+    throw new Error(String(error));
   }
 };
 
@@ -75,7 +70,6 @@ export const updateUserAuth = async ({
   month,
   username,
   years,
-  setApiError,
 }: updateUserAuthProps) => {
   try {
     const dayStr = String(day).padStart(2, '0');
@@ -93,7 +87,7 @@ export const updateUserAuth = async ({
     console.log(response.data);
     return response.data;
   } catch (error: unknown) {
-    setApiError(CatchError(error));
-    throw error;
+    ShowError(error);
+    throw new Error(String(error));
   }
 };

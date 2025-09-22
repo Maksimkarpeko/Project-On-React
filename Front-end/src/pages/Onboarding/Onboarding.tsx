@@ -31,7 +31,6 @@ export const Onboarding = () => {
           firstName: value.firstName,
           lastName: value.lastName,
           img: value.avatar,
-          setErrorApiMessage,
         });
         navigate(Links.homePage);
       } catch {

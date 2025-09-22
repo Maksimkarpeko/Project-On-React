@@ -3,9 +3,9 @@ import type { NavigateFunction } from 'react-router-dom';
 import axios, { type AxiosError } from 'axios';
 import { Links } from 'constants/links';
 import { api } from 'utils/api-сonfig';
-import { CatchError } from 'utils/catch-error';
+import { ShowError } from 'utils/show-error';
 
-import type { AuthResponse, ErrorApiOptions, SignInOptions } from './type';
+import type { AuthResponse, SignInOptions } from './type';
 import type { SignUpOptions } from './type';
 
 export const checkAuth = async () => {
@@ -13,14 +13,13 @@ export const checkAuth = async () => {
     const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/auth/refresh`);
     localStorage.setItem('token', response.data.access_token);
   } catch (error: unknown) {
-    CatchError(error);
-    throw error;
+    ShowError(error);
+    throw new Error(String(error));
   }
 };
 
 export const signIn = async (
   { email, password }: SignInOptions,
-  setErrorApiMessage: ErrorApiOptions,
   navigate: NavigateFunction,
 ): Promise<AuthResponse> => {
   try {
@@ -35,9 +34,8 @@ export const signIn = async (
     localStorage.setItem('refresh', response.data.refresh_token);
     navigate(Links.homePage);
     return response.data;
-  } catch (error: unknown) {
-    setErrorApiMessage.setErrorApiMessage(CatchError(error));
-    throw error;
+  } catch {
+    throw new Error('The email or password is incorrect');
   }
 };
 
@@ -55,10 +53,7 @@ export const signUp = async ({
     localStorage.setItem('token', response.data.access_token);
     localStorage.setItem('refresh', response.data.refresh_token);
     return response.data;
-  } catch (error: unknown) {
-    if ((error as AxiosError).response?.status === 403) {
-      throw new Error('Something went wrong');
-    }
+  } catch{
     throw new Error('The user has already been created');
   }
 };

@@ -17,7 +17,7 @@ const useUserStore = create<UserStore>()(
   devtools(
     immer((set) => ({
       ...initialState,
-      fetchUsers: async (limit: number | null, page: number) => {
+      fetchUsers: async (limit: number, page: number) => {
         if (page === 1) {
           set({ isLoading: true });
         }
@@ -65,7 +65,7 @@ const useUserStore = create<UserStore>()(
 export const useUsers = () => useUserStore((state) => state.users);
 export const useUserTotal = () => useUserStore((state) => state.total);
 export const useUserLoading = () => useUserStore((state) => state.isLoading);
-export const getAllUsers = (limit: number | null, page: number) =>
+export const getAllUsers = (limit: number, page: number) =>
   useUserStore.getState().fetchUsers(limit, page);
 export const getOneUser = (userName: string) => useUserStore.getState().fetchOneUser(userName);
 export const useSelectedUser = () => useUserStore((state) => state.user);

@@ -1,12 +1,15 @@
 import * as Yup from 'yup';
 
-const isValidDay = (years:number, months:number, day:number) =>{
+const isValidDay = (years: number, months: number, day: number) => {
   if (!years || !months || !day) return false;
-  const data = new Date(years, months - 1,day);
+  const data = new Date(years, months - 1, day);
   return data.getFullYear() === years && data.getMonth() === months - 1 && data.getDate() === day;
-}
+};
 export const singUpSchema = Yup.object({
-  email: Yup.string().email('Invalid email format').required('Email is required'),
+  email: Yup.string()
+    .email('Invalid email format')
+    .matches(/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/, 'Domain must have at least 2 characters after dot')
+    .required('Email is required'),
   password: Yup.string()
     .required('Password is required')
     .min(5, 'Password must be at least 5 characters long')
@@ -20,7 +23,11 @@ export const singUpSchema = Yup.object({
 });
 
 export const signInSchema = Yup.object({
-  email: Yup.string().email('Invalid email format').required('Email is required'),
+  email: Yup.string()
+    .email('Invalid email format')
+    .email('Invalid email format')
+    .matches(/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/, 'Domain must have at least 2 characters after dot')
+    .required('Email is required'),
 
   password: Yup.string().required('Password is required'),
 });
@@ -39,15 +46,12 @@ export const EditProfileSchema = Yup.object({
   location: Yup.string().required('Location is required'),
   userName: Yup.string().required('UserName is required'),
   day: Yup.number()
-    .typeError("Day must be a number")
+    .typeError('Day must be a number')
     .required('day is required')
-    .test(
-      "valid-day",
-      function(value){
-        const {months, years} = this.parent;
-        return isValidDay(Number(years), Number(months), Number(value))
-      }
-    ),
+    .test('valid-day', function (value) {
+      const { months, years } = this.parent;
+      return isValidDay(Number(years), Number(months), Number(value));
+    }),
   months: Yup.string().required('Month is required'),
   years: Yup.number()
     .typeError('Year must be a number')

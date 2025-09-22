@@ -51,7 +51,6 @@ export const EditProfile = () => {
           month: value.months,
           username: value.userName,
           years: value.years,
-          setApiError,
         });
         setApiSuccess("Data changed successfully")
       } catch {

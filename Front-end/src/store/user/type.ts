@@ -8,7 +8,7 @@ export interface UserStoreState{
 	total:number | null
 }
 interface UserStoreAction{
-	fetchUsers: (limit:number|null,page:number)=>Promise<void>
+	fetchUsers: (limit:number,page:number)=>Promise<void>
 	fetchOneUser:(userName:string) => Promise<void>,
 	fetchAuthUser:() => Promise<void>
 }
