@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState, type FC } from 'react';
 import { Virtuoso } from 'react-virtuoso';
 
 import search from 'assets/img/search.svg';
@@ -20,11 +20,12 @@ import {
   useUsers,
 } from 'store/user/useUserStore';
 import { Filter } from 'utils/filter';
+import type { ContactProps } from './type';
 
 
 
 const USERS_FETCH_LIMIT = 30;
-export const Contact = () => {
+export const Contact:FC<ContactProps> = ({title,selectElement,selectUser,setSelectUser}) => {
   const [page, setPage] = useState(2);
   const isOpen = useIsOpen();
   const total = useUserTotal();
@@ -32,7 +33,6 @@ export const Contact = () => {
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState<string>('');
   const users = useUsers();
   const isLoading = useUserLoading();
-  const [selectUser, setSelectUser] = useState<string | null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -57,7 +57,7 @@ export const Contact = () => {
   }, [isLoading, total, users.length]);
 
   const handleUserClick = useCallback((userName: string) => {
-    setSelectUser(userName);
+    setSelectUser?.(userName);
     getOneUser(userName);
   }, []);
 
@@ -76,7 +76,7 @@ export const Contact = () => {
             selectUser !== null ? 'hidden' : 'block',
           )}
         >
-          <h2 className="my-3 ml-4 text-2xl font-bold">Contacts</h2>
+          <h2 className="my-3 ml-4 text-2xl font-bold">{title}</h2>
           <img src={search} alt="search" className="absolute z-10 top-[66px] left-7  " />
           <Input
             classname="mx-4 mb-4 "
@@ -122,7 +122,7 @@ export const Contact = () => {
           />
         </div>
       </div>
-      {selectUser && <Profile setActive={setSelectUser} />}
+      {selectUser && selectElement}
     </>
   );
 };
