@@ -12,6 +12,7 @@ import {
   ActiveEmail,
   ActiveGuide,
   ActiveHelp,
+  ActiveIconPost,
   ActiveInstall,
   ActiveInvite,
   ActiveSubscriptions,
@@ -25,6 +26,7 @@ import {
   Email,
   Guide,
   Help,
+  IconPost,
   Install,
   Invite,
   Link,
@@ -139,8 +141,30 @@ export const billingBlock = [
 ];
 
 export const openlangBlock = [
-  { text: 'Install apps', img: Install, classnameImg: 'pl-4', alt: 'Install', activeImg: ActiveInstall },
+  {
+    text: 'Install apps',
+    img: Install,
+    classnameImg: 'pl-4',
+    alt: 'Install',
+    activeImg: ActiveInstall,
+  },
   { text: 'User guide', img: Guide, classnameImg: 'pl-4', alt: 'Guide', activeImg: ActiveGuide },
-  { text: 'Help and feedback', img: Help, classnameImg: 'pl-4', alt: 'Help', activeImg: ActiveHelp },
+  {
+    text: 'Help and feedback',
+    img: Help,
+    classnameImg: 'pl-4',
+    alt: 'Help',
+    activeImg: ActiveHelp,
+  },
   { text: 'About us', img: About, classnameImg: 'pl-4', alt: 'About', activeImg: ActiveAboutUs },
+];
+
+export const creationIcons = [
+  {
+    text: 'Creation post',
+    img: IconPost,
+    classnameImg: 'pl-4',
+    alt: 'CreationPost',
+    activeImg: ActiveIconPost,
+  },
 ];

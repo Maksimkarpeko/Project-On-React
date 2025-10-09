@@ -46,3 +46,5 @@ export { default as ActiveGuide } from './icon/ActiveGuide.png';
 export { default as ActiveHelp } from './icon/ActiveHelp.png';
 export { default as ActiveAboutUs } from './icon/ActiveAbout.png';
 export { default as IconError} from './icon/iconError.jpg'
+export { default as IconPost} from './icon/Post.png'
+export { default as ActiveIconPost} from './icon/Shape.png'

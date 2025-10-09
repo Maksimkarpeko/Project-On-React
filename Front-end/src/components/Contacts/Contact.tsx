@@ -1,10 +1,9 @@
-import { useCallback, useEffect, useMemo, useState, type FC } from 'react';
+import { type FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { Virtuoso } from 'react-virtuoso';
 
 import search from 'assets/img/search.svg';
 import testImg from 'assets/testImg.svg';
 import clsx from 'clsx';
-import { Profile } from 'components/Profile/Profile';
 import { Size } from 'components/common/Avatars/constants';
 import { ContactUser } from 'components/common/ContactUser/ContactUser';
 import { Input } from 'components/common/Input/Input';
@@ -14,18 +13,24 @@ import { Color } from 'constants/color';
 import { useIsOpen } from 'store/useFlagCopyModal/useFlagCopyModal';
 import {
   getAllUsers,
+  getAuthUser,
   getOneUser,
+  useSelectedUser,
   useUserLoading,
   useUserTotal,
   useUsers,
 } from 'store/user/useUserStore';
 import { Filter } from 'utils/filter';
+
 import type { ContactProps } from './type';
 
-
-
 const USERS_FETCH_LIMIT = 30;
-export const Contact:FC<ContactProps> = ({title,selectElement,selectUser,setSelectUser}) => {
+export const Contact: FC<ContactProps> = ({
+  title,
+  selectElement,
+  selectUser,
+  setSelectUser,
+}) => {
   const [page, setPage] = useState(2);
   const isOpen = useIsOpen();
   const total = useUserTotal();
@@ -33,7 +38,6 @@ export const Contact:FC<ContactProps> = ({title,selectElement,selectUser,setSele
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState<string>('');
   const users = useUsers();
   const isLoading = useUserLoading();
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedSearchQuery(searchQuery);

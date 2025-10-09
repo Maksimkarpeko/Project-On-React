@@ -1,17 +1,26 @@
 import type { ReactNode } from 'react';
 
 import { Contact } from 'components/Contacts/Contact';
+import { CreationPost } from 'components/CreationPost/CreationPost';
 import { EditProfile } from 'components/EditProfile/EditProfile';
 import { MessageUsers } from 'components/MessageUsers/MessageUsers';
 import { Profile } from 'components/Profile/Profile';
+import { Creation } from 'pages/Creation/Creation';
 import { Setting } from 'pages/Setting/Setting';
 
 export const getNavigationContent = (
   setSelectUser: React.Dispatch<React.SetStateAction<string | null>>,
   selectUser: string | null,
 ): Record<string, ReactNode> => ({
-  Discover: 'Discover',
-  Contact: <Contact title="Contact" selectElement={<Profile setActive={setSelectUser} />} selectUser={selectUser} setSelectUser={setSelectUser}/>,
+  Discover: <Creation />,
+  Contact: (
+    <Contact
+      title="Contact"
+      selectElement={<Profile setActive={setSelectUser} />}
+      selectUser={selectUser}
+      setSelectUser={setSelectUser}
+    />
+  ),
   Message: <MessageUsers />,
   Notification: 'Notification',
   Setting: <Setting />,
@@ -34,4 +43,8 @@ export const SettingNavigationContent: Record<string, ReactNode> = {
   Guide: 'User guide content',
   Help: 'Help and feedback content',
   About: 'About us content',
+};
+
+export const creationNavigationContent: Record<string, ReactNode> = {
+  CreationPost: <CreationPost />,
 };

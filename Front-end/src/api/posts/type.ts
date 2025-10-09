@@ -1,0 +1,19 @@
+export interface posts {
+    id:number,
+    content:string,
+    image:string,
+    createAt:string,
+    updateAt:string,
+    userId:number,
+    user:{
+        userName:string,
+        image:string,
+    }
+    _count:{
+        comments:number,
+        likes:number,
+    },
+    isLike:boolean,
+    isEditable?:boolean,
+    isUpdated?:boolean,
+}

@@ -153,7 +153,7 @@ export const EditProfile = () => {
                 classname="w-48 h-14 mr-4"
                 value={formik.values.months}
                 onChange={(e) => {
-                  const selectedMonth = (e.target as HTMLSelectElement).value;
+                  const selectedMonth = (e.target as unknown as HTMLSelectElement).value;
                   formik.setFieldValue('months', selectedMonth);
                 }}
               />
