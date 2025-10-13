@@ -27,7 +27,7 @@ api.interceptors.response.use(
         return api.request(originalRequest);
       } catch (refreshError: unknown) {
         if (axios.isAxiosError(refreshError)) {
-          if (refreshError.response?.status === 403) {
+          if (refreshError.response?.status === 403 || refreshError.response?.status === 401) {
             localStorage.removeItem('token');
             localStorage.removeItem('refresh');
             window.location.href = Links.startScreen;
