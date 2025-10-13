@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { createPost } from 'api/posts';
 import { Button } from 'components/common/Button/Button';
 import { Input } from 'components/common/Input/Input';
@@ -5,7 +7,6 @@ import { Variant } from 'components/common/Input/constant';
 import { Color } from 'constants/color';
 import { Size } from 'constants/size';
 import { useFormik } from 'formik';
-import { useState } from 'react';
 
 export const CreationPost = () => {
   const [apiMessage, setApiMessage] = useState<string>('');
@@ -14,16 +15,28 @@ export const CreationPost = () => {
       text: '',
       file: '',
     },
-    onSubmit: (value) => {
-      try{
-        createPost(
-            value.text,
-            value.file
-        )
-        setApiMessage("Post Created")
-      }catch(e) {
+    validate: (values) => {
+      const errors: Partial<Record<string, string>> = {};
+      if (!values.text.trim()) {
+        errors.text = 'Введите текст поста';
+      } else if (values.text.length < 3) {
+        errors.text = 'Текст должен содержать минимум 3 символа';
+      } else if (values.text.length > 500) {
+        errors.text = 'Текст слишком длинный (максимум 500 символов)';
+      }
+
+      if (!values.file) {
+        errors.file = 'Выберите файл';
+      }
+      return errors;
+    },
+    onSubmit: async (value) => {
+      try {
+        await createPost(value.text, value.file);
+        setApiMessage('Post Created');
+      } catch (e) {
         if (typeof e === 'string') {
-            setApiMessage(e);
+          setApiMessage(e);
         }
       }
     },

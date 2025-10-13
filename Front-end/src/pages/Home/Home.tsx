@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { BaseLayout } from 'components/layouts/baseLayout/BaseLayout';
 import { Links } from 'constants/links';
 import { getNavigationContent } from 'constants/navigationContent';
+import { getAuthUser } from 'store/user/useUserStore';
 
 export function Home() {
   const [page, setPage] = useState<string>('');
@@ -12,8 +13,10 @@ export function Home() {
   useEffect(() => {
     if (!localStorage.getItem('token')) {
       navigate(Links.startScreen);
+      return
     }
-  });
+    getAuthUser();
+  }, [navigate]);
   return (
     <BaseLayout setPage={setPage} page={page}>
       {getNavigationContent(setSelectUser, selectUser)[page] ?? null}

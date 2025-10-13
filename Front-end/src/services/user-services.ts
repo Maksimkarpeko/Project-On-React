@@ -1,7 +1,7 @@
 import { getInfoAuth, getUserById, getUsers } from 'api/user';
 
 export const userServices = {
-  async fetchUsers(limit: number | null, page: number) {
+  async fetchUsers(limit: number | undefined, page: number) {
     return await getUsers(limit, page);
   },
   async fetchOneUser(userName: string) {
