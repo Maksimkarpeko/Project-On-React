@@ -13,9 +13,7 @@ import { Color } from 'constants/color';
 import { useIsOpen } from 'store/useFlagCopyModal/useFlagCopyModal';
 import {
   getAllUsers,
-  getAuthUser,
   getOneUser,
-  useSelectedUser,
   useUserLoading,
   useUserTotal,
   useUsers,
@@ -25,12 +23,7 @@ import { Filter } from 'utils/filter';
 import type { ContactProps } from './type';
 
 const USERS_FETCH_LIMIT = 30;
-export const Contact: FC<ContactProps> = ({
-  title,
-  selectElement,
-  selectUser,
-  setSelectUser,
-}) => {
+export const Contact: FC<ContactProps> = ({ title, selectElement, selectUser, setSelectUser }) => {
   const [page, setPage] = useState(2);
   const isOpen = useIsOpen();
   const total = useUserTotal();

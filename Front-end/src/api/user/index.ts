@@ -1,8 +1,9 @@
-import type { UserResponse, apiResponse, updateUserAuthProps } from 'api/user/type';
+import type {apiResponse, updateUserAuthProps } from 'api/user/type';
 import type { AxiosResponse } from 'axios';
 import { api } from 'utils/api-сonfig';
 import { ShowError } from 'utils/show-error';
 import type { editUserForSingUpProps } from './type';
+import type { UserResponse } from 'utils/api-type';
 
 export const getUsers = async (
   limit: number = 30,
@@ -21,7 +22,7 @@ export const getUsers = async (
   }
 };
 
-export const getUserById = async (userName: string) => {
+export const getUserByName = async (userName: string) => {
   try {
     const response = await api.get(`/users/${userName}`);
     return response.data;

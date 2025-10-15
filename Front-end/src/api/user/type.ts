@@ -1,10 +1,5 @@
-export interface UserResponse {
-	id:number,
-	username:string,
-	img:string,
-	email:string,
-	country:string | null,
-}
+import type { UserResponse } from "utils/api-type";
+
 export interface apiResponse {
 	data:UserResponse[],
 	total:number,

@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
-import type { buttonSize } from './constant';
+import type { buttonOpacity, buttonSize } from './constant';
 import type { Color } from 'constants/color';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -8,5 +8,5 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   type: 'button' | 'submit' | 'reset';
   classname?: string;
   size?: buttonSize;
-  color?: Color;
+  color?: Color | buttonOpacity;
 }

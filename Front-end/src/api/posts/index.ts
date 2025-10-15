@@ -1,10 +1,10 @@
+import type { posts } from 'utils/api-type';
 import { api } from 'utils/api-сonfig';
-
-import type { posts } from './type';
 
 export const getAllPost = async (): Promise<posts[]> => {
   try {
     const post = await api.get('/posts');
+    console.log(post.data);
     return post.data;
   } catch (error: unknown) {
     throw new Error(String(error));

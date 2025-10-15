@@ -6,7 +6,7 @@ export interface posts {
     updateAt:string,
     userId:number,
     user:{
-        userName:string,
+        username:string,
         image:string,
     }
     _count:{
@@ -16,4 +16,12 @@ export interface posts {
     isLike:boolean,
     isEditable?:boolean,
     isUpdated?:boolean,
+}
+
+export interface UserResponse {
+	id:number,
+	username:string,
+	img:string,
+	email:string,
+	country:string | null,
 }

@@ -1,5 +1,5 @@
 import { type FC, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 import { checkAuth } from 'api/auth';
 import { LogoXL } from 'assets/index';
@@ -11,12 +11,8 @@ import { Links } from 'constants/links';
 import type { StartProps } from './type';
 
 export const StartScreen: FC<StartProps> = ({ title, ...rest }) => {
-  const navigator = useNavigate();
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      checkAuth();
-      navigator(Links.homePage);
-    }
+    checkAuth();
   }, []);
   return (
     <div {...rest} className="h-screen flex flex-col justify-center items-center">

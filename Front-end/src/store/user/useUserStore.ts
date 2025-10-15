@@ -1,4 +1,4 @@
-import { getInfoAuth, getUserById, getUsers } from 'api/user';
+import { getInfoAuth, getUserByName, getUsers } from 'api/user';
 import { userServices } from 'services/user-services';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';

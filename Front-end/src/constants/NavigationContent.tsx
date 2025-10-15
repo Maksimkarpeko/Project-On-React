@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
 
+import { ChatsNav } from 'components/ChatsNav/ChatsNav';
 import { Contact } from 'components/Contacts/Contact';
 import { CreationPost } from 'components/CreationPost/CreationPost';
 import { EditProfile } from 'components/EditProfile/EditProfile';
-import { MessageUsers } from 'components/MessageUsers/MessageUsers';
 import { Profile } from 'components/Profile/Profile';
 import { Creation } from 'pages/Creation/Creation';
 import { Setting } from 'pages/Setting/Setting';
@@ -21,7 +21,7 @@ export const getNavigationContent = (
       setSelectUser={setSelectUser}
     />
   ),
-  Message: <MessageUsers />,
+  Message: <ChatsNav />,
   Notification: 'Notification',
   Setting: <Setting />,
 });
