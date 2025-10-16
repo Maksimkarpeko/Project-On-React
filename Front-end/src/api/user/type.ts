@@ -1,25 +1,25 @@
-import type { UserResponse } from "utils/api-type";
+import type { UserResponse } from 'utils/apiType';
 
-export interface apiResponse {
-	data:UserResponse[],
-	total:number,
+export interface ApiResponse {
+  data: UserResponse[];
+  total: number;
 }
 
-export interface editUserForSingUpProps {
-	firstName:string, 
-	lastName:string,
-	img:string | null,
+export interface EditUserForSingUpProps {
+  firstName: string;
+  lastName: string;
+  img: string | null;
 }
 
-export interface updateUserAuthProps {
-	firstName:string,
-	lastName:string,
-	bio:string,
-	location: string,
-	address:string,
-	username:string,
-	day:number,
-	month:string,
-	years:number,
-	country:string,
+export interface UpdateUserAuthProps {
+  firstName: string;
+  lastName: string;
+  bio: string;
+  location: string;
+  address: string;
+  username: string;
+  day: number;
+  month: string;
+  years: number;
+  country: string;
 }

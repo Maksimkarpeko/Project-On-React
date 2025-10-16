@@ -1,5 +1,4 @@
-import type { UserResponse } from "utils/api-type";
-
+import type { UserResponse } from 'utils/apiType';
 
 export interface UserStoreState {
   users: UserResponse[];

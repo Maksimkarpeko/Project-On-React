@@ -2,15 +2,15 @@ import { getAllPost } from 'api/posts';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
-import type { initialPostProps, postStoreProps } from './type';
+import type { InitialPostProps, PostStoreProps } from './type';
 
-const initialStore: initialPostProps = {
+const initialStore: InitialPostProps = {
   posts: [],
   isLoading: false,
   error: '',
 };
 
-const usePostStore = create<postStoreProps>()(
+const usePostStore = create<PostStoreProps>()(
   devtools((set) => ({
     ...initialStore,
     fetchPosts: async () => {

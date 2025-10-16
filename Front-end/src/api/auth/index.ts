@@ -2,8 +2,8 @@ import type { NavigateFunction } from 'react-router-dom';
 
 import axios, { type AxiosError } from 'axios';
 import { Links } from 'constants/links';
-import { api } from 'utils/api-сonfig';
-import { ShowError } from 'utils/show-error';
+import { api } from 'utils/apiConfig';
+import { ShowError } from 'utils/showError';
 
 import type { AuthResponse, SignInOptions } from './type';
 import type { SignUpOptions } from './type';
@@ -53,7 +53,7 @@ export const signUp = async ({
     localStorage.setItem('token', response.data.access_token);
     localStorage.setItem('refresh', response.data.refresh_token);
     return response.data;
-  } catch{
+  } catch {
     throw new Error('The user has already been created');
   }
 };

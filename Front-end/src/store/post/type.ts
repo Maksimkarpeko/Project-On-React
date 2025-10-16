@@ -1,12 +1,12 @@
-import type { posts } from 'utils/api-type';
+import type { Posts } from 'utils/apiType';
 
-export interface initialPostProps {
-  posts: posts[];
+export interface InitialPostProps {
+  posts: Posts[];
   isLoading: boolean;
   error: Error | string;
 }
-interface postAction {
+interface PostAction {
   fetchPosts: () => Promise<void>;
 }
 
-export interface postStoreProps extends initialPostProps, postAction {}
+export interface PostStoreProps extends InitialPostProps, PostAction {}

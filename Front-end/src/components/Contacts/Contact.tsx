@@ -76,8 +76,8 @@ export const Contact: FC<ContactProps> = ({ title, selectElement, selectUser, se
           <h2 className="my-3 ml-4 text-2xl font-bold">{title}</h2>
           <img src={search} alt="search" className="absolute z-10 top-[66px] left-7  " />
           <Input
-            classname="mx-4 mb-4 "
-            inputStyle=""
+            classname="mx-4 mb-4"
+            inputStyle="w-[100%]"
             name="text"
             type="text"
             variant={Variant.text}

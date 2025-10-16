@@ -1,9 +1,10 @@
-import type {apiResponse, updateUserAuthProps } from 'api/user/type';
+import type { ApiResponse, UpdateUserAuthProps } from 'api/user/type';
 import type { AxiosResponse } from 'axios';
-import { api } from 'utils/api-сonfig';
-import { ShowError } from 'utils/show-error';
-import type { editUserForSingUpProps } from './type';
-import type { UserResponse } from 'utils/api-type';
+import { api } from 'utils/apiConfig';
+import type { UserResponse } from 'utils/apiType';
+import { ShowError } from 'utils/showError';
+
+import type { EditUserForSingUpProps } from './type';
 
 export const getUsers = async (
   limit: number = 30,
@@ -11,7 +12,7 @@ export const getUsers = async (
 ): Promise<{ users: UserResponse[]; total: number }> => {
   const skip = page - 1;
   try {
-    const response: AxiosResponse<apiResponse> = await api.get(`/users`, {
+    const response: AxiosResponse<ApiResponse> = await api.get(`/users`, {
       params: { page: skip, limit: limit },
     });
     const { data, total } = response.data;
@@ -32,7 +33,7 @@ export const getUserByName = async (userName: string) => {
   }
 };
 
-export const updateUserForSingUp = async ({ firstName, lastName, img }: editUserForSingUpProps) => {
+export const updateUserForSingUp = async ({ firstName, lastName, img }: EditUserForSingUpProps) => {
   try {
     const formData = new FormData();
 
@@ -59,14 +60,14 @@ export const getInfoAuth = async () => {
   }
 };
 
-export const updateUserAuth = async (payload: updateUserAuthProps) => {
+export const updateUserAuth = async (payload: UpdateUserAuthProps) => {
   try {
     const dayStr = String(payload.day).padStart(2, '0');
     const data = new Date(`${payload.years}-${payload.month}-${dayStr}T00:00:00.000Z`);
     const dataSend = {
       ...payload,
-      data
-    }
+      data,
+    };
     const response = await api.patch('/users', dataSend);
     console.log(response.data);
     return response.data;

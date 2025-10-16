@@ -1,7 +1,7 @@
-import type { posts } from 'utils/api-type';
-import { api } from 'utils/api-сonfig';
+import { api } from 'utils/apiConfig';
+import type { Posts } from 'utils/apiType';
 
-export const getAllPost = async (): Promise<posts[]> => {
+export const getAllPost = async (): Promise<Posts[]> => {
   try {
     const post = await api.get('/posts');
     console.log(post.data);
