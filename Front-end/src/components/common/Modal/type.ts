@@ -1,5 +1,7 @@
 import type { HTMLAttributes, ReactNode } from "react";
 
 export interface ModalWindowProps extends HTMLAttributes<HTMLDivElement>{
-    children:ReactNode
+    children:ReactNode,
+    classname?:string,
+    mode:string,
 }

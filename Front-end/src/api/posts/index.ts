@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { api } from 'utils/apiConfig';
 import type { Posts } from 'utils/apiType';
 
@@ -28,6 +29,29 @@ export const createPost = async (content: string, img: File | null) => {
     const result = await api.post('/posts', formData);
     return result;
   } catch (error: unknown) {
+    throw new Error(String(error));
+  }
+};
+
+export const putLike = async (postId: number) => {
+  try {
+    await api.post(`/likes/${postId}`);
+  } catch (error: unknown) {
+    if (error instanceof AxiosError) {
+      if (error.response?.status === 409) {
+        throw new Error('409');
+      } else {
+        throw new Error('An incomprehensible error');
+      }
+    }
+    throw new Error('problem with error');
+  }
+};
+
+export const deleteLike = async (postId: number) => {
+  try {
+    await api.delete(`/likes/${postId}`);
+  } catch (error) {
     throw new Error(String(error));
   }
 };

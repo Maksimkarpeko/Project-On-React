@@ -12,6 +12,7 @@ import { actionsBlock, contactBlock, profileBlock } from 'constants/customIconAr
 import { useSelectedUser } from 'store/user/useUserStore';
 
 import type { ProfileProps } from './type';
+import { ModeForModal } from 'constants/mode';
 
 export const Profile: FC<ProfileProps> = ({ setActive }) => {
   const user = useSelectedUser();
@@ -127,7 +128,7 @@ export const Profile: FC<ProfileProps> = ({ setActive }) => {
           </div>
         </div>
       </div>
-      {isOpenModal && <Modal>The text is copied</Modal>}
+      {isOpenModal && <Modal mode={ModeForModal.massage}>The text is copied</Modal>}
     </>
   );
 };

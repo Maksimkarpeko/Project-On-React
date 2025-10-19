@@ -7,6 +7,8 @@ export interface InitialPostProps {
 }
 interface PostAction {
   fetchPosts: () => Promise<void>;
+  postLikes: (postId: number) => Promise<void>;
+  deleteLikes: (postId: number) => Promise<void>;
 }
 
 export interface PostStoreProps extends InitialPostProps, PostAction {}

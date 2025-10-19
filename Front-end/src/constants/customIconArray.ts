@@ -1,4 +1,3 @@
-import type { UserResponse } from 'api/user/type';
 import {
   About,
   Account,
@@ -37,6 +36,7 @@ import {
   Wallet,
   X,
 } from 'assets/index';
+import type { UserResponse } from 'utils/apiType';
 import { getInitialsForCountry } from 'utils/getInitialsCountry';
 
 export const actionsBlock = [
