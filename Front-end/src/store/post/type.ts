@@ -7,7 +7,7 @@ export interface InitialPostProps {
 }
 interface PostAction {
   fetchPosts: () => Promise<void>;
-  postLikes: (postId: number) => Promise<void>;
+  addLikes: (postId: number) => Promise<void>;
   deleteLikes: (postId: number) => Promise<void>;
 }
 

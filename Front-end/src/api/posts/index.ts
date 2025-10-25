@@ -5,7 +5,6 @@ import type { Posts } from 'utils/apiType';
 export const getAllPost = async (): Promise<Posts[]> => {
   try {
     const post = await api.get('/posts');
-    console.log(post.data);
     return post.data;
   } catch (error: unknown) {
     throw new Error(String(error));

@@ -48,6 +48,6 @@ export { default as ActiveAboutUs } from './icon/ActiveAbout.png';
 export { default as IconError } from './icon/iconError.jpg';
 export { default as IconPost } from './icon/Post.png';
 export { default as ActiveIconPost } from './icon/Shape.png';
-export { default as Like } from './icon/Likes.png';
+export { default as inActiveLike } from './icon/Likes.png';
 export { default as comment } from './icon/Comment.png';
-export { default as ActiveLike } from './icon/LikesActive.png';
+export { default as activeLike } from './icon/LikesActive.png';
