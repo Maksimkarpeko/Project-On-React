@@ -23,14 +23,14 @@ export const Modal: FC<ModalWindowProps> = ({
       <div
         className={clsx(
           mode === ModeForModal.comment
-            ? 'bg-white rounded-2xl shadow-2xl overflow-hidden w-[80%] h-[80%]'
+            ? 'bg-white rounded-2xl shadow-2xl overflow-hidden w-[40%] h-[80%]'
             : '',
         )}
       >
         {mode === ModeForModal.comment && (
           <button
             onClick={onHandelClose}
-            className="absolute text-xl top-[12%] right-[11%] text-gray-500 hover:text-gray-800 transition"
+            className="absolute text-xl top-[12%] right-[31%] text-gray-500 hover:text-gray-800 transition"
             aria-label="Закрыть"
           >
             X

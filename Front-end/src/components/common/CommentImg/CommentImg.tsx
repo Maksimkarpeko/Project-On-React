@@ -1,10 +1,10 @@
-import { useState, type FC } from 'react';
+import { useEffect, useState, type FC } from 'react';
 
 import { comment } from 'assets/index';
 
 import type { CommentProps } from './type';
 
-export const Comment: FC<CommentProps> = ({ countComment,onHandleOpen}) => {
+export const CommentImg: FC<CommentProps> = ({ countComment,onHandleOpen}) => {
   return (
     <div className="flex">
       <div className="mr-1">

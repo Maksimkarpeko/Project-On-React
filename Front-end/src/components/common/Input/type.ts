@@ -11,7 +11,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder: string;
   classname?: string;
   variant: Variant;
-  inputColor?: Color;
+  inputColor: Color;
   inputTitle?: InputTitle;
   title?: string;
   id?: string;

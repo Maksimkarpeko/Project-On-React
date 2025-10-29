@@ -25,3 +25,14 @@ export interface UserResponse {
   email: string;
   country: string | null;
 }
+
+export interface CommentsResponse {
+  id: number;
+  content:string,
+  userId:number,
+  postId:number,
+  user:{
+    id:number,
+    username:string,
+  }
+}
