@@ -10,8 +10,14 @@ import { Like } from '../Like/Like';
 import { Modal } from '../Modal/Modal';
 import type { postProps } from './type';
 
-export const Post: FC<postProps> = ({ content, img, username, countComment, postId }) => {
-  const [isOpenComment, setIsOpenComment] = useState<boolean>(false);
+export const Post: FC<postProps> = ({
+  content,
+  img,
+  username,
+  postId,
+  setIsOpenComment,
+  isOpenComment,
+}) => {
   const fetchCommentsById = useFetchCommentsById();
   const openModal = async () => {
     fetchCommentsById(postId);
@@ -27,7 +33,7 @@ export const Post: FC<postProps> = ({ content, img, username, countComment, post
         <div className="p-4">
           <div className="flex">
             <Like postId={postId} />
-            <CommentImg countComment={countComment} onHandleOpen={openModal} />
+            <CommentImg postId={postId} onHandleOpen={openModal} />
           </div>
           <div>
             <p className="text-gray-800 text-base">
@@ -41,7 +47,7 @@ export const Post: FC<postProps> = ({ content, img, username, countComment, post
         <Modal mode={ModeForModal.comment} onHandelClose={closeModal}>
           <CommentList />
           <hr />
-          <CommentInput postId={postId}/>
+          <CommentInput postId={postId} />
         </Modal>
       )}
     </>

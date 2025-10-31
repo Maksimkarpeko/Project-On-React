@@ -1,23 +1,27 @@
+import { type FC, useEffect } from 'react';
+
 import { Color } from 'constants/color';
 import { Size } from 'constants/size';
 import { useFormik } from 'formik';
-import { useAddComment } from 'store/comment/useCommentStore';
+import { useFetchCommentsById } from 'store/comment/useCommentStore';
+import { useAddComment } from 'store/post/usePostStore';
 
 import { Button } from '../Button/Button';
 import { buttonSize } from '../Button/constant';
 import { Input } from '../Input/Input';
 import { Variant } from '../Input/constant';
-import type { FC } from 'react';
 import type { CommentInputProps } from './type';
 
-export const CommentInput:FC<CommentInputProps> = ({postId}) => {
+export const CommentInput: FC<CommentInputProps> = ({ postId }) => {
   const addComment = useAddComment();
+  const fetchCommentsById = useFetchCommentsById();
   const formik = useFormik({
     initialValues: {
       contextComment: '',
     },
-    onSubmit: (value, { resetForm }) => {
-      addComment(value.contextComment, postId);
+    onSubmit: async (value, { resetForm }) => {
+      await addComment(value.contextComment, postId);
+      await fetchCommentsById(postId);
       resetForm();
     },
   });

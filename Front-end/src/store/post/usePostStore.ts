@@ -1,3 +1,4 @@
+import { postComment } from 'api/comments';
 import { deleteLike, getAllPost, getPostById, putLike } from 'api/posts';
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
@@ -55,9 +56,30 @@ const usePostStore = create<PostStoreProps>()(
         }
       }
     },
+    addComment: async (content: string, postId: number) => {
+      try {
+        await postComment(content, postId);
+        set((state) => ({
+          posts: state.posts.map((item) =>
+            item.id === postId
+              ? {
+                  ...item,
+                  _count: {
+                    ...item._count,
+                    comments: item._count.comments + 1,
+                  },
+                }
+              : item,
+          ),
+        }));
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          set({ error: error.message });
+        }
+      }
+    },
     deleteLikes: async (postId: number) => {
       const previousState = usePostStore.getState().posts;
-
       try {
         await deleteLike(postId);
         set((state) => ({
@@ -94,3 +116,4 @@ export const useIsLoading = () => usePostStore((state) => state.isLoading);
 export const useErrorMassage = () => usePostStore((state) => state.error);
 export const useAddLike = () => usePostStore((state) => state.addLikes);
 export const useDeleteLike = () => usePostStore((state) => state.deleteLikes);
+export const useAddComment = () => usePostStore((state) => state.addComment);

@@ -1,3 +1,3 @@
 export interface chatPostsProps {
-    selectUser:string | null
+  selectUser: string | null;
 }

@@ -26,15 +26,6 @@ const useCommentStore = create<CommentsStoreProps>()(
         }
       }
     },
-    addComment: async (content: string, postId: number) => {
-      try {
-        await postComment(content, postId);
-      } catch (error: unknown) {
-        if (error instanceof Error) {
-          set({ error: error.message });
-        }
-      }
-    },
   })),
 );
 
@@ -42,5 +33,3 @@ export const useFetchCommentsById = () => useCommentStore((state) => state.fetch
 export const useAllComments = () => useCommentStore((state) => state.comments);
 export const useLoading = () => useCommentStore((state) => state.isLoading);
 export const useError = () => useCommentStore((state) => state.error);
-export const useAddComment = () =>
-  useCommentStore((state) => state.addComment);

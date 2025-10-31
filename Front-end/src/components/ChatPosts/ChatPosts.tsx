@@ -1,5 +1,6 @@
-import { type FC, useEffect } from 'react';
+import { type FC, useEffect, useState } from 'react';
 
+import clsx from 'clsx';
 import { ErrorMessage } from 'components/common/ErrorMessage/ErrorMessage';
 import { Post } from 'components/common/Post/Post';
 import { useAllPost, useErrorMassage, useGetAllPost, useIsLoading } from 'store/post/usePostStore';
@@ -7,6 +8,7 @@ import { useAllPost, useErrorMassage, useGetAllPost, useIsLoading } from 'store/
 import type { chatPostsProps } from './type';
 
 export const ChatPosts: FC<chatPostsProps> = ({ selectUser }) => {
+  const [isOpenComment, setIsOpenComment] = useState<boolean>(false);
   const posts = useAllPost();
   const fetchAllPosts = useGetAllPost();
   const isLoading = useIsLoading();
@@ -19,7 +21,7 @@ export const ChatPosts: FC<chatPostsProps> = ({ selectUser }) => {
   if (chatErrorMassage) return <ErrorMessage errorMessage={chatErrorMassage} />;
 
   return (
-    <div className="lg:ml-[50%] sm:ml-[0%] ml-[25%] ">
+    <div className={clsx('lg:ml-[25%] sm:ml-[0%] ml-[25%]')}>
       {postUser.length ? (
         postUser.map((post) => (
           <Post
@@ -27,8 +29,9 @@ export const ChatPosts: FC<chatPostsProps> = ({ selectUser }) => {
             content={post.content}
             img={post.image}
             username={post.user.username}
-            countComment={post._count.comments}
+            isOpenComment={isOpenComment}
             postId={post.id}
+            setIsOpenComment={setIsOpenComment}
           />
         ))
       ) : (

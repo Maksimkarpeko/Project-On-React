@@ -1,4 +1,4 @@
 export interface CommentProps {
-  countComment: number;
+  postId:number,
   onHandleOpen: () => void;
 }
