@@ -7,7 +7,7 @@ import { useAllPost, useErrorMassage, useGetAllPost, useIsLoading } from 'store/
 
 import type { chatPostsProps } from './type';
 
-export const ChatPosts: FC<chatPostsProps> = ({ selectUser }) => {
+export const PostsList: FC<chatPostsProps> = ({ selectUser }) => {
   const [isOpenComment, setIsOpenComment] = useState<boolean>(false);
   const posts = useAllPost();
   const fetchAllPosts = useGetAllPost();

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { ChatPosts } from 'components/ChatPosts/ChatPosts';
+import { PostsList } from 'components/PostsList/PostsList';
 import { Contact } from 'components/Contacts/Contact';
 
 export const PostNav = () => {
@@ -10,7 +10,7 @@ export const PostNav = () => {
       <Contact
         title="Posts"
         selectElement={
-          <ChatPosts
+          <PostsList
             selectUser={selectUser}
           />
         }

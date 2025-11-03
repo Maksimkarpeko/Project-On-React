@@ -6,6 +6,8 @@ import { ErrorMessage } from 'components/common/ErrorMessage/ErrorMessage';
 import { Input } from 'components/common/Input/Input';
 import { Variant } from 'components/common/Input/constant';
 import { useFormik } from 'formik';
+import { Color } from 'constants/color';
+import { CreationPostSchema } from 'utils/validate';
 
 export const CreationPost = () => {
   const [apiMessage, setApiMessage] = useState<string>('');
@@ -26,28 +28,7 @@ export const CreationPost = () => {
       text: '',
       file: null,
     },
-    validate: (values) => {
-      const errors: Partial<Record<string, string>> = {};
-      if (!values.text.trim()) {
-        errors.text = 'Enter the text of the post';
-      } else if (values.text.length < 3) {
-        errors.text = 'The text must contain at least 3 characters.';
-      } else if (values.text.length > 500) {
-        errors.text = 'The text is too long (maximum 500 characters)';
-      }
-
-      if (!values.file) {
-        errors.file = 'Select a file';
-      } else {
-        const file = values.file as File;
-        const forbiddenExtensions = ['.svg'];
-        const fileName = file.name.toLowerCase();
-        if (forbiddenExtensions.some((ext) => fileName.endsWith(ext))) {
-          errors.file = 'Uploading .svg files is not allowed';
-        }
-      }
-      return errors;
-    },
+    validationSchema: CreationPostSchema,
     onSubmit: async (value) => {
       setApiMessage('');
       try {
@@ -113,6 +94,7 @@ export const CreationPost = () => {
         <div>
           <h2 className="text-xl mt-3 font-bold">Write content</h2>
           <Input
+            inputColor={Color.gray}
             name="text"
             placeholder="You content"
             type="text"

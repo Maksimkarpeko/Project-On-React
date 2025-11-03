@@ -59,3 +59,22 @@ export const EditProfileSchema = Yup.object({
     .min(1900, 'Year must be between 1900 and the current year')
     .max(new Date().getFullYear(), 'Year must be between 1900 and the current year'),
 });
+
+export const CreationPostSchema = Yup.object({
+  text: Yup.string()
+    .trim('Enter the text of the post')
+    .required('Enter the text of the post')
+    .min(5, 'The text must contain at least 3 characters.')
+    .max(500, 'The text is too long (maximum 500 characters)'),
+  file: Yup.mixed()
+    .required('Select a file')
+    .test('file-extension', 'Uploading .svg files is not allowed', (value) => {
+      if (!value) return true;
+
+      const file = value as File;
+      const forbiddenExtensions = ['.svg'];
+      const fileName = file.name.toLowerCase();
+
+      return !forbiddenExtensions.some((ext) => fileName.endsWith(ext));
+    }),
+});
