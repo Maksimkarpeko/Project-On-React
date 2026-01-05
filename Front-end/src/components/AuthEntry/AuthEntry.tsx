@@ -1,0 +1,47 @@
+import { useCallback, type FC } from 'react';
+
+import { Button } from 'components/common/Button/Button';
+import { buttonSize } from 'components/common/Button/constant';
+import { Color } from 'constants/color';
+
+import type { EntryProps } from './type';
+
+export const AuthEntry: FC<EntryProps> = ({
+  children,
+  title,
+  subTitle,
+  formikForSignUp,
+  formikForSignIn,
+  bioForm,
+  onClick,
+  errorApi,
+  ...rest
+}) => {
+  const handleNextStep = useCallback(()=> {
+    if (formikForSignUp) {
+      formikForSignUp.handleSubmit();
+    }
+    if (formikForSignIn) {
+      formikForSignIn.handleSubmit();
+    }
+    if (bioForm) {
+      bioForm.handleSubmit();
+    }
+  },[formikForSignUp,formikForSignIn,bioForm])
+  return (
+    <div {...rest} className="flex flex-col justify-center items-center h-screen">
+      <h1 className="font-bold text-2xl mb-2">{title}</h1>
+      <p className="text-sm mb-10">{subTitle}</p>
+      {children}
+      <Button
+        type="button"
+        color={Color.blue}
+        size={buttonSize.sizeL}
+        classname="mt-8"
+        onClick={handleNextStep}
+      >
+        Next
+      </Button>
+    </div>
+  );
+};

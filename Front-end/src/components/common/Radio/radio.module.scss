@@ -1,0 +1,21 @@
+.customRadio {
+  @apply appearance-none w-5 h-5 rounded-full bg-white checked:bg-blue-500 relative cursor-pointer;
+}
+
+.customRadio::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  border-radius: 100px;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.customRadio:checked::before {
+  opacity: 1;
+}

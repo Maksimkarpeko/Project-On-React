@@ -1,0 +1,21 @@
+.scrollbar {
+  overflow-y: auto;
+  height: calc(100vh - 112px);
+  scrollbar-width: thin;
+  scrollbar-color: #999 transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #999;
+    border-radius: 4px;
+    min-height: 1px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+}

@@ -1,0 +1,14 @@
+import type { HTMLAttributes, ReactNode } from 'react';
+
+import type { Links } from 'constants/links';
+import type { FormikProps } from 'formik';
+
+export interface EntryProps extends HTMLAttributes<HTMLDivElement> {
+  title: string;
+  children: ReactNode;
+  subTitle: ReactNode;
+  errorApi?:boolean,
+  formikForSignUp?: FormikProps<{email:string,password:string, username:string}>,
+  formikForSignIn?: FormikProps<{email:string,password:string}>,
+  bioForm?: FormikProps<{ firstName: string; lastName: string; avatar: string | null }>;
+}
